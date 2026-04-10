@@ -407,6 +407,7 @@ export default function Home() {
         )}
 
         {!searchQuery && (
+          <>
             {/* ── USE CASES / SCENARIOS (Inspired by calcpro.com.au) ── */}
             <section style={{ marginBottom: '5rem', marginTop: '3rem' }}>
               <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
