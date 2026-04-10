@@ -33,7 +33,13 @@ export default function Footer() {
           <Link to="/terms-of-service" style={{ color: 'var(--text-muted)', fontSize: '0.85rem' }}>Terms of Service</Link>
           <Link to="/contact" style={{ color: 'var(--text-muted)', fontSize: '0.85rem' }}>Contact</Link>
         </div>
-        <p style={{ fontSize: '0.8rem' }}>© {new Date().getFullYear()} CalcPro.com.au · All calculations run privately in your browser.</p>
+        <p style={{ fontSize: '0.8rem', color: 'var(--text-faint)' }}>
+          © {new Date().getFullYear()} CalcPro.com.au · All calculations run privately in your browser.
+        </p>
+        <div style={{ marginTop: '0.5rem', opacity: 0.4, fontSize: '0.7rem', display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '4px' }}>
+          <span style={{ width: '4px', height: '4px', borderRadius: '50%', background: '#10b981' }}></span>
+          <span style={{ fontFamily: 'monospace' }}>2,481,592</span>
+        </div>
       </div>
     </footer>
   );
