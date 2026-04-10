@@ -323,7 +323,90 @@ export default function Home() {
         <AdPlaceholder text="Top Banner Ad" />
 
         {!searchQuery && (
-          <>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '1.5rem', marginBottom: '4rem' }}>
+            {/* ── POPULAR CALCULATORS ── */}
+            <div style={{
+              background: 'linear-gradient(135deg, rgba(124,58,237,0.05), rgba(6,182,212,0.05))',
+              border: '1px solid rgba(124,58,237,0.2)',
+              borderRadius: '1.25rem',
+              padding: '1.5rem',
+            }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '1.25rem' }}>
+                <span style={{ fontSize: '1.2rem' }}>✅</span>
+                <h2 style={{ fontSize: '1.25rem', fontWeight: 800, letterSpacing: '-0.02em' }}>Popular Calculators</h2>
+              </div>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+                {[
+                  { name: 'Mortgage Calculator', path: '/finance/mortgage-calculator' },
+                  { name: 'BMI Calculator', path: '/health/bmi-calculator' },
+                  { name: 'Currency Converter', path: '/conversion/currency-converter' },
+                  { name: 'Period Calculator', path: '/health/period-calculator' }
+                ].map((item, idx) => (
+                  <Link key={idx} to={item.path} style={{
+                    display: 'flex', justifyContent: 'space-between', alignItems: 'center',
+                    padding: '0.75rem 1rem', background: 'var(--bg-surface)',
+                    border: '1px solid var(--border-color)', borderRadius: '0.75rem',
+                    textDecoration: 'none', transition: 'all 0.2s ease'
+                  }}
+                  onMouseEnter={e => {
+                    e.currentTarget.style.borderColor = 'rgba(124,58,237,0.4)';
+                    e.currentTarget.style.transform = 'scale(1.02)';
+                  }}
+                  onMouseLeave={e => {
+                    e.currentTarget.style.borderColor = 'var(--border-color)';
+                    e.currentTarget.style.transform = 'scale(1)';
+                  }}>
+                    <span style={{ fontWeight: 600, color: 'var(--text-main)', fontSize: '0.9rem' }}>{item.name}</span>
+                    <span style={{ animation: 'pulse-ring 2s infinite' }}>🔥</span>
+                  </Link>
+                ))}
+              </div>
+            </div>
+
+            {/* ── TRENDING NOW ── */}
+            <div style={{
+              background: 'linear-gradient(135deg, rgba(245,158,11,0.05), rgba(239,68,68,0.05))',
+              border: '1px solid rgba(245,158,11,0.2)',
+              borderRadius: '1.25rem',
+              padding: '1.5rem',
+            }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '1.25rem' }}>
+                <span style={{ fontSize: '1.2rem' }}>✅</span>
+                <h2 style={{ fontSize: '1.25rem', fontWeight: 800, letterSpacing: '-0.02em' }}>Trending Now</h2>
+              </div>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+                {[
+                  { name: 'USD → AUD Converter', path: '/conversion/currency-converter' },
+                  { name: 'GST Calculator Australia', path: '/finance/tax-calculator-australia' },
+                  { name: 'Loan Calculator', path: '/finance/loan-calculator' }
+                ].map((item, idx) => (
+                  <Link key={idx} to={item.path} style={{
+                    display: 'flex', alignItems: 'center', gap: '0.75rem',
+                    padding: '0.75rem 1rem', background: 'var(--bg-surface)',
+                    border: '1px solid var(--border-color)', borderRadius: '0.75rem',
+                    textDecoration: 'none', transition: 'all 0.2s ease'
+                  }}
+                  onMouseEnter={e => {
+                    e.currentTarget.style.borderColor = 'rgba(245,158,11,0.4)';
+                    e.currentTarget.style.transform = 'scale(1.02)';
+                  }}
+                  onMouseLeave={e => {
+                    e.currentTarget.style.borderColor = 'var(--border-color)';
+                    e.currentTarget.style.transform = 'scale(1)';
+                  }}>
+                    <span style={{ fontSize: '1.1rem' }}>👉</span>
+                    <span style={{ fontWeight: 600, color: 'var(--text-main)', fontSize: '0.9rem' }}>{item.name}</span>
+                  </Link>
+                ))}
+              </div>
+              <p style={{ marginTop: '1.25rem', fontSize: '0.75rem', color: 'var(--text-muted)', textAlign: 'center', fontWeight: 600 }}>
+                📈 Real-time activity across 1.2M+ monthly users
+              </p>
+            </div>
+          </div>
+        )}
+
+        {!searchQuery && (
             {/* ── USE CASES / SCENARIOS (Inspired by calcpro.com.au) ── */}
             <section style={{ marginBottom: '5rem', marginTop: '3rem' }}>
               <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
