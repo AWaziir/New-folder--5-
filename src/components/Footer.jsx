@@ -36,9 +36,12 @@ export default function Footer() {
         <p style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>
           © {new Date().getFullYear()} CalcPro.com.au · All calculations run privately in your browser.
         </p>
-        <div style={{ marginTop: '0.75rem', fontSize: '0.75rem', display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '6px', color: 'var(--text-muted)' }}>
-          <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#10b981', boxShadow: '0 0 8px #10b981' }}></span>
-          <span style={{ fontFamily: 'monospace', fontWeight: 600, letterSpacing: '0.05em' }}>2,481,592</span>
+        <div style={{ marginTop: '1rem', display: 'flex', justifyContent: 'center', filter: 'grayscale(1) brightness(0.7) contrast(1.2)' }}>
+          <img 
+            src="https://hits.sh/calcpro.com.au.svg?label=VISITS&color=7c3aed&style=flat-square" 
+            alt="Visitor Counter"
+            style={{ height: '20px', borderRadius: '4px' }}
+          />
         </div>
       </div>
     </footer>
