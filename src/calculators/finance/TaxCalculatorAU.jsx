@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import AdPlaceholder from '../../components/AdPlaceholder';
-import SEO from '../../components/SEO';
+import { Briefcase } from 'lucide-react';
+import CalculatorLayout from '../../components/CalculatorLayout';
 
 export default function TaxCalculatorAU() {
   const [annualSalary, setAnnualSalary] = useState(85000);
@@ -16,7 +16,6 @@ export default function TaxCalculatorAU() {
     let superAmount = 0;
 
     if (includeSuper) {
-        // If $85k includes super, we extract taxable income
         taxableIncome = annualSalary / (1 + superRate / 100);
         superAmount = annualSalary - taxableIncome;
     } else {
@@ -58,174 +57,126 @@ export default function TaxCalculatorAU() {
     calculateTax();
   }, [annualSalary, superRate, includeSuper, medicareLevy]);
 
-  return (
-    <div className="container">
-      <SEO 
-        title="Income Tax Calculator Australia 2026 - Take-Home Pay Estimator" 
-        description="Calculate your take-home pay with our fast, free Australian income tax calculator. Includes 2026 Stage 3 tax cuts, Medicare Levy, and Superannuation estimates." 
-        path="/finance/tax-calculator-australia"
-      />
+  const inputs = (
+    <div className="space-y-6">
+      <div className="input-group">
+        <label className="input-label">Annual Salary (Gross) ($)</label>
+        <input type="number" className="input-field text-xl" value={annualSalary} onChange={e => setAnnualSalary(Number(e.target.value))} />
+      </div>
+
+      <div className="flex gap-4">
+          <button 
+            className={`flex-1 py-3 rounded-lg text-sm font-bold transition border-2 ${!includeSuper ? 'bg-primary text-white border-primary shadow-lg scale-105' : 'bg-secondary text-muted border-transparent'}`}
+            onClick={() => setIncludeSuper(false)}
+          >
+              Excl. Super
+          </button>
+          <button 
+             className={`flex-1 py-3 rounded-lg text-sm font-bold transition border-2 ${includeSuper ? 'bg-primary text-white border-primary shadow-lg scale-105' : 'bg-secondary text-muted border-transparent'}`}
+             onClick={() => setIncludeSuper(true)}
+          >
+              Incl. Super
+          </button>
+      </div>
+
+      <div className="input-group">
+          <label className="input-label">Superannuation Rate (%)</label>
+          <input type="number" step="0.1" className="input-field" value={superRate} onChange={e => setSuperRate(Number(e.target.value))} />
+      </div>
+
+      <label className="flex items-center gap-3 cursor-pointer p-4 bg-secondary rounded-xl group">
+          <input type="checkbox" checked={medicareLevy} onChange={e => setMedicareLevy(e.target.checked)} className="w-5 h-5 accent-primary" />
+          <span className="font-bold text-muted group-hover:text-primary transition">Include Medicare Levy (2.0%)</span>
+      </label>
+    </div>
+  );
+
+  const results = result ? (
+    <div className="space-y-6">
+      <div className="p-6 bg-primary-dark/30 rounded-xl text-center border border-primary/30">
+        <p className="text-xs font-bold uppercase tracking-widest opacity-80 mb-1">Total Annual Take-Home</p>
+        <p className="text-5xl font-black text-white">${result.takeHome.toLocaleString()}</p>
+        <p className="text-sm opacity-60 mt-2">${result.totalTax.toLocaleString()} Total Tax Paid</p>
+      </div>
       
-      <AdPlaceholder text="Top Banner Ad" />
-
-      <div className="max-width-4xl mx-auto my-8 px-4">
-        <h1 className="text-3xl md:text-4xl font-bold mb-4 text-center">Tax Calculator Australia – 2024/25 Estimator</h1>
-        <p className="text-muted mb-10 text-center max-width-2xl mx-auto">
-            Find out exactly how much tax you pay in Australia. Calculate your monthly, weekly, and daily take-home pay with the latest tax rates.
-        </p>
-
-        <div className="grid gap-8 lg:grid-cols-2">
-          {/* Inputs */}
-          <div className="card shadow-lg border-2 border-primary-light">
-            <h2 className="text-xl font-bold mb-6">Income Details</h2>
-            
-            <div className="input-group">
-              <label className="input-label">Annual Salary (Gross) ($)</label>
-              <input type="number" className="input-field text-xl" value={annualSalary} onChange={e => setAnnualSalary(Number(e.target.value))} />
-            </div>
-
-            <div className="flex gap-4 mb-6">
-                <button 
-                  className={`flex-1 py-3 rounded-lg text-sm font-bold transition border-2 ${!includeSuper ? 'bg-primary text-white border-primary shadow-lg scale-105' : 'bg-secondary text-muted border-transparent'}`}
-                  onClick={() => setIncludeSuper(false)}
-                >
-                    Excl. Super
-                </button>
-                <button 
-                   className={`flex-1 py-3 rounded-lg text-sm font-bold transition border-2 ${includeSuper ? 'bg-primary text-white border-primary shadow-lg scale-105' : 'bg-secondary text-muted border-transparent'}`}
-                   onClick={() => setIncludeSuper(true)}
-                >
-                    Incl. Super
-                </button>
-            </div>
-
-            <div className="input-group">
-                <label className="input-label">Superannuation Rate (%)</label>
-                <input type="number" step="0.1" className="input-field" value={superRate} onChange={e => setSuperRate(Number(e.target.value))} />
-            </div>
-
-            <label className="flex items-center gap-3 cursor-pointer p-4 bg-secondary rounded-xl group">
-                <input type="checkbox" checked={medicareLevy} onChange={e => setMedicareLevy(e.target.checked)} className="w-5 h-5 accent-primary" />
-                <span className="font-bold text-muted group-hover:text-primary transition">Include Medicare Levy (2.0%)</span>
-            </label>
-          </div>
-
-          {/* Results */}
-          <div>
-            <div className="card shadow-2xl highlight-border bg-primary-dark text-white sticky top-24">
-              <h2 className="text-xl font-bold mb-8">Take-Home Pay Summary</h2>
-              
-              {result ? (
-                <div className="space-y-6">
-                  <div className="p-6 bg-white bg-opacity-10 rounded-xl text-center border-2 border-white border-opacity-20">
-                    <p className="text-xs font-bold uppercase tracking-widest opacity-80 mb-1">Total Annual Take-Home</p>
-                    <p className="text-5xl font-black text-white">${result.takeHome.toLocaleString()}</p>
-                    <p className="text-sm opacity-60 mt-2">${result.totalTax.toLocaleString()} Total Tax Paid</p>
-                  </div>
-                  
-                  <div className="grid grid-cols-2 gap-4">
-                    <div className="p-4 bg-white bg-opacity-10 rounded-lg text-center border-l-4 border-primary-light">
-                        <p className="text-xs uppercase font-bold opacity-70 mb-1">Monthly Pay</p>
-                        <p className="text-2xl font-bold text-white">${result.monthly.toLocaleString()}</p>
-                    </div>
-                    <div className="p-4 bg-white bg-opacity-10 rounded-lg text-center border-l-4 border-success">
-                        <p className="text-xs uppercase font-bold opacity-70 mb-1">Weekly Pay</p>
-                        <p className="text-2xl font-bold text-success">${result.weekly.toLocaleString()}</p>
-                    </div>
-                  </div>
-
-                  <div className="pt-4 space-y-3 opacity-80">
-                     <div className="flex justify-between text-xs p-2 rounded bg-white bg-opacity-5">
-                         <span>Taxable Income</span>
-                         <span className="font-bold">${result.taxable.toLocaleString()}</span>
-                     </div>
-                     <div className="flex justify-between text-xs p-2 rounded bg-white bg-opacity-5">
-                         <span>Superannuation ({superRate}%)</span>
-                         <span className="font-bold">${result.super.toLocaleString()}</span>
-                     </div>
-                     <div className="flex justify-between text-xs p-2 rounded bg-white bg-opacity-5 text-red-300">
-                         <span>Income Tax (Stage 3 Cuts)</span>
-                         <span className="font-bold">${result.tax.toLocaleString()}</span>
-                     </div>
-                     <div className="flex justify-between text-xs p-2 rounded bg-white bg-opacity-5 text-orange-200">
-                         <span>Medicare Levy (2%)</span>
-                         <span className="font-bold">${result.levy.toLocaleString()}</span>
-                     </div>
-                  </div>
-                </div>
-              ) : (
-                <div className="py-12 text-center opacity-40 italic">
-                  Calculating your pay...
-                </div>
-              )}
-            </div>
-          </div>
+      <div className="grid grid-cols-2 gap-4">
+        <div className="p-4 bg-white/5 rounded-lg text-center border-l-4 border-primary-light">
+            <p className="text-xs uppercase font-bold opacity-70 mb-1">Monthly Pay</p>
+            <p className="text-xl font-bold text-white">${result.monthly.toLocaleString()}</p>
         </div>
+        <div className="p-4 bg-white/5 rounded-lg text-center border-l-4 border-success">
+            <p className="text-xs uppercase font-bold opacity-70 mb-1">Weekly Pay</p>
+            <p className="text-xl font-bold text-success">${result.weekly.toLocaleString()}</p>
+        </div>
+      </div>
 
-        {/* SEO CONTENT SECTION */}
-        <section className="mt-16 space-y-12">
-            <div className="card">
-                <h2 className="text-2xl font-bold mb-4 text-primary">How Much Tax Do I Pay in Australia?</h2>
-                <p className="text-muted leading-relaxed">
-                    Personal income tax in Australia is progressive, meaning the more you earn, the higher your tax rate. As of July 1, 2024, the Australian government implemented the <strong>Stage 3 Tax Cuts</strong>, which significantly reduced the tax brackets for middle-income earners. Our calculator is fully updated with these 2024/25 rates, allowing you to estimate your exact take-home pay, including superannuation and the medicare levy.
-                </p>
-            </div>
-
-            <div className="card">
-                <h2 className="text-2xl font-bold mb-4">Australian Tax Brackets 2024-25</h2>
-                <div className="overflow-x-auto shadow-inner rounded-xl mt-6">
-                    <table className="w-full text-left text-sm border-collapse">
-                        <thead className="bg-secondary text-primary uppercase font-bold text-xs">
-                            <tr>
-                                <th className="p-4 border-b border-border-color">Income Bracket</th>
-                                <th className="p-4 border-b border-border-color">Tax Rate</th>
-                            </tr>
-                        </thead>
-                        <tbody className="text-muted">
-                            <tr className="border-b border-border-color">
-                                <td className="p-4">$0 – $18,200</td>
-                                <td className="p-4">Nil</td>
-                            </tr>
-                            <tr className="border-b border-border-color">
-                                <td className="p-4">$18,201 – $45,000</td>
-                                <td className="p-4">16c for each $1 over $18,200</td>
-                            </tr>
-                            <tr className="border-b border-border-color">
-                                <td className="p-4">$45,001 – $135,000</td>
-                                <td className="p-4">$4,288 plus 30c for each $1 over $45,000</td>
-                            </tr>
-                            <tr className="border-b border-border-color">
-                                <td className="p-4">$135,001 – $190,000</td>
-                                <td className="p-4">$31,288 plus 37c for each $1 over $135,000</td>
-                            </tr>
-                            <tr>
-                                <td className="p-4">$190,001 and over</td>
-                                <td className="p-4">$51,638 plus 45c for each $1 over $190,000</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-
-            <div className="card">
-                <h2 className="text-2xl font-bold mb-6">Frequently Asked Questions</h2>
-                <div className="space-y-6">
-                    <div>
-                        <h3 className="font-bold text-lg mb-1">What is the Medicare Levy?</h3>
-                        <p className="text-muted">The Medicare Levy is a 2% tax on taxable income that helps fund Australia's public health system. Some low-income earners are exempt or pay a reduced rate.</p>
-                    </div>
-                    <div>
-                        <h3 className="font-bold text-lg mb-1">Is Superannuation taxed?</h3>
-                        <p className="text-muted">Employer super contributions are typically taxed at a flat rate of 15% within the fund, rather than at your personal income tax rate.</p>
-                    </div>
-                    <div>
-                        <h3 className="font-bold text-lg mb-1">How can I reduce my taxable income?</h3>
-                        <p className="text-muted">You can often reduce your taxable income through work-related deductions, charitable donations, or salary sacrificing into your superannuation fund.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
+      <div className="pt-4 space-y-3">
+         <div className="flex justify-between text-xs p-2 rounded bg-white/5">
+             <span className="opacity-70">Taxable Income</span>
+             <span className="font-bold">${result.taxable.toLocaleString()}</span>
+         </div>
+         <div className="flex justify-between text-xs p-2 rounded bg-white/5">
+             <span className="opacity-70">Superannuation ({superRate}%)</span>
+             <span className="font-bold">${result.super.toLocaleString()}</span>
+         </div>
+         <div className="flex justify-between text-xs p-2 rounded bg-white/5 text-red-300">
+             <span>Income Tax (Stage 3)</span>
+             <span className="font-bold">${result.tax.toLocaleString()}</span>
+         </div>
       </div>
     </div>
+  ) : (
+    <div className="py-12 text-center opacity-40">Calculating your pay...</div>
+  );
+
+  const instructions = (
+    <div className="space-y-4">
+      <p>
+        Understand your actual earnings in Australia after tax and superannuation. Our AU Tax Calculator is fully updated for the 2024/25 financial year, including the latest <strong>Stage 3 Tax Cuts</strong>.
+      </p>
+      <ul className="list-disc pl-5 space-y-2">
+        <li><strong>Salary Type:</strong> Choose whether your entered salary already includes superannuation or is "Plus Super".</li>
+        <li><strong>Medicare Levy:</strong> Most Australians pay a 2% levy to fund public health. You can deselect this if you are exempt.</li>
+        <li><strong>View Breakdown:</strong> See exactly how much goes to the ATO, how much to your super fund, and what ends up in your bank account weekly or monthly.</li>
+      </ul>
+    </div>
+  );
+
+  const examples = [
+    {
+      title: "Average AU Earner ($95,000)",
+      description: "An Aussie earning $95k (Excl Super) will take home approximately $74,212 per year after paying $18,888 in income tax and a $1,900 Medicare levy."
+    },
+    {
+      title: "High Earner ($250,000)",
+      description: "A high earner on $250k will pay $78,638 in income tax and a $5,000 Medicare levy, resulting in a monthly take-home pay of around $13,864."
+    }
+  ];
+
+  const faqs = [
+    {
+      q: "What are the Stage 3 Tax Cuts?",
+      a: "Effective July 1, 2024, the government reduced the 19c rate to 16c and the 32.5c rate to 30c, while also increasing the thresholds. This means almost all Australian taxpayers now pay less tax than in previous years."
+    },
+    {
+      q: "What is Superannuation Guarantee?",
+      a: "This is the minimum percentage of your ordinary earnings that your employer must pay into your super fund. As of July 2024, the rate is 11.5%, and it will increase to 12% in July 2025."
+    }
+  ];
+
+  return (
+    <CalculatorLayout 
+      title="Australia Income Tax Calculator"
+      seoTitle="Australia Income Tax Calculator 2026 - Take House Pay"
+      description="Calculate your take-home pay with our fast, free Australian income tax calculator. Includes 2024/25 Stage 3 tax cuts, Medicare Levy, and Superannuation estimates."
+      path="/finance/tax-calculator-australia"
+      icon={Briefcase}
+      inputs={inputs}
+      results={results}
+      instructions={instructions}
+      formula="Tax = Base + (Income - Bracket Start) × Rate %"
+      examples={examples}
+      faqs={faqs}
+    />
   );
 }

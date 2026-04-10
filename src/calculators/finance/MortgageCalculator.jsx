@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import AdPlaceholder from '../../components/AdPlaceholder';
-import SEO from '../../components/SEO';
+import { Home as HomeIcon } from 'lucide-react';
+import CalculatorLayout from '../../components/CalculatorLayout';
 
 export default function MortgageCalculator() {
   const [homePrice, setHomePrice] = useState(300000);
@@ -51,139 +51,142 @@ export default function MortgageCalculator() {
     setInterestRate(6.5);
   };
 
-  return (
-    <div className="container">
-      <SEO 
-        title="Free Mortgage Calculator - Repayments, Interest & Amortization" 
-        description="The ultimate mortgage calculator with extra payments and interest breakdown. Estimate your monthly mortgage payments with our fast, free online tool." 
-        path="/finance/mortgage-calculator"
-      />
+  const inputs = (
+    <div className="space-y-4">
+      <div className="input-group">
+        <label className="input-label">Home Price ($)</label>
+        <input 
+          type="number" 
+          className="input-field" 
+          value={homePrice} 
+          onChange={e => setHomePrice(Number(e.target.value))} 
+        />
+      </div>
+
+      <div className="input-group">
+        <label className="input-label">Down Payment ($)</label>
+        <input 
+          type="number" 
+          className="input-field" 
+          value={downPayment} 
+          onChange={e => setDownPayment(Number(e.target.value))} 
+        />
+      </div>
+
+      <div className="input-group">
+        <label className="input-label">Loan Term (years)</label>
+        <select 
+          className="input-field"
+          value={loanTerm}
+          onChange={e => setLoanTerm(Number(e.target.value))}
+        >
+          <option value={10}>10 Years</option>
+          <option value={15}>15 Years</option>
+          <option value={20}>20 Years</option>
+          <option value={30}>30 Years</option>
+        </select>
+      </div>
+
+      <div className="input-group">
+        <label className="input-label">Interest Rate (%)</label>
+        <input 
+          type="number" 
+          step="0.01"
+          className="input-field" 
+          value={interestRate} 
+          onChange={e => setInterestRate(Number(e.target.value))} 
+        />
+      </div>
+
+      <button onClick={resetForm} className="btn-outline w-full mt-4 print-hide">
+        Reset Values
+      </button>
+    </div>
+  );
+
+  const results = result ? (
+    <div className="space-y-6">
+      <div className="p-6 bg-primary-dark/30 rounded-2xl border border-primary/30 text-center">
+        <p className="text-xs font-bold uppercase tracking-widest mb-2 opacity-70">Monthly Payment</p>
+        <p className="text-5xl font-black text-primary-light">${Number(result.monthlyPayment).toLocaleString()}</p>
+      </div>
       
-      <AdPlaceholder text="Top Banner Ad" />
-
-      <div className="max-width-4xl mx-auto my-8 px-4">
-        <h1 className="text-3xl md:text-5xl font-extrabold mb-4 text-center">Mortgage Calculator</h1>
-        <p className="text-muted mb-10 text-center max-width-2xl mx-auto">Calculate your monthly mortgage payments including principal and interest with precision and ease.</p>
-
-        <div className="grid gap-8 lg:grid-cols-2">
-          
-          <div className="card shadow-lg border-2 border-primary-light">
-            <h2 className="text-xl font-bold mb-4">Input Details</h2>
-            
-            <div className="input-group">
-              <label className="input-label">Home Price ($)</label>
-              <input 
-                type="number" 
-                className="input-field" 
-                value={homePrice} 
-                onChange={e => setHomePrice(Number(e.target.value))} 
-              />
-            </div>
-
-            <div className="input-group">
-              <label className="input-label">Down Payment ($)</label>
-              <input 
-                type="number" 
-                className="input-field" 
-                value={downPayment} 
-                onChange={e => setDownPayment(Number(e.target.value))} 
-              />
-            </div>
-
-            <div className="input-group">
-              <label className="input-label">Loan Term (years)</label>
-              <select 
-                className="input-field"
-                value={loanTerm}
-                onChange={e => setLoanTerm(Number(e.target.value))}
-              >
-                <option value={10}>10 Years</option>
-                <option value={15}>15 Years</option>
-                <option value={20}>20 Years</option>
-                <option value={30}>30 Years</option>
-              </select>
-            </div>
-
-            <div className="input-group">
-              <label className="input-label">Interest Rate (%)</label>
-              <input 
-                type="number" 
-                step="0.01"
-                className="input-field" 
-                value={interestRate} 
-                onChange={e => setInterestRate(Number(e.target.value))} 
-              />
-            </div>
-
-            <button onClick={resetForm} className="btn-outline w-full mt-4">
-              Reset Values
-            </button>
-          </div>
-
-          <div>
-            <div className="card shadow-2xl bg-primary-dark text-white sticky top-24 highlight-border p-8 border-none">
-              <h2 className="text-xl font-bold mb-8 text-center uppercase tracking-widest opacity-80">Payment Results</h2>
-              
-              {result ? (
-                <div>
-                  <div className="mb-8 p-8 bg-white-10 rounded-2xl border-2 border-white border-opacity-20 text-center shadow-inner">
-                    <p className="text-xs font-bold uppercase tracking-widest mb-2 opacity-70">Monthly Payment</p>
-                    <p className="text-5xl font-black text-white">${Number(result.monthlyPayment).toLocaleString()}</p>
-                  </div>
-                  
-                  <div className="space-y-4">
-                    <div className="flex justify-between items-center text-sm p-4 bg-white-5 rounded-lg border-l-4 border-success">
-                      <span className="opacity-70 font-medium">Principal Amount</span>
-                      <span className="font-bold">${Number(result.principal).toLocaleString()}</span>
-                    </div>
-                    <div className="flex justify-between items-center text-sm p-4 bg-white-5 rounded-lg border-l-4 border-primary-light">
-                      <span className="opacity-70 font-medium">Total Interest</span>
-                      <span className="font-bold text-success-light">${Number(result.totalInterest).toLocaleString()}</span>
-                    </div>
-                    <div className="flex justify-between items-center text-sm p-4 bg-white-5 rounded-lg border-l-4 border-white">
-                      <span className="opacity-70 font-medium">Total Loan Cost</span>
-                      <span className="font-bold">${Number(result.totalPayment).toLocaleString()}</span>
-                    </div>
-                  </div>
-                </div>
-              ) : (
-                <div className="py-12 text-center opacity-40">
-                  Please enter valid numbers to see your results.
-                </div>
-              )}
-            </div>
-          </div>
-
+      <div className="space-y-3">
+        <div className="flex justify-between items-center text-sm p-3 bg-white-5 rounded-lg">
+          <span className="opacity-70">Principal Amount</span>
+          <span className="font-bold">${Number(result.principal).toLocaleString()}</span>
         </div>
-
-        <AdPlaceholder text="Mid-Content Ad" />
-
-        <div className="card mt-8">
-          <h2 className="text-2xl font-bold mb-4">How is the Mortgage Calculated?</h2>
-          <p className="mb-4">
-            Our mortgage calculator uses the standard formula to calculate your monthly principal and interest payments:
-          </p>
-          <div className="p-4 bg-secondary rounded-lg mb-4 text-center font-bold text-lg">
-            M = P [ r(1 + r)^n ] / [ (1 + r)^n - 1 ]
-          </div>
-          <ul className="list-disc pl-6 mb-4 space-y-2">
-            <li><strong>M</strong> = Total monthly payment</li>
-            <li><strong>P</strong> = The principal loan amount (Home Price - Down Payment)</li>
-            <li><strong>r</strong> = Your monthly interest rate (Annual Rate / 12)</li>
-            <li><strong>n</strong> = Number of payments over the loan's lifetime (Years * 12)</li>
-          </ul>
-          
-          <h3 className="text-xl font-bold mt-6 mb-2">Frequently Asked Questions</h3>
-          <div className="mb-4">
-            <h4 className="font-bold">What is a good down payment?</h4>
-            <p className="text-muted">A 20% down payment is standard and often helps you avoid paying Private Mortgage Insurance (PMI).</p>
-          </div>
-          <div className="mb-4">
-            <h4 className="font-bold">Does this include taxes and insurance?</h4>
-            <p className="text-muted">This specific calculator only computes the principal and interest. Property taxes, home insurance, and HOA fees will increase your actual total monthly payment.</p>
-          </div>
+        <div className="flex justify-between items-center text-sm p-3 bg-white-5 rounded-lg">
+          <span className="opacity-70">Total Interest</span>
+          <span className="font-bold text-success">${Number(result.totalInterest).toLocaleString()}</span>
+        </div>
+        <div className="flex justify-between items-center text-sm p-3 bg-white-5 rounded-lg border-t border-white-10 pt-4 mt-2">
+          <span className="font-bold">Total Loan Cost</span>
+          <span className="font-bold text-lg">${Number(result.totalPayment).toLocaleString()}</span>
         </div>
       </div>
     </div>
+  ) : (
+    <div className="py-12 text-center opacity-40">
+      Please enter valid numbers to see your results.
+    </div>
+  );
+
+  const instructions = (
+    <div className="space-y-4">
+      <p>
+        Planning for a home is one of the biggest financial decisions you'll ever make. Our Mortgage Calculator helps you understand exactly how much your monthly principal and interest payments will be based on the home's price, your down payment, the interest rate, and the loan term.
+      </p>
+      <ol className="list-decimal pl-5 space-y-2">
+        <li><strong>Enter the Home Price:</strong> This is the total purchase price of the property.</li>
+        <li><strong>Enter your Down Payment:</strong> The amount of cash you're paying upfront. A 20% down payment is recommended to avoid PMI.</li>
+        <li><strong>Select Loan Term:</strong> Choose how many years you'll be paying off the loan (standard is 30 years).</li>
+        <li><strong>Enter Interest Rate:</strong> The annual percentage rate provided by your lender.</li>
+      </ol>
+    </div>
+  );
+
+  const formula = "M = P [ r(1 + r)ⁿ ] / [ (1 + r)ⁿ - 1 ]";
+
+  const examples = [
+    {
+      title: "First-Time Home Buyer",
+      description: "A buyer purchasing a $400,000 home with a 10% down payment ($40,000) at a 6.5% interest rate for 30 years would have a monthly principal and interest payment of approximately $2,275."
+    },
+    {
+      title: "Refinancing to 15 Years",
+      description: "Alternatively, taking a $250,000 loan balance at a 5.5% interest rate for a 15-year term would result in monthly payments of $2,042, allowing the homeowner to build equity much faster."
+    }
+  ];
+
+  const faqs = [
+    {
+      q: "Does this include property taxes and insurance?",
+      a: "No. This calculator focuses on the Principal and Interest (P&I). Depending on your location and lender, your actual monthly bill will likely include property taxes, homeowners insurance, and potentially Private Mortgage Insurance (PMI) or HOA fees."
+    },
+    {
+      q: "How can I lower my monthly mortgage payment?",
+      a: "The most effective ways to lower your monthly payment are: making a larger down payment, securing a lower interest rate, or extending the loan term (e.g., from 15 to 30 years)."
+    },
+    {
+      q: "What is PMI?",
+      a: "Private Mortgage Insurance (PMI) is usually required if your down payment is less than 20%. It protects the lender, not you, and adds an extra monthly cost to your mortgage until you reach 20% equity."
+    }
+  ];
+
+  return (
+    <CalculatorLayout 
+      title="Mortgage Calculator"
+      seoTitle="Mortgage Calculator - Monthly Repayment & Interest Tool"
+      description="Estimate your monthly mortgage payments with our fast, free online tool. Calculate loan totals, interest, and payoff dates instantly."
+      path="/finance/mortgage-calculator"
+      icon={HomeIcon}
+      inputs={inputs}
+      results={results}
+      instructions={instructions}
+      formula={formula}
+      examples={examples}
+      faqs={faqs}
+    />
   );
 }

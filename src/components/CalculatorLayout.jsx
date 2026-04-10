@@ -15,7 +15,8 @@ export default function CalculatorLayout({
   children,
   formula,
   instructions,
-  faqs
+  faqs,
+  examples
 }) {
   const [copied, setCopied] = useState(false);
 
@@ -113,6 +114,24 @@ export default function CalculatorLayout({
                              </div>
                          </div>
                      )}
+                 </div>
+              </div>
+            )}
+
+            {/* Examples Section */}
+            {examples && examples.length > 0 && (
+              <div className="card border-l-4 border-l-success border-r-0 border-b-0 border-t-0 rounded-none">
+                 <h2 className="text-2xl font-bold mb-6 flex items-center gap-2">
+                     <span className="text-success text-2xl font-black">?</span>
+                     Real-World Examples
+                 </h2>
+                 <div className="space-y-6">
+                    {examples.map((ex, idx) => (
+                       <div key={idx} className="bg-main/50 p-5 rounded-xl border border-border-color">
+                           <h3 className="text-lg font-bold text-success-light mb-2">{ex.title}</h3>
+                           <p className="text-muted leading-relaxed italic">{ex.description}</p>
+                       </div>
+                    ))}
                  </div>
               </div>
             )}

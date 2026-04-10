@@ -202,6 +202,16 @@ export default function BmiCalculator() {
         results={ResultPanel}
         instructions={instructions}
         formula={formula}
+        examples={[
+            {
+                title: "Sedentary Office Worker",
+                description: "A 180cm tall person weighing 95kg has a BMI of 29.3, classifying them as 'Overweight'. This might prompt a review of daily activity levels even if they feel healthy."
+            },
+            {
+                title: "Active Marathon Runner",
+                description: "A 165cm athlete weighing 50kg has a BMI of 18.4, which is technically 'Underweight'. However, for a distance runner with high lean muscle mass, this might be their optimal performance weight."
+            }
+        ]}
         faqs={faqs}
     />
   );
