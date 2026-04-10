@@ -117,8 +117,8 @@ export default function Home() {
   return (
     <div>
       <SEO
-        title="Free Online Calculators"
-        description="CalcHub provides over 100+ free, fast, and accurate online calculators for finance, health, math, and conversions."
+        title="100+ Free Online Calculators - Finance, Health, Math & Crypto"
+        description="CalcPro.com.au provides over 100+ free, fast, and accurate online calculators for finance, health, math, and conversions."
         path="/"
       />
 
@@ -192,7 +192,7 @@ export default function Home() {
               WebkitTextFillColor: 'transparent',
               backgroundClip: 'text',
             }}>
-              Calculator Hub
+              CalcPro.com.au
             </span>
           </h1>
 
@@ -324,7 +324,7 @@ export default function Home() {
 
         {!searchQuery && (
           <>
-            {/* ── USE CASES / SCENARIOS (Inspired by calchub.app) ── */}
+            {/* ── USE CASES / SCENARIOS (Inspired by calcpro.com.au) ── */}
             <section style={{ marginBottom: '5rem', marginTop: '3rem' }}>
               <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
                 <p style={{
@@ -516,7 +516,7 @@ export default function Home() {
 
                 <div style={{ textAlign: 'center', marginBottom: '2.5rem' }}>
                   <h2 style={{ fontSize: '1.75rem', fontWeight: 800, letterSpacing: '-0.02em', marginBottom: '0.75rem' }}>
-                    Why Use CalcHub?
+                    Why Use CalcPro.com.au?
                   </h2>
                   <p style={{ color: 'var(--text-muted)', maxWidth: '480px', margin: '0 auto', lineHeight: 1.7 }}>
                     Most online calculators are clunky, outdated, or harvest your data. We're changing that.

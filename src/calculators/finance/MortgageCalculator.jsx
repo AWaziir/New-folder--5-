@@ -54,8 +54,8 @@ export default function MortgageCalculator() {
   return (
     <div className="container">
       <SEO 
-        title="Mortgage Calculator Australia With Extra Payments" 
-        description="The ultimate mortgage calculator australia with extra payments. Estimate your monthly mortgage payments with our fast, free online calculator." 
+        title="Free Mortgage Calculator - Repayments, Interest & Amortization" 
+        description="The ultimate mortgage calculator with extra payments and interest breakdown. Estimate your monthly mortgage payments with our fast, free online tool." 
         path="/finance/mortgage-calculator"
       />
       

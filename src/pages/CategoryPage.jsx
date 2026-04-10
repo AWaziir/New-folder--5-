@@ -24,8 +24,8 @@ export default function CategoryPage() {
   return (
     <div className="container">
       <SEO
-        title={category.name}
-        description={`The best ${category.name} available for free online. Quick results and easy to use.`}
+        title={`${category.name} - Free Online Tools & Calculators`}
+        description={`Access the best ${category.name} tools available for free online. Quick results, mathematically verified, and easy to use.`}
         path={`/category/${categoryId}`}
       />
 

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import AdPlaceholder from '../../components/AdPlaceholder';
+import SEO from '../../components/SEO';
 
 export default function PercentageCalculator() {
   const [val1, setVal1] = useState(10);
@@ -21,8 +22,8 @@ export default function PercentageCalculator() {
   return (
     <div className="container">
       <SEO 
-        title="Percentage Calculator Increase and Decrease" 
-        description="Learn how to calculate percentage of a number easily with our percentage calculator increase and decrease." 
+        title="Percentage Calculator - Increase, Decrease & Difference" 
+        description="Calculate percentages easily with our free online percentage calculator. Find the percentage of a number, percentage increase, or percentage decrease instantly." 
         path="/math/percentage-calculator"
       />
       <AdPlaceholder text="Top Banner Ad" />

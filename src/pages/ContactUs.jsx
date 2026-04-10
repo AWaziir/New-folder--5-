@@ -41,10 +41,10 @@ export default function ContactUs() {
 
   return (
     <div className="container" style={{ maxWidth: '820px' }}>
-      <SEO
-        title="Contact Us"
-        description="Get in touch with the CalcHub team. Report bugs, request features, or ask any question about our free online calculators."
-        path="/contact"
+      <SEO 
+        title="Contact CalcPro - Support & Calculator Requests" 
+        description="Have a question or a request for a new calculator? Use our contact form to get in touch with the CalcPro.com.au team." 
+        path="/contact-us"
       />
 
       {/* Header */}
@@ -155,7 +155,7 @@ export default function ContactUs() {
             {
               icon: '💡',
               title: 'Feature Request',
-              desc: "Don't see the calculator you need? Tell us what you'd like to see and we'll consider adding it to CalcHub.",
+              desc: "Don't see the calculator you need? Tell us what you'd like to see and we'll consider adding it to CalcPro.com.au.",
               color: '#fbbf24',
             },
             {
@@ -167,7 +167,7 @@ export default function ContactUs() {
             {
               icon: '🤝',
               title: 'Partnerships',
-              desc: 'Interested in advertising or partnering with CalcHub? Select "Partnership / Advertising" in the topic dropdown and send us a message.',
+              desc: 'Interested in advertising or partnering with CalcPro.com.au? Select "Partnership / Advertising" in the topic dropdown and send us a message.',
               color: '#a78bfa',
             },
           ].map((c, i) => (

@@ -174,8 +174,8 @@ export default function CryptoProfitCalculator() {
   return (
     <div className="container" style={{ maxWidth: '1000px' }}>
       <SEO
-        title="Crypto Profit Calculator — Real-Time Prices"
-        description="Calculate cryptocurrency profit, loss, ROI, DCA average price, and capital gains tax with live prices for the top 200 coins. Bitcoin, Ethereum, Solana & more."
+        title="Crypto Profit Calculator - ROI, DCA & Tax Estimator"
+        description="Calculate cryptocurrency profit, loss, ROI, and DCA average price with live token prices. Estimate capital gains tax for Bitcoin, Ethereum, and 200+ coins."
         path="/crypto/profit-calculator"
       />
 

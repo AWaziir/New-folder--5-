@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import AdPlaceholder from '../../components/AdPlaceholder';
+import SEO from '../../components/SEO';
 
 export default function CalorieCalculator() {
   const [age, setAge] = useState(25);
@@ -37,6 +38,11 @@ export default function CalorieCalculator() {
 
   return (
     <div className="container">
+      <SEO 
+        title="Calorie Calculator - Daily Calorie Needs & Weight Loss" 
+        description="Calculate your daily calorie needs with the Calorie Calculator. Estimate calories for weight maintenance, loss, or gain based on your activity level." 
+        path="/health/calorie-calculator"
+      />
       <AdPlaceholder text="Top Banner Ad" />
 
       <div className="max-width-4xl mx-auto my-8">

@@ -49,8 +49,8 @@ export default function AutoLoanCalculator() {
   return (
     <div className="container">
       <SEO 
-        title="Auto Loan Calculator" 
-        description="Calculate monthly payments for your next car. Determine total interest and loan principal instantly." 
+        title="Free Auto Loan Calculator - Monthly Car Payments & Interest" 
+        description="Calculate monthly payments for your next car with our free auto loan calculator. Determine total interest, loan principal, and amortization instantly." 
         path="/finance/auto-loan-calculator"
       />
       <AdPlaceholder text="Top Banner Ad" />

@@ -32,8 +32,8 @@ export default function RoiCalculator() {
   return (
     <div className="container">
       <SEO 
-        title="ROI Calculator – Free & Accurate Return on Investment Tool" 
-        description="Calculate your Return on Investment (ROI) and annualized ROI for any investment. Fast, free and simple ROI tool with formulas and examples." 
+        title="ROI Calculator - Free & Accurate Return on Investment Tool" 
+        description="Calculate your Return on Investment (ROI) and annualized returns for any asset. Fast, free, and simple ROI tool with formulas, examples, and accuracy." 
         path="/finance/roi-calculator"
       />
       

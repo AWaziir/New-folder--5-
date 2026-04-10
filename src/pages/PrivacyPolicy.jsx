@@ -5,7 +5,7 @@ const SECTIONS = [
   {
     icon: '🔒',
     title: 'Information We Collect',
-    content: `CalcHub does not collect, store, or transmit any personal information to our servers. All calculations are performed entirely within your browser using client-side JavaScript.
+    content: `CalcPro.com.au does not collect, store, or transmit any personal information to our servers. All calculations are performed entirely within your browser using client-side JavaScript.
 
 We do not require you to create an account, log in, or provide any personal details to use any calculator on this platform.
 
@@ -14,7 +14,7 @@ The only data we may collect is standard, anonymous web analytics such as page v
   {
     icon: '🖥️',
     title: 'How Your Data Is Used',
-    content: `Since CalcHub processes all calculations locally in your browser:
+    content: `Since CalcPro.com.au processes all calculations locally in your browser:
 
 • Financial figures you enter (salary, investment amounts, mortgage values, etc.) never leave your device
 • Health metrics you enter (weight, height, age) are processed locally and immediately discarded
@@ -25,14 +25,14 @@ Anonymous analytics data (if collected) may be used to understand which calculat
   {
     icon: '🍪',
     title: 'Cookies & Local Storage',
-    content: `CalcHub may use browser localStorage to remember your calculator preferences or last-used values to improve your experience across sessions. This data remains on your device and is never sent to us.
+    content: `CalcPro.com.au may use browser localStorage to remember your calculator preferences or last-used values to improve your experience across sessions. This data remains on your device and is never sent to us.
 
 We may use minimal cookies for analytics purposes. You can disable cookies at any time through your browser settings. Disabling cookies will not affect the core functionality of any calculator.`,
   },
   {
     icon: '🤝',
     title: 'Third-Party Services',
-    content: `CalcHub may use the following third-party services:
+    content: `CalcPro.com.au may use the following third-party services:
 
 • CoinGecko API — Used by the Crypto Profit Calculator to fetch real-time cryptocurrency prices. When this feature is used, your browser makes a direct request to CoinGecko's public API. No personal data is included in this request. Please review CoinGecko's Privacy Policy at coingecko.com.
 
@@ -43,7 +43,7 @@ We may use minimal cookies for analytics purposes. You can disable cookies at an
   {
     icon: '📢',
     title: 'Advertising',
-    content: `CalcHub is a free service supported by advertising. We may display ads served by third-party ad networks. These networks may use cookies to serve ads relevant to your interests.
+    content: `CalcPro.com.au is a free service supported by advertising. We may display ads served by third-party ad networks. These networks may use cookies to serve ads relevant to your interests.
 
 You can opt out of personalised advertising through your browser settings or by visiting the Network Advertising Initiative opt-out page.
 
@@ -57,17 +57,17 @@ We do not sell your personal information to advertisers.`,
   {
     icon: '👶',
     title: "Children's Privacy",
-    content: `CalcHub is not directed to children under the age of 13. We do not knowingly collect personal information from children. If you believe a child has provided us with information, please contact us immediately.`,
+    content: `CalcPro.com.au is not directed to children under the age of 13. We do not knowingly collect personal information from children. If you believe a child has provided us with information, please contact us immediately.`,
   },
   {
     icon: '🔄',
     title: 'Changes to This Policy',
-    content: `We may update this Privacy Policy periodically. Any changes will be reflected on this page with an updated date. We encourage you to review this page regularly. Your continued use of CalcHub after any changes constitutes your acceptance of the updated policy.`,
+    content: `We may update this Privacy Policy periodically. Any changes will be reflected on this page with an updated date. We encourage you to review this page regularly. Your continued use of CalcPro.com.au after any changes constitutes your acceptance of the updated policy.`,
   },
   {
     icon: '📬',
     title: 'Contact Us',
-    content: `If you have any questions about this Privacy Policy or how CalcHub handles data, please reach out to us via our Contact page. We are happy to answer any questions regarding your privacy.`,
+    content: `If you have any questions about this Privacy Policy or how CalcPro.com.au handles data, please reach out to us via our Contact page. We are happy to answer any questions regarding your privacy.`,
   },
 ];
 
@@ -75,8 +75,8 @@ export default function PrivacyPolicy() {
   return (
     <div className="container" style={{ maxWidth: '800px' }}>
       <SEO
-        title="Privacy Policy"
-        description="CalcHub's Privacy Policy. We don't collect your personal data. All calculations run privately in your browser."
+        title="Privacy Policy - Your Data is Safe With CalcPro"
+        description="CalcPro.com.au's Privacy Policy. We don't collect or store your personal data. All calculations run privately in your browser."
         path="/privacy-policy"
       />
 
@@ -97,7 +97,7 @@ export default function PrivacyPolicy() {
           </div>
           <h1 style={{ fontSize: '2rem', fontWeight: 800, letterSpacing: '-0.025em', marginBottom: '0.75rem' }}>Privacy Policy</h1>
           <p style={{ color: 'var(--text-muted)', lineHeight: 1.7, maxWidth: '520px' }}>
-            CalcHub is built on a simple principle: <strong style={{ color: 'var(--text-secondary)' }}>your financial data stays on your device</strong>. All calculations run entirely in your browser. We don't want your data, so we don't collect it.
+            CalcPro.com.au is built on a simple principle: <strong style={{ color: 'var(--text-secondary)' }}>your financial data stays on your device</strong>. All calculations run entirely in your browser. We don't want your data, so we don't collect it.
           </p>
           <p style={{ marginTop: '1rem', fontSize: '0.82rem', color: 'var(--text-faint)' }}>
             Last updated: April 2026

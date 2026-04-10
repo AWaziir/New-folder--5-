@@ -60,8 +60,8 @@ export default function CurrencyConverter() {
   return (
     <div className="container">
       <SEO 
-        title="Live Currency Converter & Exchange Rates" 
-        description="Convert over 100+ global currencies with real-time exchange rates. Accurate financial data for travelers and investors." 
+        title="Live Currency Converter - Real-Time Exchange Rates" 
+        description="Convert 160+ world currencies with our live currency converter. Get real-time exchange rates, charts, and accurate financial data instantly." 
         path="/conversion/currency-converter"
       />
       

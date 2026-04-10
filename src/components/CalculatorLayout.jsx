@@ -6,6 +6,7 @@ import AdPlaceholder from './AdPlaceholder';
 
 export default function CalculatorLayout({
   title,
+  seoTitle,
   description,
   path,
   icon: Icon,
@@ -30,7 +31,7 @@ export default function CalculatorLayout({
 
   return (
     <div className="container">
-      <SEO title={`${title} | Free Online Calculator`} description={description} path={path} />
+      <SEO title={seoTitle || title} description={description} path={path} />
 
       <AdPlaceholder text="Top Banner Ad" className="print-hide" />
 

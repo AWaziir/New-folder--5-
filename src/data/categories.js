@@ -74,7 +74,7 @@ export const categories = [
   },
   {
     id: 'health',
-    name: 'Fitness & Health',
+    name: 'Health & Fitness Calculators',
     icon: HeartPulse,
     description: 'Track Body Mass Index, calories, body fat, and fitness metrics.',
     subcategories: [
@@ -166,7 +166,7 @@ export const categories = [
   },
   {
     id: 'conversion',
-    name: 'Conversion Tools',
+    name: 'Unit Conversion Tools',
     icon: Scale,
     description: 'Quickly convert between lengths, weights, temperatures, and global currencies.',
     calculators: [
@@ -181,7 +181,7 @@ export const categories = [
   ,
   {
     id: 'crypto',
-    name: 'Crypto Calculators',
+    name: 'Crypto Profit Calculators',
     icon: Bitcoin,
     description: 'Calculate cryptocurrency profit, loss, DCA average entry price, and capital gains tax.',
     subcategories: [

@@ -40,8 +40,8 @@ export default function TdeeCalculator() {
   return (
     <div className="container">
       <SEO 
-        title="TDEE Calculator (Total Daily Energy Expenditure)" 
-        description="Calculate your Total Daily Energy Expenditure (TDEE) based on your activity level and fitness goals." 
+        title="TDEE Calculator - Total Daily Energy Expenditure" 
+        description="Calculate your Total Daily Energy Expenditure (TDEE) with our fast, free calculator. Estimate your maintenance calories based on your activity level and goals." 
         path="/health/tdee-calculator"
       />
       <AdPlaceholder text="Top Banner Ad" />

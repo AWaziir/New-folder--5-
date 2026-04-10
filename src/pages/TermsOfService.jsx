@@ -7,7 +7,7 @@ export default function TermsOfService() {
     <div className="container" style={{ maxWidth: '800px', marginBottom: '4rem' }}>
       <SEO
         title="Terms of Service"
-        description="Terms of Service and Conditions of Use for CalcHub. Read our policies regarding the use of our calculators."
+        description="Terms of Service and Conditions of Use for CalcPro.com.au. Read our policies regarding the use of our calculators."
         path="/terms-of-service"
       />
 
@@ -28,7 +28,7 @@ export default function TermsOfService() {
             Terms of Service
           </h1>
           <p style={{ color: 'var(--text-muted)', lineHeight: 1.7, maxWidth: '600px', margin: '0 auto', fontSize: '1.1rem' }}>
-            Please read these terms and conditions carefully before using CalcHub.
+            Please read these terms and conditions carefully before using CalcPro.com.au.
           </p>
           <p style={{ marginTop: '1rem', fontSize: '0.82rem', color: 'var(--text-faint)' }}>
             Last updated: April 2026
@@ -43,7 +43,7 @@ export default function TermsOfService() {
             <FileText className="w-5 h-5 text-primary" /> 1. Agreement to Terms
           </h2>
           <p>
-            By accessing or using CalcHub (the "Service"), you agree to be bound by these Terms of Service. If you disagree with any part of these terms, you may not access the Service. These Terms apply to all visitors, users, and others who access or use the Service.
+            By accessing or using CalcPro.com.au (the "Service"), you agree to be bound by these Terms of Service. If you disagree with any part of these terms, you may not access the Service. These Terms apply to all visitors, users, and others who access or use the Service.
           </p>
         </section>
 
@@ -52,7 +52,7 @@ export default function TermsOfService() {
             <AlertTriangle className="w-5 h-5 text-warning" /> 2. Educational & Informational Purposes Only
           </h2>
           <p className="mb-4">
-            <strong>Not Financial or Medical Advice:</strong> All calculators, tools, charts, and information provided by CalcHub are intended solely for educational, informational, and general calculation purposes.
+            <strong>Not Financial or Medical Advice:</strong> All calculators, tools, charts, and information provided by CalcPro.com.au are intended solely for educational, informational, and general calculation purposes.
           </p>
           <ul className="list-disc list-inside space-y-2 ml-2">
              <li><strong>Financial Calculators:</strong> The results provided do not constitute official financial, tax, investment, or legal advice. You should consult a certified financial planner or CPA before making real monetary decisions.</li>
@@ -65,10 +65,10 @@ export default function TermsOfService() {
             <Scale className="w-5 h-5 text-accent" /> 3. Limitation of Liability
           </h2>
           <p>
-            CalcHub and its developers make every effort to ensure the mathematical formulas and data used on this site are accurate and reliable. However, the Service is provided on an "AS IS" and "AS AVAILABLE" basis. We make no warranties, expressed or implied, regarding the accuracy, completeness, or reliability of the results.
+            CalcPro.com.au and its developers make every effort to ensure the mathematical formulas and data used on this site are accurate and reliable. However, the Service is provided on an "AS IS" and "AS AVAILABLE" basis. We make no warranties, expressed or implied, regarding the accuracy, completeness, or reliability of the results.
           </p>
           <p className="mt-4">
-            Under no circumstances shall CalcHub, nor its directors, employees, partners, agents, suppliers, or affiliates, be liable for any indirect, incidental, special, consequential or punitive damages, including without limitation, loss of profits, data, use, goodwill, or other intangible losses, resulting from your access to or use of or inability to access or use the Service.
+            Under no circumstances shall CalcPro.com.au, nor its directors, employees, partners, agents, suppliers, or affiliates, be liable for any indirect, incidental, special, consequential or punitive damages, including without limitation, loss of profits, data, use, goodwill, or other intangible losses, resulting from your access to or use of or inability to access or use the Service.
           </p>
         </section>
 
@@ -77,8 +77,8 @@ export default function TermsOfService() {
             <ShieldCheck className="w-5 h-5 text-success" /> 4. Intellectual Property
           </h2>
           <p>
-            The Service and its original content (excluding content provided by third-party APIs such as CoinGecko), features, styling, and functionality are and will remain the exclusive property of CalcHub and its licensors. The Service is protected by copyright, trademark, and other laws of both the local jurisdiction and foreign countries.
-            Our trademarks and trade dress may not be used in connection with any product or service without the prior written consent of CalcHub.
+            The Service and its original content (excluding content provided by third-party APIs such as CoinGecko), features, styling, and functionality are and will remain the exclusive property of CalcPro.com.au and its licensors. The Service is protected by copyright, trademark, and other laws of both the local jurisdiction and foreign countries.
+            Our trademarks and trade dress may not be used in connection with any product or service without the prior written consent of CalcPro.com.au.
           </p>
         </section>
 

@@ -18,7 +18,7 @@ export default function Footer() {
             </svg>
           </span>
           <span style={{ fontFamily: "'Space Grotesk', sans-serif", fontWeight: 700, color: '#c4cde0', fontSize: '0.95rem' }}>
-            Calc<span style={{ color: '#a78bfa' }}>Hub</span>
+            Calc<span style={{ color: '#a78bfa' }}>Pro.com.au</span>
           </span>
         </div>
         <div style={{ display: 'flex', justifyContent: 'center', gap: '2rem', marginBottom: '1.25rem', flexWrap: 'wrap' }}>
@@ -33,7 +33,7 @@ export default function Footer() {
           <Link to="/terms-of-service" style={{ color: 'var(--text-muted)', fontSize: '0.85rem' }}>Terms of Service</Link>
           <Link to="/contact" style={{ color: 'var(--text-muted)', fontSize: '0.85rem' }}>Contact</Link>
         </div>
-        <p style={{ fontSize: '0.8rem' }}>© {new Date().getFullYear()} CalcHub · All calculations run privately in your browser.</p>
+        <p style={{ fontSize: '0.8rem' }}>© {new Date().getFullYear()} CalcPro.com.au · All calculations run privately in your browser.</p>
       </div>
     </footer>
   );

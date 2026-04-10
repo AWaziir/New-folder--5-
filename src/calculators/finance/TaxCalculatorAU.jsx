@@ -61,8 +61,8 @@ export default function TaxCalculatorAU() {
   return (
     <div className="container">
       <SEO 
-        title="Tax Calculator Australia 2026 – Free Income Tax Estimator" 
-        description="Calculate your take-home pay with our fast, free Australian income tax calculator 2026. Includes 2026 Stage 3 tax cuts, Medicare Levy, and Superannuation." 
+        title="Income Tax Calculator Australia 2026 - Take-Home Pay Estimator" 
+        description="Calculate your take-home pay with our fast, free Australian income tax calculator. Includes 2026 Stage 3 tax cuts, Medicare Levy, and Superannuation estimates." 
         path="/finance/tax-calculator-australia"
       />
       

@@ -27,7 +27,7 @@ export default function Header() {
               <path d="M8 12h8M12 8v8" />
             </svg>
           </span>
-          Calc<span className="logo-text-accent">Hub</span>
+          Calc<span className="logo-text-accent">Pro.com.au</span>
         </Link>
 
         {/* Nav links */}

@@ -194,6 +194,7 @@ export default function BmiCalculator() {
   return (
     <CalculatorLayout 
         title="BMI Calculator"
+        seoTitle="BMI Calculator - Body Mass Index for Adults & Kids"
         description="Instantly calculate your Body Mass Index (BMI) and discover whether your weight falls into a healthy range according to WHO standards."
         path="/health/bmi-calculator"
         icon={Activity}

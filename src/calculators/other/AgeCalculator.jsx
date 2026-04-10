@@ -41,8 +41,8 @@ export default function AgeCalculator() {
   return (
     <div className="container">
       <SEO 
-        title="Age Calculator Exact Date Of Birth" 
-        description="Use our free age calculator exact date of birth to calculate your precise age in years, months, and days." 
+        title="Age Calculator - How Old Am I? Exact Date of Birth" 
+        description="Find out exactly how old you are with our free age calculator. Calculate your precise age in years, months, and days based on your date of birth." 
         path="/other/age-calculator"
       />
       <AdPlaceholder text="Top Banner Ad" />

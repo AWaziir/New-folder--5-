@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import AdPlaceholder from '../../components/AdPlaceholder';
+import SEO from '../../components/SEO';
 
 export default function InterestCalculator() {
   const [principal, setPrincipal] = useState(10000);
@@ -35,6 +36,11 @@ export default function InterestCalculator() {
 
   return (
     <div className="container">
+      <SEO 
+        title="Compound Interest Calculator - Savings Growth & Returns" 
+        description="Calculate how your savings grow over time with the Compound Interest Calculator. See the power of compounding with daily, monthly, or yearly options." 
+        path="/finance/interest-calculator"
+      />
       <AdPlaceholder text="Top Banner Ad" />
 
       <div className="max-width-4xl mx-auto my-8">
