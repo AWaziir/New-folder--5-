@@ -38,7 +38,7 @@ export default function Footer() {
         </p>
         <div style={{ marginTop: '1rem', display: 'flex', justifyContent: 'center', filter: 'grayscale(1) brightness(0.7) contrast(1.2)' }}>
           <img 
-            src="https://hits.sh/calcpro.com.au.svg?label=VISITS&color=7c3aed&style=flat-square" 
+            src="https://hits.sh/calcpro.com.au.svg?label=👤&color=7c3aed&style=flat-square" 
             alt="Visitor Counter"
             style={{ height: '20px', borderRadius: '4px' }}
           />
