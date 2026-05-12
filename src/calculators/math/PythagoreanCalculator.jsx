@@ -43,7 +43,7 @@ export default function PythagoreanCalculator() {
         <div className="grid gap-8 lg:grid-cols-2">
            <div className="card shadow-lg border-2 border-primary-light">
               <h2 className="text-xl font-bold mb-4">Calculate Triangle Sides</h2>
-              <div className="bg-secondary p-1 rounded-lg mb-6 flex">
+              <div className="bg-slate-100 p-1 rounded-lg mb-6 flex">
                   {['a', 'b', 'c'].map(v => (
                       <button 
                         key={v}
@@ -80,7 +80,7 @@ export default function PythagoreanCalculator() {
                  <div className="p-8">
                     <h2 className="text-xl font-bold mb-8">Side {findValue.toUpperCase()} Length</h2>
                     <div className="p-8 bg-white bg-opacity-10 rounded-2xl border-2 border-white border-opacity-20 mb-6">
-                        <p className="text-6xl font-black text-white">{result}</p>
+                        <p className="text-6xl font-black text-slate-900">{result}</p>
                     </div>
                     <div className="text-primary-light font-bold text-sm tracking-widest uppercase">
                         {findValue === 'c' ? 'a² + b² = c²' : findValue === 'a' ? 'c² - b² = a²' : 'c² - a² = b²'}
@@ -101,7 +101,7 @@ export default function PythagoreanCalculator() {
                 <p className="text-muted leading-relaxed">
                     The Pythagorean Theorem is a fundamental principle in geometry that relates the three sides of a right-angled triangle. It states that for any right triangle, the square of the hypotenuse (the side opposite the right angle) is equal to the sum of the squares of the other two sides.
                 </p>
-                <div className="p-6 bg-secondary rounded-xl text-center text-primary font-bold text-2xl mt-6 shadow-inner italic">
+                <div className="p-6 bg-slate-100 rounded-xl text-center text-primary font-bold text-2xl mt-6 shadow-inner italic">
                   a² + b² = c²
                 </div>
             </div>

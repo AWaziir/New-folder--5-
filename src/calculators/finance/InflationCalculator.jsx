@@ -75,20 +75,20 @@ export default function InflationCalculator() {
 
           {/* Results */}
           <div>
-            <div className="card shadow-2xl highlight-border bg-primary-dark text-white sticky top-24">
+            <div className="card shadow-2xl highlight-border bg-primary-dark text-slate-900 sticky top-24">
               <h2 className="text-xl font-bold mb-8">Purchasing Power Result</h2>
               
               {result ? (
                 <div className="space-y-8">
                   <div className="p-6 bg-white bg-opacity-10 rounded-xl text-center">
                     <p className="text-sm font-bold uppercase tracking-widest opacity-80 mb-1">${initialAmount} in {startYear} is worth</p>
-                    <p className="text-5xl font-black text-white">${result.futureValue}</p>
+                    <p className="text-5xl font-black text-slate-900">${result.futureValue}</p>
                     <p className="text-sm opacity-80 mt-2">in the year {endYear}</p>
                   </div>
                   
                   <div className="p-5 bg-white bg-opacity-10 rounded-lg text-center border-l-4 border-red-500">
                      <p className="text-xs uppercase font-bold opacity-70 mb-1">Cumulative Inflation</p>
-                     <p className="text-3xl font-bold text-white">+{result.cumulative}%</p>
+                     <p className="text-3xl font-bold text-slate-900">+{result.cumulative}%</p>
                      <p className="text-xs opacity-60 mt-1">Over {result.years} years</p>
                   </div>
                 </div>
@@ -122,7 +122,7 @@ export default function InflationCalculator() {
                 <p className="text-muted leading-relaxed">
                     To calculate the future value of money adjusted for inflation, you use the compound interest formula:
                 </p>
-                <div className="p-6 bg-secondary rounded-lg mt-6 shadow-inner text-center font-mono text-primary text-sm">
+                <div className="p-6 bg-slate-100 rounded-lg mt-6 shadow-inner text-center font-mono text-primary text-sm">
                     Future Value = Current Amount × (1 + Inflation Rate)^Number of Years
                 </div>
             </div>

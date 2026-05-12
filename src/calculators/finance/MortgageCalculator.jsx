@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Home as HomeIcon } from 'lucide-react';
+import { Home as HomeIcon, Info } from 'lucide-react';
 import CalculatorLayout from '../../components/CalculatorLayout';
 
 export default function MortgageCalculator() {
@@ -52,31 +52,37 @@ export default function MortgageCalculator() {
   };
 
   const inputs = (
-    <div className="space-y-4">
-      <div className="input-group">
-        <label className="input-label">Home Price ($)</label>
-        <input 
-          type="number" 
-          className="input-field" 
-          value={homePrice} 
-          onChange={e => setHomePrice(Number(e.target.value))} 
-        />
+    <div className="space-y-6">
+      <div className="calc-input-group">
+        <label className="calc-label">Home Price</label>
+        <div className="relative">
+          <span className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 font-bold">$</span>
+          <input 
+            type="number" 
+            className="calc-input pl-8" 
+            value={homePrice} 
+            onChange={e => setHomePrice(Number(e.target.value))} 
+          />
+        </div>
       </div>
 
-      <div className="input-group">
-        <label className="input-label">Down Payment ($)</label>
-        <input 
-          type="number" 
-          className="input-field" 
-          value={downPayment} 
-          onChange={e => setDownPayment(Number(e.target.value))} 
-        />
+      <div className="calc-input-group">
+        <label className="calc-label">Down Payment</label>
+        <div className="relative">
+          <span className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 font-bold">$</span>
+          <input 
+            type="number" 
+            className="calc-input pl-8" 
+            value={downPayment} 
+            onChange={e => setDownPayment(Number(e.target.value))} 
+          />
+        </div>
       </div>
 
-      <div className="input-group">
-        <label className="input-label">Loan Term (years)</label>
+      <div className="calc-input-group">
+        <label className="calc-label">Loan Term</label>
         <select 
-          className="input-field"
+          className="calc-input calc-select"
           value={loanTerm}
           onChange={e => setLoanTerm(Number(e.target.value))}
         >
@@ -87,48 +93,57 @@ export default function MortgageCalculator() {
         </select>
       </div>
 
-      <div className="input-group">
-        <label className="input-label">Interest Rate (%)</label>
-        <input 
-          type="number" 
-          step="0.01"
-          className="input-field" 
-          value={interestRate} 
-          onChange={e => setInterestRate(Number(e.target.value))} 
-        />
+      <div className="calc-input-group">
+        <label className="calc-label">Annual Interest Rate</label>
+        <div className="relative">
+          <input 
+            type="number" 
+            step="0.01"
+            className="calc-input pr-10" 
+            value={interestRate} 
+            onChange={e => setInterestRate(Number(e.target.value))} 
+          />
+          <span className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 font-bold">%</span>
+        </div>
       </div>
 
-      <button onClick={resetForm} className="btn-outline w-full mt-4 print-hide">
-        Reset Values
+      <button onClick={resetForm} className="w-full py-4 text-xs font-black uppercase tracking-widest text-slate-400 hover:text-primary transition-colors border-2 border-dashed border-slate-100 rounded-2xl hover:border-primary/20 hover:bg-primary/5 mt-4">
+        Reset Calculation
       </button>
     </div>
   );
 
   const results = result ? (
-    <div className="space-y-6">
-      <div className="p-6 bg-primary-dark/30 rounded-2xl border border-primary/30 text-center">
-        <p className="text-xs font-bold uppercase tracking-widest mb-2 opacity-70">Monthly Payment</p>
-        <p className="text-5xl font-black text-primary-light">${Number(result.monthlyPayment).toLocaleString()}</p>
+    <div className="space-y-8">
+      <div className="text-center p-8 bg-white rounded-3xl border border-slate-100 shadow-sm">
+        <span className="calc-result-badge mb-4">Estimated Monthly Payment</span>
+        <div className="calc-result-value">
+          <span className="text-2xl align-top mt-2 inline-block mr-1 opacity-40">$</span>
+          {Number(result.monthlyPayment).toLocaleString()}
+        </div>
       </div>
       
       <div className="space-y-3">
-        <div className="flex justify-between items-center text-sm p-3 bg-white-5 rounded-lg">
-          <span className="opacity-70">Principal Amount</span>
-          <span className="font-bold">${Number(result.principal).toLocaleString()}</span>
+        <div className="calc-stat-card">
+          <span className="text-sm font-bold text-slate-500">Principal Amount</span>
+          <span className="font-black text-slate-900">${Number(result.principal).toLocaleString()}</span>
         </div>
-        <div className="flex justify-between items-center text-sm p-3 bg-white-5 rounded-lg">
-          <span className="opacity-70">Total Interest</span>
-          <span className="font-bold text-success">${Number(result.totalInterest).toLocaleString()}</span>
+        <div className="calc-stat-card">
+          <span className="text-sm font-bold text-slate-500">Total Interest</span>
+          <span className="font-black text-emerald-500">${Number(result.totalInterest).toLocaleString()}</span>
         </div>
-        <div className="flex justify-between items-center text-sm p-3 bg-white-5 rounded-lg border-t border-white-10 pt-4 mt-2">
-          <span className="font-bold">Total Loan Cost</span>
-          <span className="font-bold text-lg">${Number(result.totalPayment).toLocaleString()}</span>
+        <div className="calc-stat-card bg-primary text-white border-none shadow-lg shadow-primary/20">
+          <span className="text-sm font-bold opacity-80">Total Loan Cost</span>
+          <span className="text-xl font-black">${Number(result.totalPayment).toLocaleString()}</span>
         </div>
       </div>
     </div>
   ) : (
-    <div className="py-12 text-center opacity-40">
-      Please enter valid numbers to see your results.
+    <div className="py-20 text-center">
+      <div className="w-16 h-16 bg-slate-50 rounded-full flex items-center justify-center mx-auto mb-4">
+        <Info className="text-slate-300" />
+      </div>
+      <p className="text-slate-400 font-medium">Enter details to see analysis</p>
     </div>
   );
 
@@ -174,6 +189,34 @@ export default function MortgageCalculator() {
     }
   ];
 
+  const whyUse = [
+    { title: "Financial Planning", text: "Crucial for determining if a property fits within your long-term monthly budget." },
+    { title: "Comparison Shopping", text: "Compare different loan offers from lenders by seeing the impact of rate changes." },
+    { title: "Amortization Insight", text: "Understand how much of your payment goes toward principal vs interest over time." },
+    { title: "Down Payment Strategy", text: "See how increasing your upfront cash reduces your monthly burden and total interest." }
+  ];
+
+  const keyFeatures = [
+    { title: "Dynamic Calculations", text: "Results update instantly as you adjust price, rate, or term sliders." },
+    { title: "Total Cost Breakdown", text: "See the true cost of the loan including every dollar of interest paid over 30 years." },
+    { title: "Currency Formatting", text: "Professional output with commas and localized currency symbols for clarity." }
+  ];
+
+  const proTips = [
+    "Aim for a 20% down payment to avoid paying Private Mortgage Insurance (PMI).",
+    "Even a 0.5% lower interest rate can save you tens of thousands of dollars over the life of the loan.",
+    "Consider a 15-year term if you want to pay off your home faster and save significantly on total interest.",
+    "Always check your local property tax rates, as they are not included in this P&I calculation.",
+    "Get pre-approved by a lender to know your actual interest rate before starting your home search."
+  ];
+
+  const relatedTools = [
+    { name: "House Affordability", path: "/finance/house-affordability" },
+    { name: "Rent Calculator", path: "/finance/rent-calculator" },
+    { name: "Mortgage Payoff", path: "/finance/mortgage-payoff" },
+    { name: "Refinance Calculator", path: "/finance/refinance-calculator" }
+  ];
+
   return (
     <CalculatorLayout 
       title="Mortgage Calculator"
@@ -187,6 +230,10 @@ export default function MortgageCalculator() {
       formula={formula}
       examples={examples}
       faqs={faqs}
+      whyUse={whyUse}
+      keyFeatures={keyFeatures}
+      proTips={proTips}
+      relatedTools={relatedTools}
     />
   );
 }

@@ -92,17 +92,17 @@ export default function HouseAffordability() {
               
               {result ? (
                 <div className="text-center">
-                  <div className="mb-6 p-6 bg-secondary rounded-xl">
+                  <div className="mb-6 p-6 bg-slate-100 rounded-xl">
                     <p className="text-muted text-sm font-bold uppercase mb-1">Max Home Price</p>
                     <p className="text-4xl font-bold text-primary">${result.totalPrice.toLocaleString()}</p>
                   </div>
                   
                   <div className="space-y-4">
-                    <div className="flex justify-between items-center text-sm p-3 bg-secondary rounded-lg">
+                    <div className="flex justify-between items-center text-sm p-3 bg-slate-100 rounded-lg">
                         <span className="text-muted">Estimated Loan Amount</span>
                         <span className="font-bold">${result.maxLoan.toLocaleString()}</span>
                     </div>
-                    <div className="flex justify-between items-center text-sm p-3 bg-secondary rounded-lg">
+                    <div className="flex justify-between items-center text-sm p-3 bg-slate-100 rounded-lg">
                         <span className="text-muted">Max Monthly Payment</span>
                         <span className="font-bold text-success">${result.maxMonthlyPayment.toLocaleString()}/mo</span>
                     </div>

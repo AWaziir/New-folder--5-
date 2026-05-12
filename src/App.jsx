@@ -38,11 +38,14 @@ import VatCalculator from './calculators/finance/VatCalculator';
 import EmergencyFundCalculator from './calculators/finance/EmergencyFundCalculator';
 import DiscountCalculator from './calculators/finance/DiscountCalculator';
 import ProfitLossCalculator from './calculators/finance/ProfitLossCalculator';
+import ExpenseTracker from './calculators/finance/ExpenseTracker';
 
 import BmiCalculator from './calculators/health/BmiCalculator';
 import PregnancyDueDate from './calculators/health/PregnancyDueDate';
 import PeriodCalculator from './calculators/health/PeriodCalculator';
 import CalorieCalculator from './calculators/health/CalorieCalculator';
+import BodyFatCalculator from './calculators/health/BodyFatCalculator';
+import OvulationCalculator from './calculators/health/OvulationCalculator';
 import BmrCalculator from './calculators/health/BmrCalculator';
 import TdeeCalculator from './calculators/health/TdeeCalculator';
 import IdealWeightCalculator from './calculators/health/IdealWeightCalculator';
@@ -51,6 +54,7 @@ import WaterIntakeCalculator from './calculators/health/WaterIntakeCalculator';
 import PercentageCalculator from './calculators/math/PercentageCalculator';
 import AverageCalculator from './calculators/math/AverageCalculator';
 import FractionCalculator from './calculators/math/FractionCalculator';
+import DecimalToFraction from './calculators/math/DecimalToFraction';
 import ScientificCalculator from './calculators/math/ScientificCalculator';
 import BasicCalculator from './calculators/math/BasicCalculator';
 import StatisticsCalculator from './calculators/math/StatisticsCalculator';
@@ -64,9 +68,12 @@ import TemperatureConverter from './calculators/conversion/TemperatureConverter'
 import CurrencyConverter from './calculators/conversion/CurrencyConverter';
 import SpeedConverter from './calculators/conversion/SpeedConverter';
 import AreaConverter from './calculators/conversion/AreaConverter';
+import DataStorageConverter from './calculators/conversion/DataStorageConverter';
 
 import AgeCalculator from './calculators/other/AgeCalculator';
+import TimeDuration from './calculators/other/TimeDuration';
 import TipCalculator from './calculators/other/TipCalculator';
+import WorkHoursCalculator from './calculators/other/WorkHoursCalculator';
 import PasswordGenerator from './calculators/other/PasswordGenerator';
 import DateDifferenceCalculator from './calculators/other/DateDifferenceCalculator';
 import DayOfWeekCalculator from './calculators/other/DayOfWeekCalculator';
@@ -122,11 +129,16 @@ function App() {
         <Route path="finance/emergency-fund" element={<EmergencyFundCalculator />} />
         <Route path="finance/discount-calculator" element={<DiscountCalculator />} />
         <Route path="finance/profit-loss" element={<ProfitLossCalculator />} />
+        <Route path="finance/expense-tracker" element={<ExpenseTracker />} />
         
         {/* Health Calculators */}
         <Route path="health/bmi-calculator" element={<BmiCalculator />} />
+        <Route path="health/bmi-calculator-women" element={<BmiCalculator />} />
+        <Route path="health/bmi-calculator-men" element={<BmiCalculator />} />
+        <Route path="health/body-fat-calculator" element={<BodyFatCalculator />} />
         <Route path="health/pregnancy-due-date" element={<PregnancyDueDate />} />
         <Route path="health/period-calculator" element={<PeriodCalculator />} />
+        <Route path="health/ovulation-calculator" element={<OvulationCalculator />} />
         <Route path="health/calorie-calculator" element={<CalorieCalculator />} />
         <Route path="health/bmr-calculator" element={<BmrCalculator />} />
         <Route path="health/tdee-calculator" element={<TdeeCalculator />} />
@@ -137,6 +149,7 @@ function App() {
         <Route path="math/percentage-calculator" element={<PercentageCalculator />} />
         <Route path="math/average-calculator" element={<StatisticsCalculator />} />
         <Route path="math/fraction-calculator" element={<FractionCalculator />} />
+        <Route path="math/decimal-to-fraction" element={<DecimalToFraction />} />
         <Route path="math/scientific-calculator" element={<ScientificCalculator />} />
         <Route path="math/basic-calculator" element={<BasicCalculator />} />
         <Route path="math/pythagorean-calculator" element={<PythagoreanCalculator />} />
@@ -150,9 +163,12 @@ function App() {
         <Route path="conversion/currency-converter" element={<CurrencyConverter />} />
         <Route path="conversion/speed-converter" element={<SpeedConverter />} />
         <Route path="conversion/area-converter" element={<AreaConverter />} />
+        <Route path="conversion/data-storage-converter" element={<DataStorageConverter />} />
         
         <Route path="other/age-calculator" element={<AgeCalculator />} />
+        <Route path="other/time-duration" element={<TimeDuration />} />
         <Route path="other/tip-calculator" element={<TipCalculator />} />
+        <Route path="other/work-hours-calculator" element={<WorkHoursCalculator />} />
         <Route path="other/password-generator" element={<PasswordGenerator />} />
         <Route path="other/date-difference" element={<DateDifferenceCalculator />} />
         <Route path="other/day-of-week" element={<DayOfWeekCalculator />} />

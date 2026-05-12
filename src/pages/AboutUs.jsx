@@ -15,14 +15,14 @@ export default function AboutUs() {
       <div style={{
         margin: '2.5rem 0 2.5rem',
         padding: '3rem',
-        background: 'linear-gradient(135deg, rgba(124,58,237,0.12), rgba(6,182,212,0.06))',
-        border: '1px solid rgba(124,58,237,0.2)',
+        background: 'linear-gradient(135deg, rgba(36,93,162,0.12), rgba(6,182,212,0.06))',
+        border: '1px solid rgba(36,93,162,0.2)',
         borderRadius: '1.5rem',
         position: 'relative',
         overflow: 'hidden',
         textAlign: 'center'
       }}>
-        <div style={{ position: 'absolute', top: '-60px', right: '-60px', width: '200px', height: '200px', background: 'radial-gradient(circle, rgba(124,58,237,0.15), transparent 70%)', borderRadius: '50%', pointerEvents: 'none' }} />
+        <div style={{ position: 'absolute', top: '-60px', right: '-60px', width: '200px', height: '200px', background: 'radial-gradient(circle, rgba(36,93,162,0.15), transparent 70%)', borderRadius: '50%', pointerEvents: 'none' }} />
         <div style={{ position: 'relative', zIndex: 1 }}>
           <h1 style={{ fontSize: '2.5rem', fontWeight: 800, letterSpacing: '-0.025em', marginBottom: '1rem', color: 'var(--primary-light)' }}>
             About CalcPro.com.au
@@ -70,17 +70,17 @@ export default function AboutUs() {
             We openly display the formulas we use beneath our calculators so that students, professionals, and academics can audit our math. From standard geometric equations to complex continuous compound interest formulas (A = Pe^rt), we do not take shortcuts.
           </p>
         </section>
-        
+
         <section className="card">
-           <h2 className="text-2xl font-bold mb-4 text-white flex items-center gap-2">
-             <TrendingUp className="w-6 h-6 text-accent" /> Over 40+ Tools (and growing)
-           </h2>
-           <p className="mb-4">
-             We currently support over 40 distinct calculators spanning Finance, Crypto, Health, Math, and General Conversion. But we aren't stopping there. We are committed to releasing new calculators consistently until we cover every niche, hobby, and profession on the internet.
-           </p>
-           <p>
-             If you have a request for a tool we don't currently have, please reach out via our Contact page!
-           </p>
+          <h2 className="text-2xl font-bold mb-4 text-white flex items-center gap-2">
+            <TrendingUp className="w-6 h-6 text-accent" /> Over 40+ Tools (and growing)
+          </h2>
+          <p className="mb-4">
+            We currently support over 40 distinct calculators spanning Finance, Crypto, Health, Math, and General Conversion. But we aren't stopping there. We are committed to releasing new calculators consistently until we cover every niche, hobby, and profession on the internet.
+          </p>
+          <p>
+            If you have a request for a tool we don't currently have, please reach out via our Contact page!
+          </p>
         </section>
       </div>
     </div>

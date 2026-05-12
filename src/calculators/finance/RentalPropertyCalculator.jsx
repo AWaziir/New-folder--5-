@@ -130,7 +130,7 @@ export default function RentalPropertyCalculator() {
 
           {/* Results */}
           <div>
-            <div className="card shadow-2xl bg-primary-dark text-white sticky top-24 shadow-xl p-8 border-none flex flex-col justify-center relative rounded-2xl min-h-[450px]">
+            <div className="card shadow-2xl bg-primary-dark text-slate-900 sticky top-24 shadow-xl p-8 border-none flex flex-col justify-center relative rounded-2xl min-h-[450px]">
               <div className="absolute bottom-[-10px] right-[-10px] pointer-events-none z-0" style={{ opacity: 0.03 }}>
                  <svg className="w-48 h-48" fill="currentColor" viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
               </div>
@@ -141,7 +141,7 @@ export default function RentalPropertyCalculator() {
                 <div className="relative z-10 space-y-8">
                   <div className="p-8 bg-white-10 rounded-2xl border-2 border-white-20 text-center shadow-inner">
                     <p className="text-xs font-bold uppercase tracking-widest mb-2 opacity-70">Monthly Net Cash Flow</p>
-                    <p className={`text-6xl font-black ${result.monthlyCashFlow >= 0 ? 'text-white' : 'text-danger-light'}`}>
+                    <p className={`text-6xl font-black ${result.monthlyCashFlow >= 0 ? 'text-slate-900' : 'text-danger-light'}`}>
                         ${result.monthlyCashFlow.toLocaleString()}
                     </p>
                   </div>
@@ -153,7 +153,7 @@ export default function RentalPropertyCalculator() {
                     </div>
                     <div className="p-5 bg-white-5 rounded-xl text-center">
                       <p className="text-[10px] font-bold uppercase opacity-60 mb-2">Cash Needed</p>
-                      <p className="text-2xl font-black text-white">${result.initialCash.toLocaleString()}</p>
+                      <p className="text-2xl font-black text-slate-900">${result.initialCash.toLocaleString()}</p>
                     </div>
                   </div>
 
@@ -185,11 +185,11 @@ export default function RentalPropertyCalculator() {
                     A successful rental property isn't just about collecting rent. It's about optimizing the spread between your gross income and your total cost of ownership.
                 </p>
                 <div className="grid md:grid-cols-2 gap-8 mt-8">
-                    <div className="p-6 bg-secondary rounded-xl border-l-4 border-primary">
+                    <div className="p-6 bg-slate-100 rounded-xl border-l-4 border-primary">
                         <h3 className="font-bold text-primary mb-2">Operating Expenses</h3>
                         <p className="text-sm text-muted">Includes property taxes, insurance, management fees (usually 8-12%), and a maintenance reserve (ideally 1% of property value annually or 10-15% of rent).</p>
                     </div>
-                    <div className="p-6 bg-secondary rounded-xl border-l-4 border-primary">
+                    <div className="p-6 bg-slate-100 rounded-xl border-l-4 border-primary">
                         <h3 className="font-bold text-primary mb-2">Appreciation Return</h3>
                         <p className="text-sm text-muted">While cash flow covers your monthly bills, appreciation is where long-term wealth is built. Even a 3% annual growth can double your property value over time.</p>
                     </div>

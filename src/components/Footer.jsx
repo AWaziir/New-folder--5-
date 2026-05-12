@@ -8,7 +8,7 @@ export default function Footer() {
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem', marginBottom: '1rem' }}>
           <span style={{
             width: '1.4rem', height: '1.4rem',
-            background: 'linear-gradient(135deg, #7c3aed, #06b6d4)',
+            background: 'linear-gradient(135deg, #245da2, #06b6d4)',
             borderRadius: '0.35rem',
             display: 'inline-flex', alignItems: 'center', justifyContent: 'center'
           }}>
@@ -18,7 +18,7 @@ export default function Footer() {
             </svg>
           </span>
           <span style={{ fontFamily: "'Space Grotesk', sans-serif", fontWeight: 700, color: '#c4cde0', fontSize: '0.95rem' }}>
-            Calc<span style={{ color: '#a78bfa' }}>Pro.com.au</span>
+            Calc<span style={{ color: '#3b74bb' }}>Pro.com.au</span>
           </span>
         </div>
         <div style={{ display: 'flex', justifyContent: 'center', gap: '2rem', marginBottom: '1.25rem', flexWrap: 'wrap' }}>

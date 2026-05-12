@@ -44,7 +44,7 @@ export default function TimeZoneConverter() {
 
       <div className="input-group">
         <label className="input-label">Your Current Zone</label>
-        <div className="p-4 bg-secondary rounded-lg border border-border-color font-bold text-primary text-center">
+        <div className="p-4 bg-slate-100 rounded-lg border border-border-color font-bold text-primary text-center">
             {fromZone}
         </div>
         <p className="text-xs text-muted mt-2">Detected automatically from your browser.</p>
@@ -55,9 +55,9 @@ export default function TimeZoneConverter() {
   const ResultPanel = (
     <div className="space-y-4">
       {majorTimeZones.map(zone => (
-          <div key={zone} className="p-4 bg-secondary/50 rounded-xl border border-border-color flex justify-between items-center hover:border-primary/50 transition-all">
+          <div key={zone} className="p-4 bg-slate-100/50 rounded-xl border border-border-color flex justify-between items-center hover:border-primary/50 transition-all">
               <div className="flex flex-col">
-                  <span className="text-white font-bold">{zone.split('/').pop().replace('_', ' ')}</span>
+                  <span className="text-slate-900 font-bold">{zone.split('/').pop().replace('_', ' ')}</span>
                   <span className="text-xs text-muted font-medium">{zone}</span>
               </div>
               <span className="text-2xl font-black text-primary-light">

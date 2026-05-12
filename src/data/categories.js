@@ -61,12 +61,13 @@ export const categories = [
         ]
       },
       {
-        name: 'Tax & Salary',
+        name: 'Tax, Salary & Budget',
         icon: ShoppingCart,
         calculators: [
-          { id: 'salary-calculator', name: 'Salary Calculator', description: 'Breakdown of your paycheck.', path: '/finance/salary-calculator' },
-          { id: 'income-tax-calculator', name: 'Income Tax Calculator', description: 'The official tax calculator australia 2026 update.', path: '/finance/income-tax-calculator' },
-          { id: 'sales-tax-calculator', name: 'GST / Tax Calculator', description: 'Add or remove GST/VAT from any amount.', path: '/finance/sales-tax-calculator' },
+          { id: 'salary-calculator', name: 'Income & Tax Calculator', description: 'Breakdown of your paycheck and annual salary.', path: '/finance/salary-calculator' },
+          { id: 'expense-tracker', name: 'Monthly Expense Tracker', description: 'Manage your monthly budget and savings rate.', path: '/finance/expense-tracker' },
+          { id: 'income-tax-calculator', name: 'Federal Income Tax', description: 'The official tax calculator australia 2026 update.', path: '/finance/income-tax-calculator' },
+          { id: 'sales-tax-calculator', name: 'GST / VAT Calculator', description: 'Add or remove GST/VAT from any amount.', path: '/finance/sales-tax-calculator' },
           { id: 'profit-loss', name: 'Profit & Loss', description: 'Cost, selling price & profit margin.', path: '/finance/profit-loss' },
         ]
       }
@@ -84,6 +85,7 @@ export const categories = [
         calculators: [
           { id: 'bmi-calculator', name: 'BMI Calculator', description: 'Body mass index with health interpretation.', path: '/health/bmi-calculator' },
           { id: 'calorie-calculator', name: 'Calorie Calculator', description: 'Daily calorie needs using Harris-Benedict.', path: '/health/calorie-calculator' },
+          { id: 'body-fat-calculator', name: 'Body Fat Calculator', description: 'Estimate body fat using the US Navy method.', path: '/health/body-fat-calculator' },
           { id: 'bmr-calculator', name: 'BMR Calculator', description: 'Basal Metabolic Rate.', path: '/health/bmr-calculator' },
           { id: 'tdee-calculator', name: 'TDEE Calculator', description: 'Free calorie calculator for weight loss female australia.', path: '/health/tdee-calculator' },
           { id: 'ideal-weight', name: 'Ideal Weight', description: 'Healthy weight range for your height.', path: '/health/ideal-weight' },
@@ -96,6 +98,7 @@ export const categories = [
         calculators: [
           { id: 'pregnancy-due-date', name: 'Due Date Calculator', description: 'Estimate your baby due date.', path: '/health/pregnancy-due-date' },
           { id: 'period-calculator', name: 'Period Calculator', description: 'Know exactly when is my next period calculator accurate.', path: '/health/period-calculator' },
+          { id: 'ovulation-calculator', name: 'Ovulation Calculator', description: 'Track your fertile window and ovulation day.', path: '/health/ovulation-calculator' },
         ]
       }
     ]
@@ -113,6 +116,7 @@ export const categories = [
                 { id: 'percentage-calculator', name: 'Percentage Calculator', description: 'Find percentages, increases, decreases & ratios.', path: '/math/percentage-calculator' },
                 { id: 'scientific-calculator', name: 'Scientific Calculator', description: 'Trig, log, powers, roots and more.', path: '/math/scientific-calculator' },
                 { id: 'fraction-calculator', name: 'Fraction Calculator', description: 'Add, subtract, multiply & divide fractions.', path: '/math/fraction-calculator' },
+                { id: 'decimal-to-fraction', name: 'Decimal to Fraction', description: 'Convert any decimal to its simplest fraction.', path: '/math/decimal-to-fraction' },
                 { id: 'basic-calculator', name: 'Basic Calculator', description: 'Arithmetic calculator.', path: '/math/basic-calculator' },
                 { id: 'ratio-calculator', name: 'Ratio Calculator', description: 'Simplify & scale ratios instantly.', path: '/math/ratio-calculator' },
             ]
@@ -145,6 +149,7 @@ export const categories = [
             icon: Calendar,
             calculators: [
                 { id: 'age-calculator', name: 'Age Calculator', description: 'Exact age in years, months and days.', path: '/other/age-calculator' },
+                { id: 'time-duration', name: 'Time Duration', description: 'Calculate hours and minutes between two times.', path: '/other/time-duration' },
                 { id: 'date-difference', name: 'Date Difference', description: 'Days, weeks & months between two dates.', path: '/other/date-difference' },
                 { id: 'day-of-week', name: 'Day of the Week', description: 'Find what day any date falls on.', path: '/other/day-of-week' },
                 { id: 'time-zone-converter', name: 'Time Zone Converter', description: 'Convert time across world time zones.', path: '/other/time-zone-converter' },
@@ -155,6 +160,7 @@ export const categories = [
             icon: GraduationCap,
             calculators: [
                 { id: 'tip-calculator', name: 'Tip Calculator', description: 'Split bills and calculate tips easily.', path: '/other/tip-calculator' },
+                { id: 'work-hours-calculator', name: 'Work Hours Calculator', description: 'Calculate shift time, breaks and estimated pay.', path: '/other/work-hours-calculator' },
                 { id: 'discount-calculator', name: 'Discount Calculator', description: 'Sale price, savings & original price.', path: '/finance/discount-calculator' },
                 { id: 'grade-calculator', name: 'Grade Calculator', description: 'Weighted grade & GPA calculator.', path: '/other/grade-calculator' },
                 { id: 'fuel-cost', name: 'Fuel Cost Calculator', description: 'Trip fuel cost and mileage.', path: '/other/fuel-cost' },
@@ -176,9 +182,9 @@ export const categories = [
         { id: 'currency-converter', name: 'Currency Calculator', description: 'Live usd to aud today live rate currency converter with live rates free.', path: '/conversion/currency-converter' },
         { id: 'speed-converter', name: 'Speed Converter', description: 'km/h, mph, m/s, knots', path: '/conversion/speed-converter' },
         { id: 'area-converter', name: 'Area Converter', description: 'm², ft², acres, hectares and more', path: '/conversion/area-converter' },
+        { id: 'data-storage-converter', name: 'Data Storage', description: 'Convert MB, GB, TB, PB with 1024 standard.', path: '/conversion/data-storage-converter' },
     ]
   },
-  ,
   {
     id: 'crypto',
     name: 'Crypto Profit Calculators',

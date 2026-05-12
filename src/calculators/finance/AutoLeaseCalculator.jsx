@@ -113,14 +113,14 @@ export default function AutoLeaseCalculator() {
 
           {/* Results */}
           <div>
-            <div className="card shadow-2xl bg-primary-dark text-white sticky top-24 shadow-xl p-8 border-none">
+            <div className="card shadow-2xl bg-primary-dark text-slate-900 sticky top-24 shadow-xl p-8 border-none">
               <h2 className="text-xl font-bold mb-8 text-center uppercase tracking-widest opacity-80">Monthly Lease Payment</h2>
               
               {result && !result.error ? (
                 <div className="space-y-8">
                   <div className="p-8 bg-white-10 rounded-2xl border-2 border-white border-opacity-20 text-center shadow-inner">
                     <p className="text-xs font-bold uppercase tracking-widest mb-2 opacity-70">Total Per Month</p>
-                    <p className="text-6xl font-black text-white">${result.monthlyPayment.toLocaleString()}</p>
+                    <p className="text-6xl font-black text-slate-900">${result.monthlyPayment.toLocaleString()}</p>
                     <p className="text-xs opacity-50 mt-2">${result.tax.toLocaleString()} included for sales tax</p>
                   </div>
                   
@@ -159,11 +159,11 @@ export default function AutoLeaseCalculator() {
                     Automotive leasing is slightly more complex than a standard car loan. Your monthly payment is composed of two primary parts: **Depreciation** and the **Finance Fee (Money Factor)**.
                 </p>
                 <div className="grid md:grid-cols-2 gap-8 mt-8">
-                    <div className="p-5 bg-secondary rounded-xl">
+                    <div className="p-5 bg-slate-100 rounded-xl">
                         <h3 className="font-bold text-primary mb-2">Depreciation Fee</h3>
                         <p className="text-sm text-muted">This part covers the loss of value of the car during your lease term. It is calculated by taking the (Capitalized Cost - Residual Value) and dividing it by the number of months.</p>
                     </div>
-                    <div className="p-5 bg-secondary rounded-xl">
+                    <div className="p-5 bg-slate-100 rounded-xl">
                         <h3 className="font-bold text-primary mb-2">Money Factor</h3>
                         <p className="text-sm text-muted">The money factor is similar to an interest rate. Multiply the money factor by 2,400 to estimate the equivalent annual percentage rate (APR).</p>
                     </div>

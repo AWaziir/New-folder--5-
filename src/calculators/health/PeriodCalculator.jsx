@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import AdPlaceholder from '../../components/AdPlaceholder';
-import SEO from '../../components/SEO';
+import { CalendarDays } from 'lucide-react';
+import CalculatorLayout from '../../components/CalculatorLayout';
 
 export default function PeriodCalculator() {
   const [lastPeriod, setLastPeriod] = useState(new Date().toISOString().split('T')[0]);
@@ -32,7 +32,7 @@ export default function PeriodCalculator() {
     const fertileEnd = new Date(ovulationDate);
     fertileEnd.setDate(ovulationDate.getDate() + 1);
 
-    const formatDate = (date) => date.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+    const formatDate = (date) => date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
 
     setResult({
       nextPeriod: formatDate(nextPeriodDate),
@@ -41,125 +41,151 @@ export default function PeriodCalculator() {
     });
   };
 
-  return (
-    <div className="container">
-      <SEO 
-        title="When Is My Next Period Calculator Accurate" 
-        description="Track your cycle, predict your next period, and find your most fertile days with our easy period calculator. When is my next period calculator accurate." 
-        path="/health/period-calculator"
-      />
-      
-      <AdPlaceholder text="Top Banner Ad" />
+  const inputs = (
+    <div className="space-y-6">
+      <div className="input-group">
+        <label className="input-label">First Day of Last Period</label>
+        <input 
+          type="date" 
+          className="input-field font-bold" 
+          value={lastPeriod} 
+          onChange={e => setLastPeriod(e.target.value)} 
+        />
+      </div>
 
-      <div className="max-width-4xl mx-auto my-8">
-        <h1 className="text-3xl font-bold mb-2">Period Calculator</h1>
-        <p className="text-muted mb-6">Track your menstrual cycle and predict your next period, ovulation, and fertile window.</p>
-
-        <div className="grid gap-8" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))' }}>
-          
-          <div className="card">
-            <h2 className="text-xl font-bold mb-4">Cycle Details</h2>
-            
-            <div className="input-group">
-              <label className="input-label">First Day of Last Period</label>
-              <input 
-                type="date" 
-                className="input-field" 
-                value={lastPeriod} 
-                onChange={e => setLastPeriod(e.target.value)} 
-              />
-            </div>
-
-            <div className="input-group">
-              <label className="input-label">Average Cycle Length (days)</label>
-              <input 
+      <div className="grid grid-cols-2 gap-4">
+        <div className="input-group">
+            <label className="input-label">Cycle Length (Days)</label>
+            <input 
                 type="number" 
-                className="input-field" 
+                className="input-field font-black" 
                 value={cycleLength} 
                 onChange={e => setCycleLength(Number(e.target.value))} 
-              />
-              <p className="text-sm text-muted mt-1">Normal: 21–35 days</p>
-            </div>
-
-            <div className="input-group">
-              <label className="input-label">Period Duration (days)</label>
-              <input 
+            />
+            <p className="text-[10px] mt-1 opacity-40 uppercase font-bold">Normal: 21–35</p>
+        </div>
+        <div className="input-group">
+            <label className="input-label">Duration (Days)</label>
+            <input 
                 type="number" 
-                className="input-field" 
+                className="input-field font-black" 
                 value={periodDuration} 
                 onChange={e => setPeriodDuration(Number(e.target.value))} 
-              />
-              <p className="text-sm text-muted mt-1">Normal: 3–7 days</p>
-            </div>
-          </div>
-
-          <div>
-            <div className="card sticky top-24">
-              <h2 className="text-xl font-bold mb-6">Your Predictions</h2>
-              
-              {result ? (
-                <div className="space-y-6">
-                  <div className="p-4 bg-secondary rounded-lg text-center border-l-4 border-primary">
-                    <p className="text-muted text-sm font-medium mb-1 uppercase tracking-wider">Next Period Starts</p>
-                    <p className="text-2xl font-bold text-primary">{result.nextPeriod}</p>
-                  </div>
-                  
-                  <div className="p-4 bg-secondary rounded-lg text-center border-l-4 border-success">
-                    <p className="text-muted text-sm font-medium mb-1 uppercase tracking-wider">Estimated Ovulation</p>
-                    <p className="text-2xl font-bold text-success">{result.ovulation}</p>
-                  </div>
-
-                  <div className="p-4 bg-secondary rounded-lg text-center border-l-4 border-orange-400">
-                    <p className="text-muted text-sm font-medium mb-1 uppercase tracking-wider">Fertile Window</p>
-                    <p className="text-xl font-bold text-orange-500">{result.fertileWindow}</p>
-                    <p className="text-xs text-muted mt-2">Best days for conception</p>
-                  </div>
-                </div>
-              ) : (
-                <div className="py-8 text-center text-muted">
-                  Select your last period date to see predictions.
-                </div>
-              )}
-            </div>
-          </div>
-        </div>
-
-        <AdPlaceholder text="Mid-Content Ad" />
-
-        <div className="card mt-8">
-          <h2 className="text-2xl font-bold mb-4">Understanding Your Cycle</h2>
-          <p className="mb-4 text-muted">
-            A menstrual cycle is measured from the first day of one period to the first day of the next. Every woman's cycle is different, but the average length is 28 days.
-          </p>
-          
-          <div className="grid gap-6 md:grid-cols-2 mt-6">
-            <div>
-              <h3 className="text-lg font-bold mb-2">What is Ovulation?</h3>
-              <p className="text-muted text-sm leading-relaxed">
-                Ovulation is when a mature egg is released from the ovary. It usually happens about 14 days before your next period starts. This is your most fertile point.
-              </p>
-            </div>
-            <div>
-              <h3 className="text-lg font-bold mb-2">The Fertile Window</h3>
-              <p className="text-muted text-sm leading-relaxed">
-                The fertile window includes the day of ovulation and the five days leading up to it. Sperm can live inside the female body for up to five days, while an egg lives for about 24 hours.
-              </p>
-            </div>
-          </div>
-
-          <h3 className="text-xl font-bold mt-8 mb-4">FAQ</h3>
-          <div className="space-y-4">
-            <details className="border-b border-border-color pb-4">
-              <summary className="font-bold cursor-pointer hover:text-primary transition">Is this calculator 100% accurate?</summary>
-              <p className="text-muted text-sm mt-2">No. This is an estimate based on averages. Stress, illness, and diet can all affect your cycle length and ovulation timing.</p>
-            </details>
-            <details className="border-b border-border-color pb-4">
-              <summary className="font-bold cursor-pointer hover:text-primary transition">Can I use this for birth control?</summary>
-              <p className="text-muted text-sm mt-2">No, this calendar method should not be used as a primary form of contraception as cycles can vary significantly month-to-month.</p>
-            </details>
-          </div>
+            />
+            <p className="text-[10px] mt-1 opacity-40 uppercase font-bold">Normal: 3–7</p>
         </div>
       </div>
     </div>
+  );
+
+  const results = (
+    <div className="space-y-6">
+      {result ? (
+        <div className="space-y-6">
+          <div className="p-8 bg-primary/5 rounded-2xl border border-primary/20 shadow-inner text-center">
+            <p className="text-xs font-bold uppercase tracking-[0.2em] opacity-50 mb-2">Next Period Starts</p>
+            <p className="text-4xl font-black text-slate-900">{result.nextPeriod}</p>
+          </div>
+          
+          <div className="grid grid-cols-1 gap-4">
+            <div className="p-5 bg-slate-50 rounded-2xl border border-slate-200 text-center">
+              <p className="text-[10px] font-bold uppercase tracking-[0.2em] mb-1 opacity-60 text-green-600">Estimated Ovulation</p>
+              <p className="text-xl font-black text-slate-900">{result.ovulation}</p>
+            </div>
+            <div className="p-5 bg-slate-50 rounded-2xl border border-slate-200 text-center">
+                <p className="text-[10px] font-bold uppercase tracking-[0.2em] mb-1 opacity-60 text-orange-400">High Fertility Window</p>
+                <p className="text-lg font-black text-slate-900">{result.fertileWindow}</p>
+            </div>
+          </div>
+        </div>
+      ) : (
+        <div className="py-12 italic opacity-40 text-center">Calculate your cycle...</div>
+      )}
+    </div>
+  );
+
+  const instructions = (
+    <div className="space-y-4">
+      <p>
+        Take control of your health with our advanced Period Calculator. By tracking your menstrual cycle, you can predict when your next period will arrive and identify your most fertile window for conception.
+      </p>
+      <ul className="list-disc pl-5 space-y-2 text-sm">
+        <li><strong>LMP:</strong> Enter the first day of your most recent period.</li>
+        <li><strong>Cycle Length:</strong> The number of days between the start of one period and the start of the next.</li>
+        <li><strong>Consistency:</strong> The more accurate your data, the better the prediction.</li>
+      </ul>
+    </div>
+  );
+
+  const formula = "Next Period = Last Period Date + Cycle Length";
+
+  const examples = [
+    {
+      title: "Planned Pregnancy",
+      description: "Identifying the 6-day fertile window (ovulation day plus the 5 days before) significantly increases the probability of conception."
+    },
+    {
+      title: "Holiday Planning",
+      description: "Avoid surprises by checking your future cycle dates before booking your next beach getaway."
+    }
+  ];
+
+  const faqs = [
+    {
+      q: "Is cycle variation normal?",
+      a: "Yes. It's completely normal for your cycle to vary by a few days month-to-month due to stress, diet, or travel."
+    },
+    {
+      q: "When should I see a doctor?",
+      a: "Consult a professional if your cycle is consistently shorter than 21 days, longer than 35 days, or if you miss periods regularly."
+    }
+  ];
+
+  const whyUse = [
+    { title: "Predict Your Next Period", text: "Know exactly when to expect your next period so you can plan travel, events, and daily life with confidence." },
+    { title: "Identify Fertile Window", text: "Understand your 6-day fertile window to either plan for pregnancy or track your cycle for natural family planning." },
+    { title: "Monitor Cycle Health", text: "Tracking cycle length over time helps identify irregularities that may indicate hormonal imbalances or other health concerns." },
+    { title: "Ovulation Awareness", text: "Pinpoint your estimated ovulation date — the most important day for conception timing and cycle understanding." }
+  ];
+
+  const keyFeatures = [
+    { title: "Next Period Prediction", text: "Calculates your next expected period start date based on your LMP and average cycle length." },
+    { title: "Fertile Window", text: "Identifies your estimated 6-day fertile window: 5 days before ovulation plus ovulation day itself." },
+    { title: "Variable Cycle Support", text: "Handles cycle lengths from 21 to 35 days, accommodating natural variation in menstrual cycles." }
+  ];
+
+  const proTips = [
+    "Track 3–6 months of cycles before relying on predictions — the more data, the more accurate your averages.",
+    "Ovulation predictor kits (OPKs) test for an LH surge typically 24–48 hours before ovulation — more reliable than calendar tracking.",
+    "Basal body temperature (BBT) rises 0.2–0.5°C after ovulation. Tracking BBT daily can confirm ovulation occurred.",
+    "Cervical mucus changes throughout your cycle: dry after period → sticky → creamy → egg-white (peak fertility) → dry again.",
+    "Stress, illness, travel, and significant weight changes can delay ovulation and shift your cycle by days or even weeks."
+  ];
+
+  const relatedTools = [
+    { name: "Ovulation Calculator", path: "/health/ovulation-calculator" },
+    { name: "Pregnancy Due Date", path: "/health/pregnancy-due-date" },
+    { name: "BMI Calculator", path: "/health/bmi-calculator" },
+    { name: "Water Intake Calculator", path: "/health/water-intake" }
+  ];
+
+  return (
+    <CalculatorLayout 
+        title="Period Calculator"
+        seoTitle="Period Calculator - Cycle Tracker & Ovulation Predictor"
+        description="Predict your next period, ovulation day, and fertile window with our easy-to-use cycle tracker. Stay informed about your reproductive health."
+        path="/health/period-calculator"
+        icon={CalendarDays}
+        inputs={inputs}
+        results={results}
+        instructions={instructions}
+        formula={formula}
+        examples={examples}
+        faqs={faqs}
+        whyUse={whyUse}
+        keyFeatures={keyFeatures}
+        proTips={proTips}
+        relatedTools={relatedTools}
+    />
   );
 }

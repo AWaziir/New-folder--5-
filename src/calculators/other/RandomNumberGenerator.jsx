@@ -54,7 +54,7 @@ export default function RandomNumberGenerator() {
               <label className="text-xs font-bold text-muted uppercase tracking-widest mb-3 block">Recent Numbers</label>
               <div className="flex flex-wrap gap-2">
                   {history.map((h, i) => (
-                      <span key={i} className="px-3 py-1 bg-secondary rounded-full border border-border-color text-xs text-muted font-bold">
+                      <span key={i} className="px-3 py-1 bg-slate-100 rounded-full border border-border-color text-xs text-muted font-bold">
                           {h}
                       </span>
                   ))}
@@ -66,10 +66,10 @@ export default function RandomNumberGenerator() {
 
   const ResultPanel = (
     <div className="flex flex-col h-full justify-center">
-      <div className="p-12 bg-primary/10 rounded-2xl border-2 border-primary/30 text-center flex flex-col items-center justify-center relative shadow-inner group overflow-hidden">
+      <div className="p-12 bg-primary/10 rounded-2xl border-2 border-primary/20 text-center flex flex-col items-center justify-center relative shadow-inner group overflow-hidden">
         <div className="absolute inset-0 bg-primary/5 -z-10 animate-pulse"></div>
         <p className="text-primary-light mb-4 font-black uppercase tracking-widest text-sm drop-shadow">Random Result</p>
-        <p className="text-8xl font-black text-white drop-shadow-md transition-all duration-300 group-hover:scale-110">
+        <p className="text-8xl font-black text-slate-900 drop-shadow-md transition-all duration-300 group-hover:scale-110">
           {result !== null ? result : '?'}
         </p>
       </div>

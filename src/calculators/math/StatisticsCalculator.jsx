@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import AdPlaceholder from '../../components/AdPlaceholder';
-import SEO from '../../components/SEO';
+import { Sigma } from 'lucide-react';
+import CalculatorLayout from '../../components/CalculatorLayout';
 
 export default function StatisticsCalculator() {
   const [dataInput, setDataInput] = useState('10, 20, 30, 40, 50');
   const [result, setResult] = useState(null);
 
   const calculateStats = () => {
-    // 1. Parse and clean data
+    // Parse and clean data
     const nums = dataInput
       .split(/[, \s]+/)
       .map(Number)
@@ -15,15 +15,15 @@ export default function StatisticsCalculator() {
 
     if (nums.length === 0) return;
 
-    // 2. Mean
+    // Mean
     const mean = nums.reduce((a, b) => a + b, 0) / nums.length;
 
-    // 3. Median
+    // Median
     const sorted = [...nums].sort((a, b) => a - b);
     const mid = Math.floor(sorted.length / 2);
     const median = sorted.length % 2 !== 0 ? sorted[mid] : (sorted[mid - 1] + sorted[mid]) / 2;
 
-    // 4. Mode
+    // Mode
     const counts = {};
     nums.forEach(n => counts[n] = (counts[n] || 0) + 1);
     let maxCount = 0;
@@ -36,15 +36,15 @@ export default function StatisticsCalculator() {
             modes.push(Number(n));
         }
     }
-    const mode = modes.length === nums.length ? 'None' : modes.join(', ');
+    const modeStr = modes.length === nums.length ? 'None' : modes.join(', ');
 
-    // 5. Range
+    // Range
     const rangeResult = Math.max(...nums) - Math.min(...nums);
 
     setResult({
         mean: mean.toFixed(2),
         median,
-        mode,
+        mode: modeStr,
         range: rangeResult,
         count: nums.length,
         min: Math.min(...nums),
@@ -56,110 +56,105 @@ export default function StatisticsCalculator() {
     calculateStats();
   }, [dataInput]);
 
-  return (
-    <div className="container">
-      <SEO 
-        title="Mean Median Mode Range Calculator – Free Statistics Tool" 
-        description="Find the average, middle value, most frequent value, and spread of your data. Fast, free statistics calculator for mean, median, mode, and range." 
-        path="/math/average-calculator"
+  const inputs = (
+    <div className="space-y-4">
+      <label className="input-label">Enter numbers separated by commas, spaces, or new lines</label>
+      <textarea 
+        className="input-field min-h-[250px] font-mono text-lg font-bold leading-relaxed" 
+        value={dataInput} 
+        onChange={e => setDataInput(e.target.value)} 
+        placeholder="e.g. 10, 20, 30, 40"
       />
-      
-      <AdPlaceholder text="Top Banner Ad" />
-
-      <div className="max-width-4xl mx-auto my-8 px-4">
-        <h1 className="text-3xl md:text-5xl font-extrabold mb-6 text-center">Mean, Median, Mode & Range Calculator</h1>
-        
-        <div className="grid gap-8 lg:grid-cols-2">
-           <div className="card shadow-lg border-2 border-primary-light">
-              <h2 className="text-xl font-bold mb-4">Dataset Input</h2>
-              <p className="text-sm text-muted mb-4">Enter your numbers separated by commas, spaces, or new lines.</p>
-              <textarea 
-                className="input-field h-48 font-mono text-lg"
-                value={dataInput}
-                onChange={e => setDataInput(e.target.value)}
-              />
-           </div>
-
-           <div>
-              <div className="card highlight-border bg-primary text-white sticky top-24 shadow-2xl">
-                 <h2 className="text-xl font-bold mb-8">Statistical Summary</h2>
-                 
-                 {result ? (
-                    <div className="grid grid-cols-2 gap-4">
-                        <div className="p-4 bg-white bg-opacity-10 rounded-lg text-center border-l-4 border-success">
-                            <p className="text-[10px] uppercase font-bold opacity-70 mb-1">Mean (Average)</p>
-                            <p className="text-2xl font-black">{result.mean}</p>
-                        </div>
-                        <div className="p-4 bg-white bg-opacity-10 rounded-lg text-center border-l-4 border-white">
-                            <p className="text-[10px] uppercase font-bold opacity-70 mb-1">Median (Middle)</p>
-                            <p className="text-2xl font-black">{result.median}</p>
-                        </div>
-                        <div className="p-4 bg-white bg-opacity-10 rounded-lg text-center border-l-4 border-orange-300">
-                            <p className="text-[10px] uppercase font-bold opacity-70 mb-1">Mode (Frequent)</p>
-                            <p className="text-2xl font-black">{result.mode}</p>
-                        </div>
-                        <div className="p-4 bg-white bg-opacity-10 rounded-lg text-center border-l-4 border-red-300">
-                            <p className="text-[10px] uppercase font-bold opacity-70 mb-1">Range (Spread)</p>
-                            <p className="text-2xl font-black">{result.range}</p>
-                        </div>
-
-                        <div className="col-span-2 pt-4 border-t border-white border-opacity-10 text-center opacity-80 text-sm italic">
-                           <span>{result.count} values calculated from min {result.min} to max {result.max}</span>
-                        </div>
-                    </div>
-                 ) : (
-                    <div className="py-12 text-center opacity-40">Enter data.</div>
-                 )}
-              </div>
-           </div>
-        </div>
-
-        {/* SEO CONTENT */}
-        <section className="mt-16 space-y-12">
-            <div className="card">
-                <h2 className="text-2xl font-bold mb-4">What is Mean, Median, Mode, and Range?</h2>
-                <p className="text-muted leading-relaxed">
-                    In statistics, there are four primary ways to describe a dataset. These measurements provide a summary of the data, helping you find the average, the central point, the most frequent value, and the overall spread of your numbers. Our free calculator provides all four metrics instantly, saving time for students and researchers.
-                </p>
-            </div>
-
-            <div className="card">
-                <h2 className="text-2xl font-bold mb-4">How to Calculate the Statistics</h2>
-                <div className="space-y-6 text-sm text-muted leading-relaxed">
-                    <div>
-                        <p className="font-bold text-primary">1. Mean (Arithmetic Average)</p>
-                        <p>The sum of all numbers divided by the count. <i>Formula: (a+b+c) / 3</i></p>
-                    </div>
-                    <div>
-                        <p className="font-bold text-primary">2. Median (Middle Value)</p>
-                        <p>The number in the middle of a sorted list. If the list is even, it's the average of the two middle numbers.</p>
-                    </div>
-                    <div>
-                        <p className="font-bold text-primary">3. Mode (Most Frequent Value)</p>
-                        <p>The number that appears most often in the set. A dataset can have one mode, multiple modes, or no mode at all.</p>
-                    </div>
-                    <div>
-                        <p className="font-bold text-primary">4. Range (The Spread)</p>
-                        <p>The difference between the largest number and the smallest number. <i>Formula: Max - Min</i></p>
-                    </div>
-                </div>
-            </div>
-
-            <div className="card">
-                <h2 className="text-2xl font-bold mb-6">Frequently Asked Questions</h2>
-                <div className="space-y-6">
-                    <div>
-                        <h3 className="font-bold text-lg mb-1">When is median more useful than mean?</h3>
-                        <p className="text-muted">The median is often more useful when a dataset contains extreme "outliers" (very high or very low numbers), as the mean can be skewed by those extremes. For example, household income is usually measured by median.</p>
-                    </div>
-                    <div>
-                        <h3 className="font-bold text-lg mb-1">Can a set of numbers have no mode?</h3>
-                        <p className="text-muted">Yes. If every number in your set appears the same number of times (e.g., 1, 2, 3), the set is said to have no mode.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-      </div>
     </div>
+  );
+
+  const results = (
+    <div className="space-y-6">
+      {result ? (
+        <div className="space-y-6">
+          <div className="p-10 bg-primary/5 rounded-2xl text-center border border-primary/20 shadow-inner group transition-all">
+            <p className="text-xs font-bold uppercase tracking-[0.2em] opacity-50 mb-2">Arithmetic Mean</p>
+            <p className="text-7xl font-black text-slate-900 group-hover:scale-105 transition-transform">{result.mean}</p>
+          </div>
+          
+          <div className="grid grid-cols-2 gap-4">
+            <div className="p-5 bg-slate-50 rounded-2xl border border-slate-200 text-center">
+              <p className="text-[10px] uppercase font-bold tracking-[0.2em] opacity-50 mb-1">Median</p>
+              <p className="text-2xl font-black text-slate-900">{result.median}</p>
+            </div>
+            <div className="p-5 bg-slate-50 rounded-2xl border border-slate-200 text-center">
+              <p className="text-[10px] uppercase font-bold tracking-[0.2em] opacity-50 mb-1 text-pink-400">Mode</p>
+              <p className="text-2xl font-black text-pink-400">{result.mode}</p>
+            </div>
+            <div className="p-5 bg-slate-50 rounded-2xl border border-slate-200 text-center">
+              <p className="text-[10px] uppercase font-bold tracking-[0.2em] opacity-50 mb-1 text-green-600">Range</p>
+              <p className="text-2xl font-black text-green-600">{result.range}</p>
+            </div>
+            <div className="p-5 bg-slate-50 rounded-2xl border border-slate-200 text-center">
+              <p className="text-[10px] uppercase font-bold tracking-[0.2em] opacity-50 mb-1 text-primary-light">Count</p>
+              <p className="text-2xl font-black text-primary-light">{result.count}</p>
+            </div>
+          </div>
+        </div>
+      ) : (
+        <div className="py-12 text-center text-muted opacity-40 italic">
+          Enter data to see summary...
+        </div>
+      )}
+    </div>
+  );
+
+  const instructions = (
+    <div className="space-y-4">
+      <p>
+        In statistics, there are four primary ways to describe a dataset. These measurements provide a summary of the data, helping you find the average, the central point, the most frequent value, and the overall spread of your numbers.
+      </p>
+      <ul className="list-disc pl-5 space-y-2 text-sm">
+        <li><strong>Mean:</strong> The total sum divided by the count.</li>
+        <li><strong>Median:</strong> The middle number in a sorted list.</li>
+        <li><strong>Mode:</strong> The value that appears most frequently.</li>
+        <li><strong>Range:</strong> The distance between the highest and lowest values.</li>
+      </ul>
+    </div>
+  );
+
+  const formula = "Mean = Σx / n";
+
+  const examples = [
+    {
+      title: "Exam Scores",
+      description: "Scores: 85, 90, 78, 92, 88. Result: Mean 86.6, Median 88, Range 14."
+    },
+    {
+      title: "Store Sales",
+      description: "Daily sales values can be processed to find the representative 'typical' day using the median."
+    }
+  ];
+
+  const faqs = [
+    {
+      q: "Mean vs Median?",
+      a: "The mean can be skewed by extreme outliers. The median is often better for representing 'typical' values in skewed data, like household income."
+    },
+    {
+      q: "Can there be multiple modes?",
+      a: "Yes. If two numbers appear with the same maximum frequency, the dataset is bimodal."
+    }
+  ];
+
+  return (
+    <CalculatorLayout 
+      title="Statistics Calculator"
+      seoTitle="Mean Median Mode Range Calculator - Statistical Summary Tool"
+      description="Find the average, middle value, most frequent value, and spread of your data. Fast, free statistics calculator for mean, median, mode, and range."
+      path="/math/statistics-calculator"
+      icon={Sigma}
+      inputs={inputs}
+      results={results}
+      instructions={instructions}
+      formula={formula}
+      examples={examples}
+      faqs={faqs}
+    />
   );
 }

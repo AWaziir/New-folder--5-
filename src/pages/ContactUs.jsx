@@ -127,10 +127,10 @@ export default function ContactUs() {
                 type="submit"
                 style={{
                   width: '100%', padding: '0.85rem',
-                  background: 'linear-gradient(135deg, #7c3aed, #06b6d4)',
+                  background: 'linear-gradient(135deg, #245da2, #06b6d4)',
                   border: 'none', borderRadius: '0.75rem', color: 'white',
                   fontWeight: 700, fontSize: '0.95rem', cursor: 'pointer', fontFamily: 'inherit',
-                  boxShadow: '0 4px 15px rgba(124,58,237,0.35)', marginTop: '0.5rem',
+                  boxShadow: '0 4px 15px rgba(36,93,162,0.35)', marginTop: '0.5rem',
                   transition: 'all 0.2s ease',
                 }}
                 onMouseEnter={e => e.currentTarget.style.opacity = '0.9'}
@@ -168,7 +168,7 @@ export default function ContactUs() {
               icon: '🤝',
               title: 'Partnerships',
               desc: 'Interested in advertising or partnering with CalcPro.com.au? Select "Partnership / Advertising" in the topic dropdown and send us a message.',
-              color: '#a78bfa',
+              color: '#3b74bb',
             },
           ].map((c, i) => (
             <div key={i} style={{

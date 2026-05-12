@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import AdPlaceholder from '../../components/AdPlaceholder';
-import SEO from '../../components/SEO';
+import { Activity } from 'lucide-react';
+import CalculatorLayout from '../../components/CalculatorLayout';
 
 export default function TdeeCalculator() {
   const [age, setAge] = useState(25);
@@ -37,82 +37,135 @@ export default function TdeeCalculator() {
     });
   };
 
-  return (
-    <div className="container">
-      <SEO 
-        title="TDEE Calculator - Total Daily Energy Expenditure" 
-        description="Calculate your Total Daily Energy Expenditure (TDEE) with our fast, free calculator. Estimate your maintenance calories based on your activity level and goals." 
-        path="/health/tdee-calculator"
-      />
-      <AdPlaceholder text="Top Banner Ad" />
-
-      <div className="max-width-4xl mx-auto my-8">
-        <h1 className="text-3xl font-bold mb-2">TDEE Calculator</h1>
-        <p className="text-muted mb-6">Estimate your total daily calories burned based on exercise and activity habits.</p>
-
-        <div className="grid gap-8" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))' }}>
-          <div className="card">
-            <h2 className="text-xl font-bold mb-4">Body Details</h2>
-            <div className="flex gap-2 mb-4">
-              <button className={`flex-1 py-1 rounded-md font-medium text-sm ${gender === 'male' ? 'bg-primary text-white' : 'bg-secondary'}`} onClick={() => setGender('male')}>Male</button>
-              <button className={`flex-1 py-1 rounded-md font-medium text-sm ${gender === 'female' ? 'bg-primary text-white' : 'bg-secondary'}`} onClick={() => setGender('female')}>Female</button>
-            </div>
-            
-            <div className="grid grid-cols-3 gap-2">
-                <div className="input-group">
-                    <label className="input-label">Age</label>
-                    <input type="number" className="input-field" value={age} onChange={e => setAge(Number(e.target.value))} />
-                </div>
-                <div className="input-group">
-                    <label className="input-label">Height (cm)</label>
-                    <input type="number" className="input-field" value={height} onChange={e => setHeight(Number(e.target.value))} />
-                </div>
-                <div className="input-group">
-                    <label className="input-label">Weight (kg)</label>
-                    <input type="number" className="input-field" value={weight} onChange={e => setWeight(Number(e.target.value))} />
-                </div>
-            </div>
-
-            <div className="input-group">
-                <label className="input-label">Activity Level</label>
-                <select className="input-field" value={activity} onChange={e => setActivity(Number(e.target.value))}>
-                    <option value={1.2}>Sedentary (Job / Sitting)</option>
-                    <option value={1.375}>Lightly Active (1-3 days/week)</option>
-                    <option value={1.55}>Moderately Active (4-5 days/week)</option>
-                    <option value={1.725}>Very Active (6-7 days/week)</option>
-                    <option value={1.9}>Extra Active (Athlete / Heavy Job)</option>
-                </select>
-            </div>
+  const inputs = (
+    <div className="space-y-6">
+      <div className="flex bg-slate-100 p-1 rounded-lg">
+          <button 
+              className={`flex-1 py-3 rounded-md font-bold transition ${gender === 'male' ? 'bg-primary text-white shadow-md' : 'text-muted'}`} 
+              onClick={() => setGender('male')}
+          >
+              Male
+          </button>
+          <button 
+              className={`flex-1 py-3 rounded-md font-bold transition ${gender === 'female' ? 'bg-primary text-white shadow-md' : 'text-muted'}`} 
+              onClick={() => setGender('female')}
+          >
+              Female
+          </button>
+      </div>
+      
+      <div className="grid grid-cols-3 gap-4">
+          <div className="input-group">
+              <label className="input-label">Age</label>
+              <input type="number" className="input-field font-black" value={age} onChange={e => setAge(Number(e.target.value))} />
           </div>
-
-          <div>
-            <div className="card sticky top-24 highlight-border">
-              <h2 className="text-xl font-bold mb-6">Maintenance Calories</h2>
-              {result ? (
-                <div className="text-center">
-                  <div className="p-6 bg-secondary rounded-xl mb-6 scale-up">
-                    <p className="text-4xl font-bold text-primary">{result.maintenance}</p>
-                    <p className="text-sm text-muted mt-1 uppercase font-bold">Calories Per Day</p>
-                  </div>
-                  
-                  <div className="grid gap-3 text-sm text-left">
-                     <div className="flex justify-between p-3 bg-red-50 text-red-700 rounded-lg border-l-4 border-red-500">
-                        <span>Fat Loss (Cutting)</span>
-                        <span className="font-bold">{result.cutLow} kcal</span>
-                     </div>
-                     <div className="flex justify-between p-3 bg-green-50 text-green-700 rounded-lg border-l-4 border-green-500">
-                        <span>Muscle Gain (Bulking)</span>
-                        <span className="font-bold">{result.bulkLow} kcal</span>
-                     </div>
-                  </div>
-                </div>
-              ) : (
-                <p className="text-center text-muted py-8">Enter your details.</p>
-              )}
-            </div>
+          <div className="input-group">
+              <label className="input-label">Ht (cm)</label>
+              <input type="number" className="input-field font-black" value={height} onChange={e => setHeight(Number(e.target.value))} />
           </div>
-        </div>
+          <div className="input-group">
+              <label className="input-label">Wt (kg)</label>
+              <input type="number" className="input-field font-black" value={weight} onChange={e => setWeight(Number(e.target.value))} />
+          </div>
+      </div>
+
+      <div className="input-group">
+          <label className="input-label">Activity Level</label>
+          <select className="input-field font-bold" value={activity} onChange={e => setActivity(Number(e.target.value))}>
+              <option value={1.2}>Sedentary (No Exercise)</option>
+              <option value={1.375}>Lightly Active (1-3 days/week)</option>
+              <option value={1.55}>Moderately Active (3-5 days/week)</option>
+              <option value={1.725}>Very Active (6-7 days/week)</option>
+              <option value={1.9}>Extra Active (Athlete / Heavy Job)</option>
+          </select>
       </div>
     </div>
+  );
+
+  const results = (
+    <div className="space-y-6 text-center">
+      {result ? (
+        <div className="space-y-6">
+          <div className="p-10 bg-primary/5 rounded-2xl border border-primary/20 shadow-inner group transition-all">
+            <p className="text-xs font-bold uppercase tracking-[0.2em] opacity-50 mb-2">Maintenance Calories</p>
+            <p className="text-7xl font-black text-slate-900 group-hover:scale-105 transition-transform">
+                {result.maintenance}
+            </p>
+            <p className="text-xs font-bold uppercase tracking-widest opacity-40 mt-2">Energy Expenditure (TDEE)</p>
+          </div>
+          
+          <div className="grid grid-cols-2 gap-4">
+            <div className="p-5 bg-slate-50 rounded-2xl border border-slate-200">
+                <p className="text-[10px] font-bold uppercase tracking-[0.2em] mb-1 opacity-60 text-red-600">Weight Loss</p>
+                <p className="text-2xl font-black text-slate-900">{result.cutLow}</p>
+            </div>
+            <div className="p-5 bg-slate-50 rounded-2xl border border-slate-200">
+                <p className="text-[10px] font-bold uppercase tracking-[0.2em] mb-1 opacity-60 text-green-600">Weight Gain</p>
+                <p className="text-2xl font-black text-slate-900">{result.bulkLow}</p>
+            </div>
+          </div>
+
+          <div className="p-4 bg-slate-50 rounded-xl text-center border border-slate-100">
+              <span className="text-xs opacity-40 uppercase tracking-widest mr-2">Your BMR:</span>
+              <span className="font-black text-slate-900">{result.bmr} kcal/day</span>
+          </div>
+        </div>
+      ) : (
+        <div className="py-12 italic opacity-40 text-center">Enter details to calculate TDEE...</div>
+      )}
+    </div>
+  );
+
+  const instructions = (
+    <div className="space-y-4">
+      <p>
+        Your Total Daily Energy Expenditure (TDEE) is an estimation of how many calories you burn per day when exercise is taken into account. It is calculated by first figuring out your Basal Metabolic Rate (BMR), then multiplying that value by an activity multiplier.
+      </p>
+      <ul className="list-disc pl-5 space-y-2 text-sm">
+        <li><strong>Maintenance:</strong> The number of calories you need to eat to stay exactly at your current weight.</li>
+        <li><strong>Cutting:</strong> Eating below maintenance to lose body fat.</li>
+        <li><strong>Bulking:</strong> Eating above maintenance to gain muscle mass.</li>
+      </ul>
+    </div>
+  );
+
+  const formula = "TDEE = BMR × Activity Multiplier";
+
+  const examples = [
+    {
+      title: "Fitness Journey",
+      description: "A sedentary person (TDEE 2,000) who starts exercising 4 days a week might see their TDEE jump to 2,500, allowing them to eat more while losing fat."
+    },
+    {
+      title: "Calorie Deficit",
+      description: "A standard deficit of 500 calories per day typically results in 0.5kg (1.1 lbs) of weight loss per week."
+    }
+  ];
+
+  const faqs = [
+    {
+      q: "How accurate is TDEE?",
+      a: "TDEE is an estimate. Metabolism varies from person to person. Use this as a starting point and adjust based on your actual weight changes over 2-3 weeks."
+    },
+    {
+      q: "What if I have a physical job?",
+      a: "Choose 'Very Active' or 'Extra Active'. Non-Exercise Activity Thermogenesis (NEAT) from movement throughout the day can significantly increase your TDEE."
+    }
+  ];
+
+  return (
+    <CalculatorLayout 
+      title="TDEE"
+      seoTitle="TDEE Calculator - Total Daily Energy Expenditure Tool"
+      description="Discover how many calories your body actually burns per day based on your age, height, weight, and activity level. Plan your weight loss or gain with precision."
+      path="/health/tdee-calculator"
+      icon={Activity}
+      inputs={inputs}
+      results={results}
+      instructions={instructions}
+      formula={formula}
+      examples={examples}
+      faqs={faqs}
+    />
   );
 }

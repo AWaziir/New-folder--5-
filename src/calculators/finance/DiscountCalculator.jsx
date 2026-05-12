@@ -31,7 +31,7 @@ export default function DiscountCalculator() {
                 max="100" 
                 value={discountPercent} 
                 onChange={(e) => setDiscountPercent(Number(e.target.value))}
-                className="w-full accent-primary h-2 bg-secondary rounded-lg appearance-none cursor-pointer flex-grow"
+                className="w-full accent-primary h-2 bg-slate-100 rounded-lg appearance-none cursor-pointer flex-grow"
             />
             <input 
                 type="number" 
@@ -49,7 +49,7 @@ export default function DiscountCalculator() {
              <button 
                 key={val} 
                 onClick={() => setDiscountPercent(val)}
-                className={`py-2 rounded-lg text-sm font-bold border transition-all ${discountPercent === val ? 'bg-primary border-primary text-white scale-105' : 'bg-secondary border-border-color text-muted hover:border-primary/50'}`}
+                className={`py-2 rounded-lg text-sm font-bold border transition-all ${discountPercent === val ? 'bg-primary border-primary text-slate-900 scale-105' : 'bg-slate-100 border-border-color text-muted hover:border-primary/50'}`}
              >
                  {val}%
              </button>
@@ -62,18 +62,18 @@ export default function DiscountCalculator() {
     <div className="flex flex-col h-full justify-center">
         <div className="mb-6 p-8 bg-success/10 rounded-xl border-2 border-success/30 text-center flex flex-col items-center justify-center relative shadow-inner">
             <p className="text-success mb-2 font-black uppercase tracking-widest text-sm drop-shadow">Final Sale Price</p>
-            <p className="text-6xl font-black text-white drop-shadow-md">
+            <p className="text-6xl font-black text-slate-900 drop-shadow-md">
                 ${finalPrice.toFixed(2)}
             </p>
         </div>
         
         <div className="space-y-4">
-            <div className="flex justify-between items-center p-4 bg-secondary/50 rounded-lg border-l-4 border-red-500">
+            <div className="flex justify-between items-center p-4 bg-slate-100/50 rounded-lg border-l-4 border-red-500">
                 <span className="text-muted font-bold">Original Price</span>
-                <span className="font-bold line-through text-red-400 opacity-80">${originalPrice.toFixed(2)}</span>
+                <span className="font-bold line-through text-red-600 opacity-80">${originalPrice.toFixed(2)}</span>
             </div>
             
-            <div className="flex justify-between items-center p-4 bg-secondary/50 rounded-lg border-l-4 border-primary">
+            <div className="flex justify-between items-center p-4 bg-slate-100/50 rounded-lg border-l-4 border-primary">
                 <span className="text-muted font-bold">You Save</span>
                 <span className="font-black text-primary-light text-xl">${discountAmount.toFixed(2)}</span>
             </div>

@@ -58,7 +58,7 @@ export default function RentCalculator() {
                         <button 
                           key={p}
                           onClick={() => setPercentage(p)}
-                          className={`flex-1 py-2 rounded-lg font-bold border-2 transition ${percentage === p ? 'bg-primary text-white border-primary shadow-md' : 'bg-secondary text-muted border-transparent'}`}
+                          className={`flex-1 py-2 rounded-lg font-bold border-2 transition ${percentage === p ? 'bg-primary text-white border-primary shadow-md' : 'bg-slate-100 text-muted border-transparent'}`}
                         >
                             {p}%
                         </button>

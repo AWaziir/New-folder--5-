@@ -78,7 +78,7 @@ export default function RealEstateCalculator() {
           <div className="space-y-6">
             <div className="card shadow-md border-2 border-primary-light">
               <h2 className="text-xl font-bold mb-6 text-primary flex items-center gap-2">
-                <span className="w-8 h-8 rounded-full bg-secondary flex items-center justify-center text-sm">1</span> 
+                <span className="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center text-sm">1</span> 
                 Purchase & Financing
               </h2>
               <div className="grid grid-cols-2 gap-4">
@@ -105,7 +105,7 @@ export default function RealEstateCalculator() {
 
             <div className="card shadow-md border-2 border-primary-light">
               <h2 className="text-xl font-bold mb-6 text-primary flex items-center gap-2">
-                <span className="w-8 h-8 rounded-full bg-secondary flex items-center justify-center text-sm">2</span> 
+                <span className="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center text-sm">2</span> 
                 Income & Expenses
               </h2>
               <div className="grid grid-cols-2 gap-4">
@@ -133,7 +133,7 @@ export default function RealEstateCalculator() {
 
           {/* Results Section */}
           <div>
-            <div className="card shadow-2xl bg-primary-dark text-white sticky top-24 p-8 border-none overflow-hidden min-h-[450px] flex flex-col justify-center relative">
+            <div className="card shadow-2xl bg-primary-dark text-slate-900 sticky top-24 p-8 border-none overflow-hidden min-h-[450px] flex flex-col justify-center relative">
               <div className="absolute bottom-[-10px] right-[-10px] pointer-events-none z-0" style={{ opacity: 0.03 }}>
                  <svg className="w-40 h-40" fill="currentColor" viewBox="0 0 24 24"><path d="M12 3L2 12h3v8h6v-6h2v6h6v-8h3L12 3z"/></svg>
               </div>
@@ -156,7 +156,7 @@ export default function RealEstateCalculator() {
                     </div>
                     <div className="p-5 bg-white-5 rounded-2xl border border-white-10 text-center">
                       <p className="text-[10px] font-bold uppercase opacity-60 mb-2">Cash on Cash</p>
-                      <p className="text-2xl font-black text-white">{result.cashOnCash}%</p>
+                      <p className="text-2xl font-black text-slate-900">{result.cashOnCash}%</p>
                     </div>
                   </div>
 
@@ -189,11 +189,11 @@ export default function RealEstateCalculator() {
                     Analyzing rental property involves looking beyond just the monthly rent. Professional investors focus on these high-CPC authority metrics:
                 </p>
                 <div className="grid md:grid-cols-2 gap-8 mt-8">
-                    <div className="p-6 bg-secondary rounded-xl">
+                    <div className="p-6 bg-slate-100 rounded-xl">
                         <h3 className="font-bold text-primary mb-2">CAP Rate (Capitalization Rate)</h3>
                         <p className="text-sm text-muted">A measure of the unleveraged rate of return a property will generate. It compares the Net Operating Income (NOI) to the property's purchase price.</p>
                     </div>
-                    <div className="p-6 bg-secondary rounded-xl">
+                    <div className="p-6 bg-slate-100 rounded-xl">
                         <h3 className="font-bold text-primary mb-2">Cash-on-Cash Return</h3>
                         <p className="text-sm text-muted">This metric shows the yield on your actual out-of-pocket cash investment. It is the annual cash flow divided by the total initial cash invested (down payment + closing costs).</p>
                     </div>

@@ -7,8 +7,6 @@ export default function WaterIntakeCalculator() {
   const [activity, setActivity] = useState(30); // minutes of exercise per day
 
   // General recommendation: 
-  // Base: 0.033 liters per kilogram of body weight
-  // Activity: Add ~350ml (0.35L) for every 30 mins of exercise
   const calculateWater = () => {
     const baseIntake = weight * 0.033;
     const activityIntake = (activity / 30) * 0.35;
@@ -18,7 +16,7 @@ export default function WaterIntakeCalculator() {
   const totalLiters = calculateWater();
   const totalGlasses = totalLiters / 0.25; // standard 250ml glass
 
-  const InputPanel = (
+  const inputs = (
     <div className="space-y-6">
       <div className="input-group">
         <label className="input-label">Body Weight (kg)</label>
@@ -29,11 +27,11 @@ export default function WaterIntakeCalculator() {
             max="200" 
             value={weight} 
             onChange={(e) => setWeight(Number(e.target.value))}
-            className="w-full accent-primary h-2 bg-secondary rounded-lg appearance-none cursor-pointer flex-grow"
+            className="flex-grow h-2 bg-slate-100 rounded-lg appearance-none cursor-pointer accent-blue-500"
           />
           <input 
             type="number" 
-            className="input-field w-24 text-center font-bold" 
+            className="input-field w-24 text-center font-black" 
             value={weight} 
             onChange={(e) => setWeight(Number(e.target.value))} 
           />
@@ -50,11 +48,11 @@ export default function WaterIntakeCalculator() {
             step="15"
             value={activity} 
             onChange={(e) => setActivity(Number(e.target.value))}
-            className="w-full accent-primary h-2 bg-secondary rounded-lg appearance-none cursor-pointer flex-grow"
+            className="flex-grow h-2 bg-slate-100 rounded-lg appearance-none cursor-pointer accent-blue-400"
           />
           <input 
             type="number" 
-            className="input-field w-24 text-center font-bold" 
+            className="input-field w-24 text-center font-black" 
             value={activity} 
             onChange={(e) => setActivity(Number(e.target.value))} 
           />
@@ -63,45 +61,73 @@ export default function WaterIntakeCalculator() {
     </div>
   );
 
-  const ResultPanel = (
-    <div className="flex flex-col h-full justify-center">
-      <div className="mb-6 p-8 bg-blue-500/10 rounded-xl border-2 border-blue-500/30 text-center flex flex-col items-center justify-center relative shadow-inner">
-        <p className="text-blue-400 mb-2 font-black uppercase tracking-widest text-sm drop-shadow">Daily Water Intake</p>
-        <p className="text-6xl font-black text-white drop-shadow-md">
-          {totalLiters.toFixed(2)} <span className="text-2xl font-normal opacity-70">Liters</span>
+  const results = (
+    <div className="space-y-6 text-center">
+      <div className="p-10 bg-blue-600/20 rounded-2xl border border-blue-500/30 shadow-inner group transition-all">
+        <p className="text-xs font-bold uppercase tracking-[0.2em] text-blue-600 mb-2">Daily hydration Goal</p>
+        <p className="text-7xl font-black text-slate-900 group-hover:scale-105 transition-transform">
+          {totalLiters.toFixed(2)} <span className="text-2xl font-normal opacity-40">Liters</span>
         </p>
       </div>
       
-      <div className="p-4 bg-secondary/50 rounded-lg border-l-4 border-blue-400 text-center">
-        <p className="text-muted text-sm font-bold uppercase mb-1">Equivalent to</p>
-        <p className="text-xl font-black text-white">
-          ~{Math.round(totalGlasses)} Glasses <span className="text-sm font-normal opacity-60">(250ml each)</span>
+      <div className="p-5 bg-slate-50 rounded-2xl border border-slate-200 text-center">
+        <p className="text-[10px] font-bold uppercase tracking-[0.2em] mb-1 opacity-60">Equivalent Volume</p>
+        <p className="text-2xl font-black text-slate-900">
+          ~{Math.round(totalGlasses)} <span className="text-sm font-normal opacity-40">Glasses (250ml)</span>
         </p>
       </div>
     </div>
   );
 
-  const faqs = [
+  const instructions = (
+    <div className="space-y-4">
+      <p>
+        Stay perfectly hydrated by knowing exactly how much water your body needs based on your physical dimensions and activity level. Hydration is key to energy, focus, and physical recovery.
+      </p>
+      <ul className="list-disc pl-5 space-y-2 text-sm">
+        <li><strong>Base Needs:</strong> Your body requires water for basic cellular functions even when sedentary.</li>
+        <li><strong>Exercise Multiplier:</strong> Physical activity causes fluid loss through sweat, which must be replaced to prevent fatigue.</li>
+      </ul>
+    </div>
+  );
+
+  const formula = "Intake = (Weight × 0.033) + (Activity / 30 × 0.35)";
+
+  const examples = [
     {
-      q: "Does coffee or tea count toward water intake?",
-      a: "Yes, though pure water is best. Beverages like coffee and tea do contribute to your daily hydration, though their caffeine content has a mild diuretic effect."
+      title: "Sedentary Adult",
+      description: "A 70kg adult with minimal exercise needs approximately 2.3 liters of water per day."
     },
     {
-      q: "Why does exercise increase water needs?",
-      a: "When you exercise, your body loses fluids through sweat to regulate temperature. Replacing these fluids is critical to prevent dehydration, which can lead to fatigue and reduced performance."
+      title: "Active Athlete",
+      description: "That same 70kg adult doing 60 minutes of intense cardio needs to increase their intake to 3.0 liters."
+    }
+  ];
+
+  const faqs = [
+    {
+      q: "Does food count toward my water intake?",
+      a: "Yes. Approximately 20% of your daily water intake comes from food, especially fruits and vegetables like watermelon and cucumber."
+    },
+    {
+      q: "What are signs of dehydration?",
+      a: "Common indicators include dark-colored urine, dry mouth, headaches, and general fatigue."
     }
   ];
 
   return (
     <CalculatorLayout
-      title="Water Intake Calculator"
-      description="Calculate your recommended daily water consumption based on your weight and physical activity levels."
+      title="Water Intake"
+      seoTitle="Water Intake Calculator - Recommended Daily Hydration Tool"
+      description="Calculate your recommended daily water consumption based on your weight and physical activity levels. Stay healthy and energized."
       path="/health/water-intake"
       icon={Droplets}
-      inputs={InputPanel}
-      results={ResultPanel}
+      inputs={inputs}
+      results={results}
+      instructions={instructions}
+      formula={formula}
+      examples={examples}
       faqs={faqs}
-      instructions={<p>Enter your current weight and the average amount of time you spend exercising each day. The calculator will provide a target fluid intake to keep you properly hydrated.</p>}
     />
   );
 }

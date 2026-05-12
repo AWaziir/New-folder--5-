@@ -100,21 +100,21 @@ export default function AutoLoanCalculator() {
               <h2 className="text-xl font-bold mb-6">Payment Summary</h2>
               {result ? (
                 <div className="text-center">
-                   <div className="p-6 bg-secondary rounded-xl mb-4">
+                   <div className="p-6 bg-slate-100 rounded-xl mb-4">
                         <p className="text-muted text-sm uppercase font-bold mb-1">Monthly Payment</p>
                         <p className="text-5xl font-bold text-primary">${result.monthlyPayment}</p>
                    </div>
                    
                    <div className="space-y-3">
-                       <div className="flex justify-between p-3 bg-secondary rounded-lg text-sm">
+                       <div className="flex justify-between p-3 bg-slate-100 rounded-lg text-sm">
                            <span className="text-muted">Total Loan Principal</span>
                            <span className="font-bold">${result.totalLoan.toLocaleString()}</span>
                        </div>
-                       <div className="flex justify-between p-3 bg-secondary rounded-lg text-sm border-l-4 border-primary">
+                       <div className="flex justify-between p-3 bg-slate-100 rounded-lg text-sm border-l-4 border-primary">
                            <span className="text-muted">Total Interest Paid</span>
                            <span className="font-bold text-primary">${result.totalInterest.toLocaleString()}</span>
                        </div>
-                       <div className="flex justify-between p-3 bg-secondary rounded-lg text-sm border-l-4 border-success">
+                       <div className="flex justify-between p-3 bg-slate-100 rounded-lg text-sm border-l-4 border-success">
                            <span className="text-muted">Total Cost of Vehicle</span>
                            <span className="font-bold text-success">${result.totalCost.toLocaleString()}</span>
                        </div>

@@ -84,15 +84,15 @@ export default function PrivacyPolicy() {
       <div style={{
         margin: '2.5rem 0 2.5rem',
         padding: '2.5rem',
-        background: 'linear-gradient(135deg, rgba(124,58,237,0.12), rgba(6,182,212,0.06))',
-        border: '1px solid rgba(124,58,237,0.2)',
+        background: 'linear-gradient(135deg, rgba(36,93,162,0.12), rgba(6,182,212,0.06))',
+        border: '1px solid rgba(36,93,162,0.2)',
         borderRadius: '1.5rem',
         position: 'relative',
         overflow: 'hidden',
       }}>
-        <div style={{ position: 'absolute', top: '-60px', right: '-60px', width: '200px', height: '200px', background: 'radial-gradient(circle, rgba(124,58,237,0.15), transparent 70%)', borderRadius: '50%', pointerEvents: 'none' }} />
+        <div style={{ position: 'absolute', top: '-60px', right: '-60px', width: '200px', height: '200px', background: 'radial-gradient(circle, rgba(36,93,162,0.15), transparent 70%)', borderRadius: '50%', pointerEvents: 'none' }} />
         <div style={{ position: 'relative', zIndex: 1 }}>
-          <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', padding: '0.35rem 0.9rem', background: 'rgba(124,58,237,0.12)', border: '1px solid rgba(124,58,237,0.25)', borderRadius: '9999px', fontSize: '0.72rem', fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', color: '#a78bfa', marginBottom: '1.25rem' }}>
+          <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', padding: '0.35rem 0.9rem', background: 'rgba(36,93,162,0.12)', border: '1px solid rgba(36,93,162,0.25)', borderRadius: '9999px', fontSize: '0.72rem', fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', color: '#3b74bb', marginBottom: '1.25rem' }}>
             🔒 Your Privacy Matters
           </div>
           <h1 style={{ fontSize: '2rem', fontWeight: 800, letterSpacing: '-0.025em', marginBottom: '0.75rem' }}>Privacy Policy</h1>

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import AdPlaceholder from '../../components/AdPlaceholder';
-import SEO from '../../components/SEO';
+import { DollarSign } from 'lucide-react';
+import CalculatorLayout from '../../components/CalculatorLayout';
 
 export default function TipCalculator() {
   const [billAmount, setBillAmount] = useState(50);
@@ -29,128 +29,115 @@ export default function TipCalculator() {
     });
   };
 
-  return (
-    <div className="container">
-      <SEO 
-        title="Tip Calculator – Free & Accurate Split Bill Tool" 
-        description="Quickly calculate tips and split bills with friends. Fast, free and easy to use tip calculator for any restaurant or service." 
-        path="/other/tip-calculator"
-      />
-      
-      <AdPlaceholder text="Top Banner Ad" />
+  const inputs = (
+    <div className="space-y-6">
+      <div className="input-group">
+        <label className="input-label">Bill Amount ($)</label>
+        <input type="number" className="input-field text-xl" value={billAmount} onChange={e => setBillAmount(Number(e.target.value))} />
+      </div>
 
-      <div className="max-width-4xl mx-auto my-8 px-4">
-        <h1 className="text-3xl md:text-4xl font-bold mb-4 text-center">Fast & Simple Tip Calculator – Split Your Bill Easily</h1>
-        <p className="text-muted mb-10 text-center max-width-2xl mx-auto">
-            Quickly calculate the tip and total bill amount. Whether you're dining alone or with a group, our tool makes splitting the bill instant and stress-free.
-        </p>
-
-        <div className="grid gap-8 lg:grid-cols-2">
-          {/* Inputs */}
-          <div className="card shadow-lg border-2 border-primary-light">
-            <h2 className="text-xl font-bold mb-6">Bill Details</h2>
-            
-            <div className="input-group">
-              <label className="input-label">Bill Amount ($)</label>
-              <input type="number" className="input-field text-xl" value={billAmount} onChange={e => setBillAmount(Number(e.target.value))} />
+      <div className="input-group">
+        <label className="input-label">Tip Percentage (%)</label>
+        <div className="flex gap-2">
+            <input type="number" className="input-field" value={tipPercentage} onChange={e => setTipPercentage(Number(e.target.value))} />
+            <div className="flex gap-1 flex-wrap">
+                {[15, 18, 20, 25].map(pct => (
+                    <button 
+                      key={pct}
+                      className={`px-3 py-1 text-xs font-bold rounded transition ${tipPercentage === pct ? 'bg-primary text-white' : 'bg-slate-50 text-primary hover:bg-primary hover:text-slate-900'}`}
+                      onClick={() => setTipPercentage(pct)}
+                    >
+                      {pct}%
+                    </button>
+                ))}
             </div>
+        </div>
+      </div>
 
-            <div className="input-group">
-              <label className="input-label">Tip Percentage (%)</label>
-              <div className="flex gap-2">
-                  <input type="number" className="input-field" value={tipPercentage} onChange={e => setTipPercentage(Number(e.target.value))} />
-                  <div className="flex gap-1 flex-wrap">
-                      {[15, 18, 20, 25].map(pct => (
-                          <button 
-                            key={pct}
-                            className={`px-3 py-1 text-xs font-bold rounded transition ${tipPercentage === pct ? 'bg-primary text-white' : 'bg-secondary text-primary hover:bg-primary-light hover:text-white'}`}
-                            onClick={() => setTipPercentage(pct)}
-                          >
-                            {pct}%
-                          </button>
-                      ))}
-                  </div>
-              </div>
-            </div>
+      <div className="input-group">
+        <label className="input-label">Number of People</label>
+        <input type="number" className="input-field" value={peopleCount} onChange={e => setPeopleCount(Math.max(1, Number(e.target.value)))} />
+      </div>
+    </div>
+  );
 
-            <div className="input-group">
-              <label className="input-label">Number of People</label>
-              <input type="number" className="input-field" value={peopleCount} onChange={e => setPeopleCount(Math.max(1, Number(e.target.value)))} />
-            </div>
+  const results = (
+    <div className="space-y-6">
+      {result ? (
+        <div className="space-y-6 text-center">
+          <div className="p-8 bg-primary/5 rounded-2xl border border-primary/20 shadow-inner group">
+            <p className="text-xs font-bold uppercase tracking-widest opacity-60 mb-2">Total Per Person</p>
+            <p className="text-6xl font-black text-slate-900 group-hover:scale-105 transition">${result.totalPerPerson}</p>
+            <p className="text-xs font-bold opacity-40 mt-1">incl. ${result.tipPerPerson} tip</p>
           </div>
-
-          {/* Results */}
-          <div>
-            <div className="card shadow-2xl highlight-border bg-white sticky top-24">
-              <h2 className="text-xl font-bold mb-8">Split Bill Result</h2>
-              
-              {result ? (
-                <div className="space-y-6">
-                  <div className="p-6 bg-primary text-white rounded-xl text-center shadow-lg">
-                    <p className="text-xs uppercase font-bold tracking-widest opacity-80 mb-1">Total Per Person</p>
-                    <p className="text-5xl font-black">${result.totalPerPerson}</p>
-                    <p className="text-sm opacity-60 mt-1">incl. ${result.tipPerPerson} tip</p>
-                  </div>
-                  
-                  <div className="grid grid-cols-2 gap-4">
-                    <div className="p-4 bg-secondary rounded-lg text-center">
-                        <p className="text-xs uppercase font-bold text-muted mb-1">Total Tip</p>
-                        <p className="text-xl font-bold text-primary">${result.tip}</p>
-                    </div>
-                    <div className="p-4 bg-secondary rounded-lg text-center">
-                        <p className="text-xs uppercase font-bold text-muted mb-1">Total Bill</p>
-                        <p className="text-xl font-bold text-primary">${result.total}</p>
-                    </div>
-                  </div>
-                </div>
-              ) : (
-                <div className="py-12 text-center opacity-40">
-                  Enter bill amount.
-                </div>
-              )}
+          
+          <div className="grid grid-cols-2 gap-4">
+            <div className="p-5 bg-slate-50 rounded-xl border border-slate-200">
+                <p className="text-xs uppercase font-bold opacity-40 mb-1">Total Tip</p>
+                <p className="text-xl font-bold text-slate-900">${result.tip}</p>
+            </div>
+            <div className="p-5 bg-slate-50 rounded-xl border border-slate-200">
+                <p className="text-xs uppercase font-bold opacity-40 mb-1">Final Bill</p>
+                <p className="text-xl font-bold text-slate-900">${result.total}</p>
             </div>
           </div>
         </div>
-
-        {/* SEO CONTENT SECTION */}
-        <section className="mt-16 space-y-12">
-            <div className="card">
-                <h2 className="text-2xl font-bold mb-4">What is the Tip Calculator?</h2>
-                <p className="text-muted leading-relaxed">
-                    Our free Tip Calculator is a fast and simple tool designed to help you calculate the correct tip and split the bill among any number of people. Whether you're at a restaurant, a cafe, or using a delivery service, our tool makes it easy to ensure you're providing a fair gratuity while staying on top of your budget.
-                </p>
-            </div>
-
-            <div className="card">
-                <h2 className="text-2xl font-bold mb-4">How to Calculate Tip Manually</h2>
-                <p className="text-muted leading-relaxed">
-                    If you're not using our tool, the standard formula for calculating a tip is to take the total bill amount and multiply it by the tip percentage (as a decimal). For example, a 15% tip on a $100 bill is $100 × 0.15 = $15.
-                </p>
-                <div className="grid md:grid-cols-2 gap-6 mt-6">
-                    <div className="p-4 bg-secondary rounded-lg text-center font-mono text-sm text-primary">
-                        Tip = Bill × (Percentage / 100)
-                    </div>
-                    <div className="p-4 bg-secondary rounded-lg text-center font-mono text-sm text-primary">
-                        Total = Bill + Tip
-                    </div>
-                </div>
-            </div>
-
-            <div className="card">
-                <h2 className="text-2xl font-bold mb-6">Frequently Asked Questions</h2>
-                <div className="space-y-6">
-                    <div>
-                        <h3 className="font-bold text-lg mb-1">What is a standard tip?</h3>
-                        <p className="text-muted">In the US, 15–20% is considered a standard tip for good service at restaurants. However, tipping culture varies widely by country and service type.</p>
-                    </div>
-                    <div>
-                        <h3 className="font-bold text-lg mb-1">Does the tip include tax?</h3>
-                        <p className="text-muted">Most people calculate the tip based on the subtotal (the bill before tax), but it's also common to tip on the final total. Our tool works with whatever amount you enter!</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-      </div>
+      ) : (
+        <div className="py-12 text-center opacity-40 italic">Calculating...</div>
+      )}
     </div>
+  );
+
+  const instructions = (
+    <div className="space-y-4">
+      <p>
+        Easily determine how much to tip and how to split the check with friends. Our Tip Calculator is designed for speed and clarity at the end of a meal.
+      </p>
+      <ul className="list-disc pl-5 space-y-2">
+        <li><strong>Bill Amount:</strong> Enter the total amount shown on your receipt.</li>
+        <li><strong>Tip %:</strong> 15-20% is standard in many regions, but you can enter any custom value.</li>
+        <li><strong>Split:</strong> Enter the number of people sharing the cost to get the per-person breakdown.</li>
+      </ul>
+    </div>
+  );
+
+  const formula = "Total = Bill + (Bill × Tip%)";
+
+  const examples = [
+    {
+      title: "Solo Dinner",
+      description: "A $60 meal with a 20% tip results in a $12 tip and a $72 total bill."
+    },
+    {
+      title: "Group Splitting",
+      description: "A $200 bill for 4 people with an 18% tip ($36) means each person pays exactly $59."
+    }
+  ];
+
+  const faqs = [
+    {
+      q: "Should I tip on the pre-tax or post-tax amount?",
+      a: "Most etiquette guides suggest tipping on the pre-tax subtotal, but tipping on the final total is common and appreciated by service staff."
+    },
+    {
+      q: "What is a standard tip for great service?",
+      a: "In the United States, 20% is widely considered the benchmark for excellent service at restaurants."
+    }
+  ];
+
+  return (
+    <CalculatorLayout 
+      title="Tip Calculator"
+      seoTitle="Tip Calculator - Split the Bill & Calculate Gratuity"
+      description="Quickly calculate tips and split bills with friends. Fast, free and easy to use tip calculator for any restaurant or service."
+      path="/other/tip-calculator"
+      icon={DollarSign}
+      inputs={inputs}
+      results={results}
+      instructions={instructions}
+      formula={formula}
+      examples={examples}
+      faqs={faqs}
+    />
   );
 }

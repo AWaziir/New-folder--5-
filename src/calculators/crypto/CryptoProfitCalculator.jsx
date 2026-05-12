@@ -432,7 +432,7 @@ export default function CryptoProfitCalculator() {
                 {/* Stats grid */}
                 <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.65rem' }}>
                   <StatCard label="Coins Owned"     value={coins(profitResult.coinsOwned)}    color="#f59e0b" />
-                  <StatCard label="Net Proceeds"     value={`$${usd(profitResult.netValue)}`}  color="#a78bfa" />
+                  <StatCard label="Net Proceeds"     value={`$${usd(profitResult.netValue)}`}  color="#3b74bb" />
                   <StatCard label="Breakeven Price"  value={`$${usd(profitResult.breakeven)}`} color="#67e8f9" />
                   <StatCard label="Total Fees"       value={`$${usd(profitResult.buyFee + profitResult.sellFee)}`} color="#fb923c" />
                 </div>
@@ -532,7 +532,7 @@ export default function CryptoProfitCalculator() {
 
                 <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.65rem' }}>
                   <StatCard label="Total Invested"  value={`$${usd(dcaResult.totalSpent)}`} color="#f59e0b" />
-                  <StatCard label="Total Coins"     value={coins(dcaResult.totalCoins)}      color="#a78bfa" />
+                  <StatCard label="Total Coins"     value={coins(dcaResult.totalCoins)}      color="#3b74bb" />
                   {dcaResult.sellVal != null && <>
                     <StatCard label="Portfolio Value" value={`$${usd(dcaResult.sellVal)}`}   color="#67e8f9" />
                     <StatCard label="ROI"             value={pct(dcaResult.roi)}              color={dcaResult.roi >= 0 ? '#6ee7b7' : '#fca5a5'} />

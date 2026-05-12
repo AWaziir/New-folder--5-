@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer, Legend } from 'recharts';
-import { Printer, Share2, Calculator, Info } from 'lucide-react';
-import AdPlaceholder from '../../components/AdPlaceholder';
+import { Calculator } from 'lucide-react';
+import CalculatorLayout from '../../components/CalculatorLayout';
 
 export default function LoanCalculator() {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -18,9 +18,7 @@ export default function LoanCalculator() {
   
   const [result, setResult] = useState(null);
   const [schedule, setSchedule] = useState([]);
-  const [copied, setCopied] = useState(false);
 
-  // Update URL and calculate when inputs change
   useEffect(() => {
     const newParams = {
       amount: loanAmount.toString(),
@@ -29,7 +27,7 @@ export default function LoanCalculator() {
     };
     setSearchParams(newParams, { replace: true });
     calculateLoan();
-  }, [loanAmount, loanTerm, interestRate, setSearchParams]);
+  }, [loanAmount, loanTerm, interestRate]);
 
   const calculateLoan = () => {
     const principal = loanAmount;
@@ -60,7 +58,6 @@ export default function LoanCalculator() {
       totalPayment: totalPayment.toFixed(2)
     });
 
-    // Generate amortization schedule summarize by year
     let balance = principal;
     const newSchedule = [];
     let yearlyInterest = 0;
@@ -89,222 +86,182 @@ export default function LoanCalculator() {
     setSchedule(newSchedule);
   };
 
-  const handlePrint = () => {
-    window.print();
-  };
-
-  const handleShare = () => {
-    navigator.clipboard.writeText(window.location.href);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
-  };
-
-  const resetForm = () => {
-    setLoanAmount(10000);
-    setLoanTerm(5);
-    setInterestRate(5);
-  };
-
-  const chartData = result ? [
+  const chartData = [
     { name: 'Principal', value: Number(loanAmount), color: '#3b82f6' },
-    { name: 'Total Interest', value: Number(result.totalInterest), color: '#8b5cf6' }
-  ] : [];
+    { name: 'Total Interest', value: result ? Number(result.totalInterest) : 0, color: '#8b5cf6' }
+  ];
 
-  return (
-    <div className="container">
-      <AdPlaceholder text="Top Banner Ad" />
+  const inputs = (
+    <div className="space-y-6">
+      <div className="input-group">
+        <label className="input-label">Loan Amount ($)</label>
+        <input 
+          type="number" 
+          className="input-field" 
+          value={loanAmount} 
+          onChange={e => setLoanAmount(Number(e.target.value))} 
+        />
+      </div>
 
-      <div className="max-width-4xl mx-auto my-8">
-        <div className="flex justify-between items-end mb-6 print-hide">
-            <div>
-                <h1 className="text-3xl font-bold mb-2 flex items-center gap-2 text-primary-light">
-                    <Calculator className="w-8 h-8 text-primary" />
-                    Loan Calculator
-                </h1>
-                <p className="text-muted">Determine your monthly payment and total interest for any type of loan.</p>
-            </div>
-            <div className="flex gap-2">
-                <button onClick={handleShare} className="btn-outline flex items-center gap-2">
-                    <Share2 className="w-4 h-4" /> {copied ? 'Copied!' : 'Share Link'}
-                </button>
-                <button onClick={handlePrint} className="btn-outline flex items-center gap-2">
-                    <Printer className="w-4 h-4" /> Print
-                </button>
-            </div>
-        </div>
+      <div className="input-group">
+        <label className="input-label">Loan Term (years)</label>
+        <input 
+          type="number" 
+          className="input-field" 
+          value={loanTerm} 
+          onChange={e => setLoanTerm(Number(e.target.value))} 
+        />
+      </div>
 
-        {/* Print-only Header */}
-        <div className="hidden print:block mb-8">
-           <h1 className="text-3xl font-bold text-black border-b border-gray-400 pb-2 mb-4">Loan Calculator Report</h1>
-           <p className="text-gray-600">Generated on {new Date().toLocaleDateString()}</p>
-        </div>
-
-        <div className="grid gap-8" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))' }}>
-          
-          <div className="card">
-            <h2 className="text-xl font-bold mb-4">Loan Details</h2>
-            
-            <div className="input-group">
-              <label className="input-label">Loan Amount ($)</label>
-              <input 
-                type="number" 
-                className="input-field" 
-                value={loanAmount} 
-                onChange={e => setLoanAmount(Number(e.target.value))} 
-              />
-            </div>
-
-            <div className="input-group">
-              <label className="input-label">Loan Term (years)</label>
-              <input 
-                type="number" 
-                className="input-field" 
-                value={loanTerm} 
-                onChange={e => setLoanTerm(Number(e.target.value))} 
-              />
-            </div>
-
-            <div className="input-group">
-              <label className="input-label">Interest Rate (%)</label>
-              <input 
-                type="number" 
-                step="0.01"
-                className="input-field" 
-                value={interestRate} 
-                onChange={e => setInterestRate(Number(e.target.value))} 
-              />
-            </div>
-
-            <button onClick={resetForm} className="btn-outline w-full mt-4 print-hide">
-              Reset
-            </button>
-          </div>
-
-          <div>
-            <div className="card sticky top-24">
-              <h2 className="text-xl font-bold mb-6">Results</h2>
-              
-              {result ? (
-                <div>
-                  <div className="mb-6 p-4 bg-secondary rounded-lg text-center">
-                    <p className="text-muted mb-1 font-medium">Monthly Payment</p>
-                    <p className="text-4xl font-bold text-primary-light">${Number(result.monthlyPayment).toLocaleString()}</p>
-                  </div>
-                  
-                  <div className="space-y-3">
-                    <div className="flex justify-between border-b border-border-color pb-2">
-                      <span className="text-muted">Total Interest</span>
-                      <span className="font-bold">${Number(result.totalInterest).toLocaleString()}</span>
-                    </div>
-                    <div className="flex justify-between border-b border-border-color pb-2 mt-2">
-                      <span className="text-muted">Total Payback</span>
-                      <span className="font-bold">${Number(result.totalPayment).toLocaleString()}</span>
-                    </div>
-                  </div>
-
-                  {/* Chart section */}
-                  <div className="mt-8 h-48 print-hide">
-                    <ResponsiveContainer width="100%" height="100%">
-                      <PieChart>
-                        <Pie
-                          data={chartData}
-                          cx="50%"
-                          cy="50%"
-                          innerRadius={50}
-                          outerRadius={75}
-                          paddingAngle={5}
-                          dataKey="value"
-                        >
-                          {chartData.map((entry, index) => (
-                            <Cell key={`cell-${index}`} fill={entry.color} />
-                          ))}
-                        </Pie>
-                        <Tooltip formatter={(value) => `$${value.toLocaleString()}`} />
-                        <Legend />
-                      </PieChart>
-                    </ResponsiveContainer>
-                  </div>
-
-                </div>
-              ) : (
-                <div className="py-8 text-center text-muted">
-                  Enter valid values to calculate.
-                </div>
-              )}
-            </div>
-          </div>
-        </div>
-
-        {/* Amortization Schedule (Print & Web) */}
-        {schedule.length > 0 && (
-          <div className="mt-8 card overflow-x-auto">
-             <h2 className="text-xl font-bold mb-4">Annual Amortization Schedule</h2>
-             <table className="w-full text-left border-collapse">
-                <thead>
-                    <tr className="border-b border-border-color">
-                        <th className="py-2 px-2 text-muted font-medium">Year</th>
-                        <th className="py-2 px-2 text-muted font-medium">Principal Paid</th>
-                        <th className="py-2 px-2 text-muted font-medium">Interest Paid</th>
-                        <th className="py-2 px-2 text-muted font-medium">Remaining Balance</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {schedule.map((row) => (
-                        <tr key={row.year} className="border-b border-border-color/50">
-                            <td className="py-3 px-2 font-medium">{row.year}</td>
-                            <td className="py-3 px-2">${Number(row.principal).toLocaleString()}</td>
-                            <td className="py-3 px-2">${Number(row.interest).toLocaleString()}</td>
-                            <td className="py-3 px-2">${Number(row.balance).toLocaleString()}</td>
-                        </tr>
-                    ))}
-                </tbody>
-             </table>
-          </div>
-        )}
-
-        {/* SEO & Educational Content */}
-        <div className="mt-12 card print-hide bg-secondary/30 mb-8 border-t-4 border-t-primary border-l-0 border-r-0 border-b-0 rounded-none">
-          <h2 className="text-2xl font-bold mb-6 flex items-center gap-2">
-              <Info className="w-6 h-6 text-primary" />
-              How the Loan Calculator Works
-          </h2>
-          
-          <div className="space-y-6 text-muted leading-relaxed">
-            <section>
-                <h3 className="text-xl font-semibold text-white mb-2">What is a Loan Calculator?</h3>
-                <p>
-                    A loan calculator is a powerful tool designed to help you determine the monthly payments and the total financial cost associated with borrowing money. Whether you are looking at a personal loan, an auto loan, or a mortgage, understanding your payment schedule is the first step in responsible financial planning. By adjusting the loan amount, term, and interest rate, you can visualize how different variables affect your monthly constraints and long-term financial health.
-                </p>
-            </section>
-
-            <section>
-                <h3 className="text-xl font-semibold text-white mb-2">The Loan Formula</h3>
-                <p className="mb-4">The standard mathematical formula used to calculate the fixed monthly payment for a fully amortizing loan is:</p>
-                
-                <div className="bg-main p-6 rounded-xl border border-border-color font-mono text-center my-4 overflow-x-auto text-primary-light">
-                    M = P [ i(1 + i)^n ] / [ (1 + i)^n - 1 ]
-                </div>
-                
-                <ul className="list-none space-y-2 mt-4 ml-2">
-                    <li className="flex gap-2"><span className="text-primary font-bold w-6">M</span> <span className="flex-1">= Total monthly payment</span></li>
-                    <li className="flex gap-2"><span className="text-primary font-bold w-6">P</span> <span className="flex-1">= The principal loan amount (the initial amount you borrow)</span></li>
-                    <li className="flex gap-2"><span className="text-primary font-bold w-6">i</span> <span className="flex-1">= Monthly interest rate (your yearly interest rate divided by 12)</span></li>
-                    <li className="flex gap-2"><span className="text-primary font-bold w-6">n</span> <span className="flex-1">= Number of months (your loan term in years multiplied by 12)</span></li>
-                </ul>
-            </section>
-
-            <section>
-                <h3 className="text-xl font-semibold text-white mb-2">Why Does Amortization Matter?</h3>
-                <p className="mb-3">
-                    Amortization refers to the process of paying off debt with a fixed repayment schedule in regular installments over time. In an amortized loan, your initial payments primarily go toward covering the interest fee. As the term progresses, a larger portion of each payment goes toward paying down the principal balance.
-                </p>
-                <p>
-                    This is why longer-term loans result in significantly higher total interest paid, even if the monthly payment is lower. Using our amortization schedule above, you can see exactly how much of your money is going to the lender versus reducing your debt each year.
-                </p>
-            </section>
-          </div>
-        </div>
+      <div className="input-group">
+        <label className="input-label">Interest Rate (%)</label>
+        <input 
+          type="number" 
+          step="0.01"
+          className="input-field" 
+          value={interestRate} 
+          onChange={e => setInterestRate(Number(e.target.value))} 
+        />
       </div>
     </div>
+  );
+
+  const results = (
+    <div className="space-y-6">
+      {result ? (
+        <>
+          <div className="p-6 bg-primary/5 rounded-xl text-center border border-primary/20">
+            <p className="text-xs font-bold uppercase opacity-80 mb-1">Monthly Payment</p>
+            <p className="text-4xl font-black text-slate-900">${Number(result.monthlyPayment).toLocaleString()}</p>
+          </div>
+          
+          <div className="space-y-3">
+              <div className="flex justify-between p-3 bg-slate-50 rounded-lg">
+                <span className="text-muted">Total Interest</span>
+                <span className="font-bold text-slate-900">${Number(result.totalInterest).toLocaleString()}</span>
+              </div>
+              <div className="flex justify-between p-3 bg-slate-50 rounded-lg">
+                <span className="text-muted">Total Payback</span>
+                <span className="font-bold text-slate-900">${Number(result.totalPayment).toLocaleString()}</span>
+              </div>
+          </div>
+
+          <div className="h-48">
+            <ResponsiveContainer width="100%" height="100%">
+              <PieChart>
+                <Pie
+                  data={chartData}
+                  cx="50%"
+                  cy="50%"
+                  innerRadius={50}
+                  outerRadius={70}
+                  paddingAngle={5}
+                  dataKey="value"
+                >
+                  {chartData.map((entry, index) => (
+                    <Cell key={`cell-${index}`} fill={entry.color} />
+                  ))}
+                </Pie>
+                <Tooltip formatter={(value) => `$${value.toLocaleString()}`} />
+                <Legend iconType="circle" />
+              </PieChart>
+            </ResponsiveContainer>
+          </div>
+        </>
+      ) : (
+        <div className="py-12 text-center opacity-40">Please enter loan details.</div>
+      )}
+    </div>
+  );
+
+  const whyUse = [
+    { title: "Financial Clarity", text: "Get a clear picture of your future monthly obligations before you commit to any debt." },
+    { title: "Interest Optimization", text: "See exactly how much you'll pay in interest and explore ways to minimize it." },
+    { title: "Strategic Planning", text: "Compare different terms and rates to find the perfect balance for your budget." },
+    { title: "Amortization Insights", text: "Understand how your principal decreases over time through our detailed schedule." }
+  ];
+
+  const keyFeatures = [
+    { title: "Real-time Calculations", text: "Results update instantly as you adjust any input parameter." },
+    { title: "Visual Analytics", text: "Interactive charts help you visualize the ratio of principal vs. interest." },
+    { title: "Full Amortization", text: "Access a complete breakdown of every payment over the entire loan term." }
+  ];
+
+  const proTips = [
+    "Always check for prepayment penalties before making extra payments.",
+    "A shorter loan term usually means a lower interest rate but higher monthly payments.",
+    "Consider the APR (Annual Percentage Rate) for a truer cost of borrowing including fees.",
+    "Use our 'Extra Payments' feature (coming soon) to see how much you can save."
+  ];
+
+  const relatedTools = [
+    { name: "Mortgage Calculator", path: "/finance/mortgage-calculator" },
+    { name: "Auto Loan Calculator", path: "/finance/auto-loan-calculator" },
+    { name: "Interest Calculator", path: "/finance/interest-calculator" },
+    { name: "Debt Payoff Calculator", path: "/finance/debt-payoff-calculator" }
+  ];
+
+  return (
+    <>
+      <CalculatorLayout 
+        title="Loan Calculator"
+        seoTitle="Advanced Loan EMI Calculator - Monthly Payment & Interest Analysis"
+        description="Plan your finances with precision. Estimate monthly repayments, total interest costs, and view a comprehensive amortization schedule for any loan type."
+        path="/finance/loan-calculator"
+        icon={Calculator}
+        inputs={inputs}
+        results={results}
+        instructions={instructions}
+        formula={formula}
+        examples={examples}
+        faqs={faqs}
+        whyUse={whyUse}
+        keyFeatures={keyFeatures}
+        proTips={proTips}
+        relatedTools={relatedTools}
+      />
+      
+      {schedule.length > 0 && (
+          <div className="container max-width-6xl mx-auto -mt-10 mb-20 px-4 animate-fade-in-up" style={{ animationDelay: '0.4s' }}>
+            <div className="card card-premium overflow-x-auto shadow-premium highlight-border">
+                <div className="flex items-center justify-between mb-8">
+                    <div>
+                        <h2 className="text-2xl font-black text-slate-900">Annual Amortization Schedule</h2>
+                        <p className="text-muted text-sm mt-1">Detailed breakdown of your loan repayment journey year-by-year.</p>
+                    </div>
+                    <div className="hidden md:block">
+                        <span className="tag-badge">Precision Data</span>
+                    </div>
+                </div>
+                <table className="w-full text-left border-collapse">
+                    <thead className="bg-slate-50 text-primary-light uppercase font-black text-xs tracking-widest">
+                        <tr>
+                            <th className="py-4 px-6 rounded-l-xl">Year</th>
+                            <th className="py-4 px-6">Principal Paid</th>
+                            <th className="py-4 px-6">Interest Paid</th>
+                            <th className="py-4 px-6 rounded-r-xl">Remaining Balance</th>
+                        </tr>
+                    </thead>
+                    <tbody className="text-sm">
+                        {schedule.map((row) => (
+                            <tr key={row.year} className="border-b border-slate-100 hover:bg-white/3 transition-colors group">
+                                <td className="py-5 px-6 font-bold text-slate-900 group-hover:text-primary-light">{row.year}</td>
+                                <td className="py-5 px-6 text-secondary">${Number(row.principal).toLocaleString()}</td>
+                                <td className="py-5 px-6 text-red-600/80">${Number(row.interest).toLocaleString()}</td>
+                                <td className="py-5 px-6 font-bold text-success">${Number(row.balance).toLocaleString()}</td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+                <div className="mt-8 p-4 bg-primary/5 rounded-xl border border-primary/10 text-center">
+                    <p className="text-xs text-muted">
+                        <Info className="w-3 h-3 inline mr-1" /> 
+                        This schedule is an estimate. Actual values may vary based on your lender's specific calculation method.
+                    </p>
+                </div>
+            </div>
+          </div>
+      )}
+    </>
   );
 }

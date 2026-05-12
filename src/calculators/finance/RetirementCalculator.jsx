@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import AdPlaceholder from '../../components/AdPlaceholder';
-import SEO from '../../components/SEO';
+import { Palmtree } from 'lucide-react';
+import CalculatorLayout from '../../components/CalculatorLayout';
 
 export default function RetirementCalculator() {
   const [currentAge, setCurrentAge] = useState(30);
@@ -44,128 +44,116 @@ export default function RetirementCalculator() {
     });
   };
 
-  return (
-    <div className="container">
-      <SEO 
-        title="Retirement Calculator – Free & Accurate Financial Planning Tool" 
-        description="Am I saving enough for retirement? Calculate your future retirement fund and estimated monthly income with our free, professional-grade tool." 
-        path="/finance/retirement-calculator"
-      />
-      
-      <AdPlaceholder text="Top Banner Ad" />
-
-      <div className="max-width-4xl mx-auto my-8 px-4">
-        <h1 className="text-3xl md:text-4xl font-bold mb-4 text-center">Retirement Calculator – Plan Your Future Independence</h1>
-        <p className="text-muted mb-10 text-center max-width-2xl mx-auto">
-            Find out if your savings are on track. Estimate your total retirement fund adjusted for inflation and see how much you can spend monthly.
-        </p>
-
-        <div className="grid gap-8 lg:grid-cols-2">
-          {/* Inputs */}
-          <div className="card shadow-lg border-2 border-primary-light">
-            <h2 className="text-xl font-bold mb-6">Retirement Details</h2>
-            
-            <div className="flex gap-4">
-                <div className="input-group flex-1">
-                    <label className="input-label">Current Age</label>
-                    <input type="number" className="input-field" value={currentAge} onChange={e => setCurrentAge(Number(e.target.value))} />
-                </div>
-                <div className="input-group flex-1">
-                    <label className="input-label">Retire Age</label>
-                    <input type="number" className="input-field" value={retirementAge} onChange={e => setRetirementAge(Number(e.target.value))} />
-                </div>
-            </div>
-
-            <div className="input-group">
-              <label className="input-label">Current Savings ($)</label>
-              <input type="number" className="input-field text-xl" value={currentSavings} onChange={e => setCurrentSavings(Number(e.target.value))} />
-            </div>
-
-            <div className="input-group">
-              <label className="input-label">Monthly Contribution ($)</label>
-              <input type="number" className="input-field text-xl" value={monthlyContribution} onChange={e => setMonthlyContribution(Number(e.target.value))} />
-            </div>
-
-            <div className="flex gap-4">
-                <div className="input-group flex-1">
-                    <label className="input-label">Return (%)</label>
-                    <input type="number" step="0.1" className="input-field" value={investmentReturn} onChange={e => setInvestmentReturn(Number(e.target.value))} />
-                </div>
-                <div className="input-group flex-1">
-                    <label className="input-label">Inflation (%)</label>
-                    <input type="number" step="0.1" className="input-field" value={inflationRate} onChange={e => setInflationRate(Number(e.target.value))} />
-                </div>
-            </div>
+  const inputs = (
+    <div className="space-y-6">
+      <div className="grid grid-cols-2 gap-4">
+          <div className="input-group">
+              <label className="input-label">Current Age</label>
+              <input type="number" className="input-field font-black" value={currentAge} onChange={e => setCurrentAge(Number(e.target.value))} />
           </div>
-
-          {/* Results */}
-          <div>
-            <div className="card shadow-2xl highlight-border bg-primary text-white sticky top-24">
-              <h2 className="text-xl font-bold mb-8">Retirement Fund Goal</h2>
-              
-              {result ? (
-                <div className="space-y-8">
-                  <div className="p-6 bg-white bg-opacity-10 rounded-xl text-center">
-                    <p className="text-xs font-bold uppercase tracking-widest opacity-80 mb-1">Total Fund Value at Age {retirementAge}</p>
-                    <p className="text-5xl font-black text-white">${result.totalFund.toLocaleString()}</p>
-                    <p className="text-sm opacity-60 mt-1">(In Today's Dollars)</p>
-                  </div>
-                  
-                  <div className="space-y-4">
-                    <div className="p-4 bg-white bg-opacity-10 rounded-lg text-center border-l-4 border-success">
-                        <p className="text-xs uppercase font-bold opacity-70 mb-1">Estimated Monthly Income</p>
-                        <p className="text-2xl font-bold text-success">${result.monthlyIncome.toLocaleString()}</p>
-                        <p className="text-[10px] uppercase font-bold opacity-50 mt-1">Based on 4% Rule</p>
-                    </div>
-                  </div>
-                </div>
-              ) : (
-                <div className="py-12 text-center opacity-40 italic">
-                  Select a retirement age greater than your current age.
-                </div>
-              )}
-            </div>
+          <div className="input-group">
+              <label className="input-label">Retire Age</label>
+              <input type="number" className="input-field font-black" value={retirementAge} onChange={e => setRetirementAge(Number(e.target.value))} />
           </div>
-        </div>
+      </div>
 
-        {/* SEO CONTENT SECTION */}
-        <section className="mt-16 space-y-12">
-            <div className="card">
-                <h2 className="text-2xl font-bold mb-4">What is a Retirement Calculator?</h2>
-                <p className="text-muted leading-relaxed">
-                    A retirement calculator is a critical planning tool for anyone looking to achieve financial independence. It helps you project how much money you will have when you stop working, based on your current savings, monthly contributions, and expected investment returns. Our tool is uniquely powerful because it automatically adjusts for <strong>inflation</strong>, ensuring your results are presented in "today's dollars" for accurate planning.
-                </p>
-            </div>
+      <div className="input-group">
+        <label className="input-label">Current Savings ($)</label>
+        <input type="number" className="input-field text-xl font-black" value={currentSavings} onChange={e => setCurrentSavings(Number(e.target.value))} />
+      </div>
 
-            <div className="card">
-                <h2 className="text-2xl font-bold mb-4">The Importance of Inflation Adjustment</h2>
-                <p className="text-muted leading-relaxed">
-                    Most retirement tools fail to account for the decaying purchasing power of money. A million dollars forty years from now will buy far less than it does today. Our calculator uses a "real return" method, subtracting the expected inflation rate from your investment return. This provides a pragmatic, conservative view of your future wealth.
-                </p>
-            </div>
+      <div className="input-group">
+        <label className="input-label">Monthly Savings ($)</label>
+        <input type="number" className="input-field text-xl font-black" value={monthlyContribution} onChange={e => setMonthlyContribution(Number(e.target.value))} />
+      </div>
 
-            <div className="card">
-                <h2 className="text-2xl font-bold mb-4">What is the 4% Rule?</h2>
-                <p className="text-muted leading-relaxed">
-                    The 4% rule is an industry-standard guideline for withdrawal rates in retirement. It suggests that if you withdraw 4% of your total portfolio value in the first year of retirement (and adjust for inflation thereafter), your money is highly likely to last for at least 30 years. Our calculator uses this rule to estimate your potential monthly income.
-                </p>
-            </div>
-
-            <div className="card">
-                <h2 className="text-2xl font-bold mb-6">Frequently Asked Questions</h2>
-                <div className="space-y-6">
-                    <div>
-                        <h3 className="font-bold text-lg mb-1">How much should I have saved by 30?</h3>
-                        <p className="text-muted">Financial experts often suggest having one time your annual salary saved by age 30. Use our calculator to see how your current savings project forward.</p>
-                    </div>
-                    <div>
-                        <h3 className="font-bold text-lg mb-1">What is a good investment return?</h3>
-                        <p className="text-muted">Historically, the stock market averages 7–10% before inflation. For a conservative retirement plan, many experts suggest using 5–7%.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
+      <div className="grid grid-cols-2 gap-4">
+          <div className="input-group">
+              <label className="input-label">Return (%)</label>
+              <input type="number" step="0.1" className="input-field font-bold" value={investmentReturn} onChange={e => setInvestmentReturn(Number(e.target.value))} />
+          </div>
+          <div className="input-group">
+              <label className="input-label">Inflation (%)</label>
+              <input type="number" step="0.1" className="input-field font-bold" value={inflationRate} onChange={e => setInflationRate(Number(e.target.value))} />
+          </div>
       </div>
     </div>
+  );
+
+  const results = (
+    <div className="space-y-6 text-center">
+      {result ? (
+        <div className="space-y-6">
+          <div className="p-10 bg-primary/5 rounded-2xl border border-primary/20 shadow-inner group transition-all">
+            <p className="text-xs font-bold uppercase tracking-[0.2em] opacity-50 mb-2">Fund at Age {retirementAge}</p>
+            <p className="text-5xl font-black text-slate-900 group-hover:scale-105 transition-transform">
+                ${result.totalFund.toLocaleString()}
+            </p>
+            <p className="text-xs font-bold uppercase tracking-widest opacity-40 mt-2">Today's Purchasing Power</p>
+          </div>
+          
+          <div className="p-5 bg-slate-50 rounded-2xl border border-slate-200">
+              <p className="text-[10px] font-bold uppercase tracking-[0.2em] mb-1 opacity-60 text-green-600">Monthly Retirement Income</p>
+              <p className="text-3xl font-black text-slate-900">${result.monthlyIncome.toLocaleString()}</p>
+              <p className="text-[10px] uppercase font-bold opacity-30 mt-1">Based on the 4% Rule</p>
+          </div>
+        </div>
+      ) : (
+        <div className="py-12 italic opacity-40 text-center">Calculate your retirement...</div>
+      )}
+    </div>
+  );
+
+  const instructions = (
+    <div className="space-y-4">
+      <p>
+        Design your path to financial freedom. This Retirement Calculator helps you determine the ultimate size of your nest egg and the sustainable monthly income it can provide once you stop working.
+      </p>
+      <ul className="list-disc pl-5 space-y-2 text-sm">
+        <li><strong>Real Return:</strong> We automatically adjust your investment returns for inflation to show you what your money will feel like in today's terms.</li>
+        <li><strong>Nesting Period:</strong> The longer you save, the more time compound interest has to work its magic.</li>
+        <li><strong>4% Rule:</strong> A standard financial benchmark suggesting you can safely withdraw 4% of your fund annually without running out of money.</li>
+      </ul>
+    </div>
+  );
+
+  const formula = "FV = P(1+r)ⁿ + PMT × [( (1+r)ⁿ - 1 ) / r]";
+
+  const examples = [
+    {
+      title: "The Financial Independence Path",
+      description: "Investing $2,000 monthly from age 25 to 45 with a 7% return turns into a $1.3 Million fund (in today's dollars)."
+    },
+    {
+      title: "Steady Accumulation",
+      description: "Saving $750/month from age 30 to 65 at 6% return creates a fund of over $650,000, providing ~$2,200/mo extra income."
+    }
+  ];
+
+  const faqs = [
+    {
+      q: "What is a safe withdrawal rate?",
+      a: "The '4% Rule' suggests that if you withdraw 4% of your starting retirement balance each year, your money should last at least 30 years."
+    },
+    {
+      q: "Should I include government pensions?",
+      a: "This tool calculates your private savings. You should add any expected Social Security or employer pensions to the monthly figure provided here."
+    }
+  ];
+
+  return (
+    <CalculatorLayout 
+      title="Retirement"
+      seoTitle="Retirement Calculator - Financial Independence Planner"
+      description="Estimate your future retirement fund and sustainable monthly income. Plan your path to financial independence with our advanced retirement modeling tool."
+      path="/finance/retirement-calculator"
+      icon={Palmtree}
+      inputs={inputs}
+      results={results}
+      instructions={instructions}
+      formula={formula}
+      examples={examples}
+      faqs={faqs}
+    />
   );
 }

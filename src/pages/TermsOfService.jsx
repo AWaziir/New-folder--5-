@@ -15,14 +15,14 @@ export default function TermsOfService() {
       <div style={{
         margin: '2.5rem 0 2.5rem',
         padding: '3rem',
-        background: 'linear-gradient(135deg, rgba(124,58,237,0.12), rgba(6,182,212,0.06))',
-        border: '1px solid rgba(124,58,237,0.2)',
+        background: 'linear-gradient(135deg, rgba(36,93,162,0.12), rgba(6,182,212,0.06))',
+        border: '1px solid rgba(36,93,162,0.2)',
         borderRadius: '1.5rem',
         position: 'relative',
         overflow: 'hidden',
         textAlign: 'center'
       }}>
-        <div style={{ position: 'absolute', top: '-60px', right: '-60px', width: '200px', height: '200px', background: 'radial-gradient(circle, rgba(124,58,237,0.15), transparent 70%)', borderRadius: '50%', pointerEvents: 'none' }} />
+        <div style={{ position: 'absolute', top: '-60px', right: '-60px', width: '200px', height: '200px', background: 'radial-gradient(circle, rgba(36,93,162,0.15), transparent 70%)', borderRadius: '50%', pointerEvents: 'none' }} />
         <div style={{ position: 'relative', zIndex: 1 }}>
           <h1 style={{ fontSize: '2.5rem', fontWeight: 800, letterSpacing: '-0.025em', marginBottom: '1rem', color: 'var(--primary-light)' }}>
             Terms of Service

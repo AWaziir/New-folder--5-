@@ -47,12 +47,12 @@ const useCases = [
   },
   {
     icon: <ShoppingCart size={20} />,
-    title: 'Business & Sales',
-    desc: 'Optimize your retail or business operations with margin and discount tools.',
+    title: 'Business & Budgeting',
+    desc: 'Optimize your business operations and track personal monthly expenses.',
     links: [
+      { name: 'Expense Tracker', path: '/finance/expense-tracker' },
       { name: 'Profit & Loss', path: '/finance/profit-loss' },
-      { name: 'Discount Calc', path: '/finance/discount-calculator' },
-      { name: 'ROI Calculator', path: '/finance/roi-calculator' }
+      { name: 'Salary Calc', path: '/finance/salary-calculator' }
     ]
   }
 ];
@@ -66,8 +66,8 @@ const features = [
     ),
     label: '100% Private',
     sublabel: 'All calculations run in your browser. Zero data sent to servers.',
-    color: '#7c3aed',
-    glow: 'rgba(124,58,237,0.3)',
+    color: '#245da2',
+    glow: 'rgba(36,93,162,0.3)',
   },
   {
     icon: (
@@ -94,14 +94,14 @@ const features = [
 ];
 
 const categoryGradients = [
-  'linear-gradient(135deg, #7c3aed22, #06b6d412)',
+  'linear-gradient(135deg, #245da222, #06b6d412)',
   'linear-gradient(135deg, #10b98122, #059f6412)',
   'linear-gradient(135deg, #f59e0b22, #ef444412)',
-  'linear-gradient(135deg, #06b6d422, #7c3aed12)',
+  'linear-gradient(135deg, #06b6d422, #245da212)',
 ];
-const categoryAccents = ['#a78bfa', '#6ee7b7', '#fbbf24', '#67e8f9'];
+const categoryAccents = ['#3b74bb', '#6ee7b7', '#fbbf24', '#67e8f9'];
 const categoryGlows = [
-  'rgba(124,58,237,0.2)',
+  'rgba(36,93,162,0.2)',
   'rgba(16,185,129,0.2)',
   'rgba(245,158,11,0.2)',
   'rgba(6,182,212,0.2)',
@@ -136,7 +136,7 @@ export default function Home() {
           <div style={{
             position: 'absolute', top: '-15%', left: '20%',
             width: '600px', height: '600px',
-            background: 'radial-gradient(circle, rgba(124,58,237,0.18) 0%, transparent 70%)',
+            background: 'radial-gradient(circle, rgba(36,93,162,0.18) 0%, transparent 70%)',
             borderRadius: '50%',
             animation: 'orb-drift 20s ease-in-out infinite',
           }} />
@@ -151,8 +151,8 @@ export default function Home() {
           <div style={{
             position: 'absolute', inset: 0,
             backgroundImage: `
-              linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
-              linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px)
+              linear-gradient(rgba(0,0,0,0.025) 1px, transparent 1px),
+              linear-gradient(90deg, rgba(0,0,0,0.025) 1px, transparent 1px)
             `,
             backgroundSize: '60px 60px',
           }} />
@@ -164,16 +164,16 @@ export default function Home() {
             display: 'inline-flex', alignItems: 'center', gap: '0.5rem',
             padding: '0.4rem 1rem',
             marginBottom: '2rem',
-            background: 'rgba(124,58,237,0.12)',
-            border: '1px solid rgba(124,58,237,0.3)',
+            background: 'rgba(36,93,162,0.12)',
+            border: '1px solid rgba(36,93,162,0.3)',
             borderRadius: '9999px',
             fontSize: '0.78rem',
             fontWeight: 700,
             letterSpacing: '0.12em',
             textTransform: 'uppercase',
-            color: '#a78bfa',
+            color: '#3b74bb',
           }}>
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="#a78bfa"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="#3b74bb"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
             100% Free · Mathematically Verified
           </div>
 
@@ -187,7 +187,7 @@ export default function Home() {
           }}>
             The Ultimate<br />
             <span style={{
-              background: 'linear-gradient(135deg, #a78bfa 0%, #38bdf8 50%, #67e8f9 100%)',
+              background: 'linear-gradient(135deg, #3b74bb 0%, #38bdf8 50%, #67e8f9 100%)',
               WebkitBackgroundClip: 'text',
               WebkitTextFillColor: 'transparent',
               backgroundClip: 'text',
@@ -205,16 +205,16 @@ export default function Home() {
             maxWidth: '560px',
             margin: '0 auto 3rem',
           }}>
-            Stop guessing your future. Access 40+ professional-grade calculators for finance, mortgages, fitness, and daily math — all instantly.
+            Stop guessing your future. Access 50+ professional-grade calculators for finance, budget, fitness, and daily math — all 100% private.
           </p>
 
           {/* Search Bar */}
           <div style={{
             maxWidth: '600px',
             margin: '0 auto',
-            background: 'rgba(255,255,255,0.04)',
+            background: 'rgba(0,0,0,0.04)',
             backdropFilter: 'blur(20px)',
-            border: '1px solid rgba(255,255,255,0.1)',
+            border: '1px solid rgba(0,0,0,0.1)',
             borderRadius: '1rem',
             padding: '0.35rem',
             display: 'flex',
@@ -223,7 +223,7 @@ export default function Home() {
           }}>
             <div style={{ position: 'relative', flex: 1, display: 'flex', alignItems: 'center' }}>
               <svg
-                style={{ position: 'absolute', left: '1rem', color: 'var(--text-faint)', flexShrink: 0 }}
+                style={{ position: 'absolute', left: '1rem', color: 'var(--text-secondary)', flexShrink: 0 }}
                 width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
                 <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
               </svg>
@@ -245,8 +245,8 @@ export default function Home() {
               />
             </div>
             <button style={{
-              background: 'linear-gradient(135deg, #7c3aed, #06b6d4)',
-              color: 'white',
+              background: 'linear-gradient(135deg, #245da2, #06b6d4)',
+              color: 'var(--text-main)',
               border: 'none',
               borderRadius: '0.7rem',
               padding: '0 1.5rem',
@@ -255,7 +255,7 @@ export default function Home() {
               letterSpacing: '0.05em',
               cursor: 'pointer',
               whiteSpace: 'nowrap',
-              boxShadow: '0 4px 15px rgba(124,58,237,0.4)',
+              boxShadow: '0 4px 15px rgba(36,93,162,0.4)',
               fontFamily: 'inherit',
             }}>
               Search
@@ -269,15 +269,15 @@ export default function Home() {
               maxWidth: '600px',
               margin: '1.25rem auto 0',
               background: 'var(--bg-card)',
-              border: '1px solid rgba(124,58,237,0.3)',
+              border: '1px solid rgba(36,93,162,0.3)',
               borderRadius: '1rem',
               padding: '1.25rem',
               textAlign: 'left',
-              boxShadow: '0 20px 60px rgba(0,0,0,0.5), 0 0 0 1px rgba(124,58,237,0.1)',
+              boxShadow: '0 20px 60px rgba(0,0,0,0.5), 0 0 0 1px rgba(36,93,162,0.1)',
             }}>
               <p style={{
                 fontSize: '0.7rem', fontWeight: 700, textTransform: 'uppercase',
-                letterSpacing: '0.15em', color: 'var(--text-faint)', marginBottom: '0.75rem',
+                letterSpacing: '0.15em', color: 'var(--text-secondary)', marginBottom: '0.75rem',
               }}>
                 {filteredCalculators.length} result{filteredCalculators.length !== 1 ? 's' : ''}
               </p>
@@ -294,8 +294,8 @@ export default function Home() {
                       textDecoration: 'none',
                     }}
                     onMouseEnter={e => {
-                      e.currentTarget.style.borderColor = 'rgba(124,58,237,0.4)';
-                      e.currentTarget.style.background = 'rgba(124,58,237,0.08)';
+                      e.currentTarget.style.borderColor = 'rgba(36,93,162,0.4)';
+                      e.currentTarget.style.background = 'rgba(36,93,162,0.08)';
                     }}
                     onMouseLeave={e => {
                       e.currentTarget.style.borderColor = 'var(--border-color)';
@@ -303,7 +303,7 @@ export default function Home() {
                     }}>
                       <span style={{ fontWeight: 600, color: 'var(--text-main)', fontSize: '0.95rem' }}>{calc.name}</span>
                       <span style={{
-                        fontSize: '0.72rem', fontWeight: 700, color: '#a78bfa',
+                        fontSize: '0.72rem', fontWeight: 700, color: '#3b74bb',
                         textTransform: 'uppercase', letterSpacing: '0.08em',
                       }}>Open →</span>
                     </Link>
@@ -326,8 +326,8 @@ export default function Home() {
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '1.5rem', marginBottom: '4rem' }}>
             {/* ── POPULAR CALCULATORS ── */}
             <div style={{
-              background: 'linear-gradient(135deg, rgba(124,58,237,0.05), rgba(6,182,212,0.05))',
-              border: '1px solid rgba(124,58,237,0.2)',
+              background: 'linear-gradient(135deg, rgba(36,93,162,0.05), rgba(6,182,212,0.05))',
+              border: '1px solid rgba(36,93,162,0.2)',
               borderRadius: '1.25rem',
               padding: '1.5rem',
             }}>
@@ -349,7 +349,7 @@ export default function Home() {
                     textDecoration: 'none', transition: 'all 0.2s ease'
                   }}
                   onMouseEnter={e => {
-                    e.currentTarget.style.borderColor = 'rgba(124,58,237,0.4)';
+                    e.currentTarget.style.borderColor = 'rgba(36,93,162,0.4)';
                     e.currentTarget.style.transform = 'scale(1.02)';
                   }}
                   onMouseLeave={e => {
@@ -431,10 +431,10 @@ export default function Home() {
                       padding: '1.75rem',
                    }}>
                       <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '1rem', color: 'var(--primary-light)' }}>
-                         <div style={{ background: 'rgba(124,58,237,0.1)', padding: '0.6rem', borderRadius: '0.75rem' }}>
+                         <div style={{ background: 'rgba(36,93,162,0.1)', padding: '0.6rem', borderRadius: '0.75rem' }}>
                            {uc.icon}
                          </div>
-                         <h3 style={{ fontSize: '1.15rem', fontWeight: 700, color: 'white' }}>{uc.title}</h3>
+                         <h3 style={{ fontSize: '1.15rem', fontWeight: 700, color: 'var(--text-main)' }}>{uc.title}</h3>
                       </div>
                       <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem', marginBottom: '1.5rem', lineHeight: '1.6' }}>
                          {uc.desc}
@@ -444,10 +444,10 @@ export default function Home() {
                            <Link key={idx} to={link.path} style={{
                               display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '0.9rem',
                               color: 'var(--text-main)', textDecoration: 'none', padding: '0.5rem 0.75rem',
-                              background: 'rgba(255,255,255,0.03)', borderRadius: '0.5rem', transition: 'background 0.2s'
+                              background: 'rgba(0,0,0,0.03)', borderRadius: '0.5rem', transition: 'background 0.2s'
                            }}
-                           onMouseEnter={(e) => e.currentTarget.style.background = 'rgba(255,255,255,0.08)'}
-                           onMouseLeave={(e) => e.currentTarget.style.background = 'rgba(255,255,255,0.03)'}>
+                           onMouseEnter={(e) => e.currentTarget.style.background = 'rgba(0,0,0,0.08)'}
+                           onMouseLeave={(e) => e.currentTarget.style.background = 'rgba(0,0,0,0.03)'}>
                               <span style={{ color: 'var(--primary)' }}>→</span> {link.name}
                            </Link>
                          ))}
@@ -593,7 +593,7 @@ export default function Home() {
                 <div style={{
                   position: 'absolute', top: '-80px', right: '-80px',
                   width: '300px', height: '300px',
-                  background: 'radial-gradient(circle, rgba(124,58,237,0.1) 0%, transparent 70%)',
+                  background: 'radial-gradient(circle, rgba(36,93,162,0.1) 0%, transparent 70%)',
                   borderRadius: '50%',
                   pointerEvents: 'none',
                 }} />

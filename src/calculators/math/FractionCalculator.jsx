@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import AdPlaceholder from '../../components/AdPlaceholder';
+import { Sigma } from 'lucide-react';
+import CalculatorLayout from '../../components/CalculatorLayout';
 
 const gcd = (a, b) => (b === 0 ? a : gcd(b, a % b));
 
@@ -81,89 +82,129 @@ export default function FractionCalculator() {
     });
   };
 
-  return (
-    <div className="container">
-      <AdPlaceholder text="Top Banner Ad" />
-
-      <div className="max-width-4xl mx-auto my-8">
-        <h1 className="text-3xl md:text-5xl font-black mb-4 text-center">Fraction Calculator</h1>
-        <p className="text-muted mb-10 text-center">Calculate simple or mixed fractions with complete accuracy.</p>
-
-        <div className="glass-panel p-10 rounded-3xl shadow-2xl relative overflow-hidden">
-          <div className="absolute top-0 left-0 w-32 h-32 bg-primary opacity-5 rounded-full blur-2xl animate-pulse-ring"></div>
-          <div className="flex flex-col md:flex-row items-center justify-center gap-6 relative z-10">
-            {/* Input 1 */}
-            <div className="flex items-center gap-3">
-                <input type="number" placeholder="Whole" className="input-field text-center font-bold text-lg h-20 shadow-inner bg-white bg-opacity-80" style={{ width: '80px' }} value={whole1} onChange={e => setWhole1(e.target.value)} />
-                <div className="flex flex-col gap-2">
-                    <input type="number" placeholder="Num" className="input-field text-center font-bold shadow-sm" style={{ width: '80px' }} value={num1} onChange={e => setNum1(e.target.value)} />
-                    <hr className="border-t-[3px] border-text-main rounded" />
-                    <input type="number" placeholder="Den" className="input-field text-center font-bold shadow-sm" style={{ width: '80px' }} value={den1} onChange={e => setDen1(e.target.value)} />
-                </div>
+  const inputs = (
+    <div className="space-y-8 overflow-x-auto pb-4">
+      <div className="flex flex-col md:flex-row items-center justify-center gap-6 min-w-max mx-auto">
+        {/* Input 1 */}
+        <div className="flex items-center gap-3">
+            <input type="number" placeholder="Whole" className="input-field text-center font-black text-xl h-24 shadow-inner" style={{ width: '85px' }} value={whole1} onChange={e => setWhole1(e.target.value)} />
+            <div className="flex flex-col gap-2">
+                <input type="number" placeholder="Num" className="input-field text-center font-black shadow-sm" style={{ width: '85px' }} value={num1} onChange={e => setNum1(e.target.value)} />
+                <hr className="border-t-[3px] border-slate-300 rounded" />
+                <input type="number" placeholder="Den" className="input-field text-center font-black shadow-sm" style={{ width: '85px' }} value={den1} onChange={e => setDen1(e.target.value)} />
             </div>
+        </div>
 
-            {/* Operation */}
-            <select className="px-6 py-4 rounded-xl border-none shadow-md text-3xl font-black text-white bg-primary hover:bg-primary-dark transition-all" value={operation} onChange={e => setOperation(e.target.value)}>
-                <option value="+">+</option>
-                <option value="-">-</option>
-                <option value="*">×</option>
-                <option value="/">÷</option>
-            </select>
+        {/* Operation */}
+        <select className="px-6 py-4 rounded-xl border-none shadow-md text-3xl font-black text-slate-900 bg-primary hover:bg-primary-dark transition-all cursor-pointer" value={operation} onChange={e => setOperation(e.target.value)}>
+            <option value="+">+</option>
+            <option value="-">-</option>
+            <option value="*">×</option>
+            <option value="/">÷</option>
+        </select>
 
-            {/* Input 2 */}
-            <div className="flex items-center gap-3">
-                <input type="number" placeholder="Whole" className="input-field text-center font-bold text-lg h-20 shadow-inner bg-white bg-opacity-80" style={{ width: '80px' }} value={whole2} onChange={e => setWhole2(e.target.value)} />
-                <div className="flex flex-col gap-2">
-                    <input type="number" placeholder="Num" className="input-field text-center font-bold shadow-sm" style={{ width: '80px' }} value={num2} onChange={e => setNum2(e.target.value)} />
-                    <hr className="border-t-[3px] border-text-main rounded" />
-                    <input type="number" placeholder="Den" className="input-field text-center font-bold shadow-sm" style={{ width: '80px' }} value={den2} onChange={e => setDen2(e.target.value)} />
-                </div>
+        {/* Input 2 */}
+        <div className="flex items-center gap-3">
+            <input type="number" placeholder="Whole" className="input-field text-center font-black text-xl h-24 shadow-inner" style={{ width: '85px' }} value={whole2} onChange={e => setWhole2(e.target.value)} />
+            <div className="flex flex-col gap-2">
+                <input type="number" placeholder="Num" className="input-field text-center font-black shadow-sm" style={{ width: '85px' }} value={num2} onChange={e => setNum2(e.target.value)} />
+                <hr className="border-t-[3px] border-slate-300 rounded" />
+                <input type="number" placeholder="Den" className="input-field text-center font-black shadow-sm" style={{ width: '85px' }} value={den2} onChange={e => setDen2(e.target.value)} />
             </div>
-
-            <div className="text-4xl text-primary font-black ml-2">=</div>
-
-            {/* Result */}
-            {result ? (
-                <div className="flex items-center justify-center bg-white p-6 rounded-2xl shadow-inner border-2 border-border-color min-w-[120px]">
-                    <div className="flex flex-col gap-2 items-center">
-                        <span className="text-3xl font-black text-text-main">{result.num}</span>
-                        <hr className="border-t-[3px] border-primary w-16" />
-                        <span className="text-3xl font-black text-text-main">{result.den}</span>
-                    </div>
-                </div>
-            ) : (
-                <div className="text-red-500 font-bold">Error</div>
-            )}
-          </div>
-
-          <AdPlaceholder text="Content Ad" />
-
-          {result && (
-              <div className="bg-white bg-opacity-50 p-6 rounded-2xl text-center mt-10 border border-border-color">
-                <h3 className="font-bold mb-4 uppercase tracking-widest text-xs opacity-70">Other Representations</h3>
-                <div className="grid gap-6" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(150px, 1fr))' }}>
-                  <div className="bg-white p-4 rounded-xl shadow-sm border border-border-color">
-                    <p className="text-xs text-muted font-bold uppercase tracking-widest mb-1">Decimal</p>
-                    <p className="text-3xl font-black text-primary">{result.decimal}</p>
-                  </div>
-                  {Math.abs(result.num) >= result.den && result.mixed.num !== 0 && (
-                      <div className="bg-white p-4 rounded-xl shadow-sm border border-border-color flex flex-col items-center justify-center">
-                        <p className="text-xs text-muted font-bold uppercase tracking-widest mb-1">Mixed Number</p>
-                        <div className="flex items-center gap-2 text-primary font-black">
-                            <span className="text-4xl">{result.mixed.whole}</span>
-                            <div className="flex flex-col items-center text-xl">
-                                <span>{result.mixed.num}</span>
-                                <hr className="border-t-2 border-primary w-full" />
-                                <span>{result.mixed.den}</span>
-                            </div>
-                        </div>
-                      </div>
-                  )}
-                </div>
-              </div>
-          )}
         </div>
       </div>
     </div>
+  );
+
+  const results = (
+    <div className="space-y-6">
+      {result ? (
+        <div className="space-y-6 text-center">
+            <p className="text-xs font-bold uppercase tracking-[0.2em] opacity-50 mb-4">Simplified Result</p>
+            <div className="flex items-center justify-center p-8 bg-primary/5 rounded-2xl border border-primary/20 shadow-inner group transition-all group-hover:scale-105">
+                <div className="flex flex-col gap-2 items-center">
+                    <span className="text-5xl font-black text-slate-900">{result.num}</span>
+                    <hr className="border-t-[4px] border-primary w-20 rounded" />
+                    <span className="text-5xl font-black text-slate-900">{result.den}</span>
+                </div>
+            </div>
+
+            <div className="grid gap-4 mt-6" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(150px, 1fr))' }}>
+              <div className="bg-slate-50 p-5 rounded-2xl border border-slate-200 shadow-sm flex flex-col justify-center text-center">
+                <p className="text-[10px] uppercase font-bold tracking-[0.1em] opacity-50 mb-2">Decimal</p>
+                <p className="text-3xl font-black text-primary-light">{result.decimal}</p>
+              </div>
+
+              {Math.abs(result.num) >= result.den && result.mixed.num !== 0 && (
+                  <div className="bg-slate-50 p-5 rounded-2xl border border-slate-200 shadow-sm flex flex-col items-center justify-center text-center">
+                    <p className="text-[10px] uppercase font-bold tracking-[0.1em] opacity-50 mb-2">Mixed Number</p>
+                    <div className="flex items-center gap-2 text-slate-900 font-black">
+                        <span className="text-3xl">{result.mixed.whole}</span>
+                        <div className="flex flex-col items-center text-lg">
+                            <span>{result.mixed.num}</span>
+                            <hr className="border-t-2 border-slate-1000 w-full rounded" />
+                            <span>{result.mixed.den}</span>
+                        </div>
+                    </div>
+                  </div>
+              )}
+            </div>
+        </div>
+      ) : (
+        <div className="py-12 italic opacity-40 text-center">Enter valid fractions.</div>
+      )}
+    </div>
+  );
+
+  const instructions = (
+    <div className="space-y-4">
+      <p>
+        The Fraction Calculator supports addition, subtraction, multiplication, and division of proper, improper, and mixed fractions.
+      </p>
+      <ul className="list-disc pl-5 space-y-2 text-sm">
+        <li><strong>Mixed Fractions:</strong> Enter a value in the "Whole" field. For simple fractions, leave the "Whole" field empty.</li>
+        <li><strong>Simplification:</strong> All results are automatically reduced to their simplest form using the Greatest Common Divisor (GCD).</li>
+      </ul>
+    </div>
+  );
+
+  const formula = "a/b + c/d = (ad + bc)/bd | a/b × c/d = (ac)/(bd)";
+
+  const examples = [
+    {
+      title: "Adding Mixed Numbers",
+      description: "Entering 1 1/2 + 2 3/4 evaluates to 3/2 + 11/4 = 17/4, which simplifies to the mixed number 4 1/4."
+    },
+    {
+      title: "Multiplying Fractions",
+      description: "Computing 2/3 × 3/4 equals 6/12, which automatically simplifies to 1/2 (or 0.5 as a decimal)."
+    }
+  ];
+
+  const faqs = [
+    {
+      q: "Why do denominators have to be common for addition and subtraction?",
+      a: "You can only add or subtract fractions if they represent parts of the same whole (a common denominator). For multiplication and division, this is not required."
+    },
+    {
+      q: "What happens if a denominator is zero?",
+      a: "A fraction with a zero in the denominator is undefined in mathematics. The calculator will return an error."
+    }
+  ];
+
+  return (
+    <CalculatorLayout 
+      title="Fraction Calculator"
+      seoTitle="Fraction Calculator - Add, Subtract, Multiply & Divide Fractions"
+      description="Calculate simple or mixed fractions easily. This calculator adds, subtracts, multiplies, and divides fractions, automatically simplifying the result."
+      path="/math/fraction-calculator"
+      icon={Sigma}
+      inputs={inputs}
+      results={results}
+      instructions={instructions}
+      formula={formula}
+      examples={examples}
+      faqs={faqs}
+    />
   );
 }

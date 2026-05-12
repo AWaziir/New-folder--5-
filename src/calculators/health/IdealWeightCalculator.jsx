@@ -7,8 +7,6 @@ export default function IdealWeightCalculator() {
   const [gender, setGender] = useState('male');
 
   // Devine Formula (1974)
-  // Men: Ideal Body Weight (kg) = 50 + 2.3 kg per inch over 5 feet
-  // Women: Ideal Body Weight (kg) = 45.5 + 2.3 kg per inch over 5 feet
   const calculateIdealWeight = () => {
     const heightInInches = height / 2.54;
     const inchesOver5Feet = Math.max(0, heightInInches - 60);
@@ -28,21 +26,21 @@ export default function IdealWeightCalculator() {
   const rangeMin = ibw * 0.9;
   const rangeMax = ibw * 1.1;
 
-  const InputPanel = (
+  const inputs = (
     <div className="space-y-6">
-      <div className="flex gap-4">
-        <button 
-          className={`flex-1 py-3 rounded-lg font-bold border-2 transition ${gender === 'male' ? 'bg-primary border-primary text-white shadow-lg' : 'bg-secondary border-transparent text-muted'}`}
-          onClick={() => setGender('male')}
-        >
-          Male
-        </button>
-        <button 
-          className={`flex-1 py-3 rounded-lg font-bold border-2 transition ${gender === 'female' ? 'bg-primary border-primary text-white shadow-lg' : 'bg-secondary border-transparent text-muted'}`}
-          onClick={() => setGender('female')}
-        >
-          Female
-        </button>
+      <div className="flex bg-slate-100 p-1 rounded-lg">
+          <button 
+              className={`flex-1 py-3 rounded-md font-bold transition ${gender === 'male' ? 'bg-primary text-white shadow-md' : 'text-muted'}`}
+              onClick={() => setGender('male')}
+          >
+              Male
+          </button>
+          <button 
+              className={`flex-1 py-3 rounded-md font-bold transition ${gender === 'female' ? 'bg-primary text-white shadow-md' : 'text-muted'}`}
+              onClick={() => setGender('female')}
+          >
+              Female
+          </button>
       </div>
 
       <div className="input-group">
@@ -54,7 +52,7 @@ export default function IdealWeightCalculator() {
             max="250" 
             value={height} 
             onChange={(e) => setHeight(Number(e.target.value))}
-            className="w-full accent-primary h-2 bg-secondary rounded-lg appearance-none cursor-pointer flex-grow"
+            className="flex-grow h-2 bg-slate-100 rounded-lg appearance-none cursor-pointer accent-primary"
           />
           <input 
             type="number" 
@@ -69,45 +67,73 @@ export default function IdealWeightCalculator() {
     </div>
   );
 
-  const ResultPanel = (
-    <div className="flex flex-col h-full justify-center">
-      <div className="mb-6 p-8 bg-primary/10 rounded-xl border-2 border-primary/30 text-center flex flex-col items-center justify-center relative shadow-inner">
-        <p className="text-primary-light mb-2 font-black uppercase tracking-widest text-sm drop-shadow">Ideal Body Weight</p>
-        <p className="text-6xl font-black text-white drop-shadow-md">
-          {ibw.toFixed(1)} <span className="text-2xl font-normal opacity-70">kg</span>
+  const results = (
+    <div className="space-y-6 text-center">
+      <div className="p-10 bg-primary/5 rounded-2xl border border-primary/20 shadow-inner group transition-all">
+        <p className="text-xs font-bold uppercase tracking-[0.2em] opacity-50 mb-2">Ideal Body Weight</p>
+        <p className="text-7xl font-black text-slate-900 group-hover:scale-105 transition-transform">
+          {ibw.toFixed(1)} <span className="text-2xl font-normal opacity-40">kg</span>
         </p>
       </div>
       
-      <div className="p-4 bg-secondary/50 rounded-lg border-l-4 border-success text-center">
-        <p className="text-muted text-sm font-bold uppercase mb-1">Recommended Range</p>
-        <p className="text-xl font-black text-white">
+      <div className="p-5 bg-slate-50 rounded-2xl border border-slate-200 text-center">
+        <p className="text-[10px] font-bold uppercase tracking-[0.2em] mb-1 opacity-60">Healthy Range (±10%)</p>
+        <p className="text-2xl font-black text-slate-900">
           {rangeMin.toFixed(1)}kg - {rangeMax.toFixed(1)}kg
         </p>
       </div>
     </div>
   );
 
-  const faqs = [
+  const instructions = (
+    <div className="space-y-4">
+      <p>
+        What is your "perfect" weight? While health is multifaceted, scientists have developed several formulas to estimate the ideal weight for a person's height and gender.
+      </p>
+      <ul className="list-disc pl-5 space-y-2 text-sm">
+        <li><strong>Devine Formula:</strong> One of the most accurate and widely used medical standards for establishing a baseline for medication dosage and health goals.</li>
+        <li><strong>Body Type:</strong> Remember that these formulas do not account for muscle mass or bone density. A very muscular individual may weigh more than their "ideal" while still being extremely healthy.</li>
+      </ul>
+    </div>
+  );
+
+  const formula = "Devine Formula (50kg/45.5kg + 2.3kg/inch over 5ft)";
+
+  const examples = [
     {
-      q: "What is the Devine Formula?",
-      a: "The Devine formula is the most widely used formula for calculating ideal body weight in clinical settings. It was originally designed to help calculate dosages for specific medications but has become a standard general health metric."
+      title: "Average Male (177cm)",
+      description: "A 5'10\" man has an ideal weight of approximately 73kg according to the Devine formula."
     },
     {
-      q: "Is ideal weight the same for everyone of the same height?",
-      a: "No. While formulas provide a mathematical baseline, individual ideal weights vary based on muscle mass, bone density, and overall frame size. Athletes often weigh more than their 'ideal' weight due to muscle being denser than fat."
+      title: "Average Female (162cm)",
+      description: "A 5'4\" woman has an ideal weight of approximately 54.7kg according to the same standard."
+    }
+  ];
+
+  const faqs = [
+    {
+      q: "Is ideal weight the same for everyone?",
+      a: "No. It is a mathematical model. Your specific ideal weight depends on your body composition (lean muscle vs fat mass)."
+    },
+    {
+      q: "Why is muscle mass important?",
+      a: "Muscle is significantly denser than fat. Athletes often fall into 'overweight' categories on simple height-weight charts while having very low body fat percentages."
     }
   ];
 
   return (
     <CalculatorLayout
       title="Ideal Weight Calculator"
-      description="Find the healthy weight range for your height and gender using scientifically backed formulas."
+      seoTitle="Ideal Weight Calculator - Scientifically Proven Healthy Weight"
+      description="Find the healthy weight range for your height and gender using scientifically backed formulas like the Devine and Robinson equations."
       path="/health/ideal-weight"
       icon={Dumbbell}
-      inputs={InputPanel}
-      results={ResultPanel}
+      inputs={inputs}
+      results={results}
+      instructions={instructions}
+      formula={formula}
+      examples={examples}
       faqs={faqs}
-      formula="Devine Formula: Men = 50kg + 2.3kg/inch over 5ft | Women = 45.5kg + 2.3kg/inch over 5ft"
     />
   );
 }

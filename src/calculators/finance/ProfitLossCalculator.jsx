@@ -41,21 +41,21 @@ export default function ProfitLossCalculator() {
   const ResultPanel = (
     <div className="flex flex-col h-full justify-center">
       <div className={`mb-6 p-8 rounded-xl border-2 text-center flex flex-col items-center justify-center relative shadow-inner ${isProfit ? 'bg-success/10 border-success' : 'bg-red-500/10 border-red-500'}`}>
-        <p className={`mb-2 font-black uppercase tracking-widest text-sm drop-shadow ${isProfit ? 'text-success' : 'text-red-400'}`}>
+        <p className={`mb-2 font-black uppercase tracking-widest text-sm drop-shadow ${isProfit ? 'text-success' : 'text-red-600'}`}>
             {isProfit ? 'Net Profit' : 'Net Loss'}
         </p>
-        <p className="text-6xl font-black text-white drop-shadow-md">
+        <p className="text-6xl font-black text-slate-900 drop-shadow-md">
           ${Math.abs(profit).toFixed(2)}
         </p>
       </div>
       
       <div className="grid grid-cols-2 gap-4">
-          <div className="p-4 bg-secondary shadow-lg rounded-xl flex flex-col items-center border border-border-color">
-              <span className={`text-xl font-black ${isProfit ? 'text-success-light' : 'text-red-400'}`}>{profitMargin.toFixed(2)}%</span>
+          <div className="p-4 bg-slate-100 shadow-lg rounded-xl flex flex-col items-center border border-border-color">
+              <span className={`text-xl font-black ${isProfit ? 'text-success-light' : 'text-red-600'}`}>{profitMargin.toFixed(2)}%</span>
               <span className="text-xs text-muted uppercase font-bold mt-1">Gross Margin</span>
           </div>
-          <div className="p-4 bg-secondary shadow-lg rounded-xl flex flex-col items-center border border-border-color">
-              <span className={`text-xl font-black ${isProfit ? 'text-primary-light' : 'text-red-400'}`}>{markup.toFixed(2)}%</span>
+          <div className="p-4 bg-slate-100 shadow-lg rounded-xl flex flex-col items-center border border-border-color">
+              <span className={`text-xl font-black ${isProfit ? 'text-primary-light' : 'text-red-600'}`}>{markup.toFixed(2)}%</span>
               <span className="text-xs text-muted uppercase font-bold mt-1">Markup</span>
           </div>
       </div>

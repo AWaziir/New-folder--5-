@@ -68,30 +68,30 @@ export default function PasswordGenerator() {
             max="64" 
             value={length} 
             onChange={(e) => setLength(Number(e.target.value))}
-            className="w-full accent-primary h-2 bg-secondary rounded-lg appearance-none cursor-pointer"
+            className="w-full accent-primary h-2 bg-slate-100 rounded-lg appearance-none cursor-pointer"
         />
       </div>
 
       <div className="space-y-3">
-        <label className="flex items-center gap-3 cursor-pointer p-4 bg-secondary rounded-xl group border border-transparent hover:border-primary/30 transition">
+        <label className="flex items-center gap-3 cursor-pointer p-4 bg-slate-100 rounded-xl group border border-transparent hover:border-primary/20 transition">
             <input type="checkbox" checked={useUpper} onChange={e => setUseUpper(e.target.checked)} className="w-5 h-5 accent-primary" />
             <span className="font-bold text-muted group-hover:text-primary transition flex-grow">Include Uppercase Letters</span>
             <span className="text-muted text-sm">(A-Z)</span>
         </label>
         
-        <label className="flex items-center gap-3 cursor-pointer p-4 bg-secondary rounded-xl group border border-transparent hover:border-primary/30 transition">
+        <label className="flex items-center gap-3 cursor-pointer p-4 bg-slate-100 rounded-xl group border border-transparent hover:border-primary/20 transition">
             <input type="checkbox" checked={useLower} onChange={e => setUseLower(e.target.checked)} className="w-5 h-5 accent-primary" />
             <span className="font-bold text-muted group-hover:text-primary transition flex-grow">Include Lowercase Letters</span>
             <span className="text-muted text-sm">(a-z)</span>
         </label>
 
-        <label className="flex items-center gap-3 cursor-pointer p-4 bg-secondary rounded-xl group border border-transparent hover:border-primary/30 transition">
+        <label className="flex items-center gap-3 cursor-pointer p-4 bg-slate-100 rounded-xl group border border-transparent hover:border-primary/20 transition">
             <input type="checkbox" checked={useNumbers} onChange={e => setUseNumbers(e.target.checked)} className="w-5 h-5 accent-primary" />
             <span className="font-bold text-muted group-hover:text-primary transition flex-grow">Include Numbers</span>
             <span className="text-muted text-sm">(0-9)</span>
         </label>
 
-        <label className="flex items-center gap-3 cursor-pointer p-4 bg-secondary rounded-xl group border border-transparent hover:border-primary/30 transition">
+        <label className="flex items-center gap-3 cursor-pointer p-4 bg-slate-100 rounded-xl group border border-transparent hover:border-primary/20 transition">
             <input type="checkbox" checked={useSymbols} onChange={e => setUseSymbols(e.target.checked)} className="w-5 h-5 accent-primary" />
             <span className="font-bold text-muted group-hover:text-primary transition flex-grow">Include Symbols</span>
             <span className="text-muted text-sm">(!@#$)</span>
@@ -106,7 +106,7 @@ export default function PasswordGenerator() {
 
   const ResultPanel = (
     <div className="flex flex-col h-full justify-center">
-        <div className="mb-6 p-6 bg-secondary/50 rounded-xl border border-border-color text-center flex flex-col items-center justify-center relative overflow-hidden group">
+        <div className="mb-6 p-6 bg-slate-100/50 rounded-xl border border-border-color text-center flex flex-col items-center justify-center relative overflow-hidden group">
             <p className="text-muted mb-4 font-medium uppercase tracking-wider text-sm">Your Secure Password</p>
             <div className="w-full break-all px-2 font-mono text-2xl md:text-3xl font-black text-primary-light drop-shadow-md tracking-wider selection:bg-primary/30">
                 {password}
@@ -115,7 +115,7 @@ export default function PasswordGenerator() {
             <button 
                 onClick={copyToClipboard}
                 disabled={password === 'Click generate to create password' || password === 'Please select at least one option'}
-                className="mt-8 px-8 py-3 bg-white/5 hover:bg-primary/20 border border-white/10 rounded-full font-bold transition-all disabled:opacity-30 flex items-center gap-2"
+                className="mt-8 px-8 py-3 bg-slate-50 hover:bg-primary/20 border border-slate-200 rounded-full font-bold transition-all disabled:opacity-30 flex items-center gap-2"
             >
                 {copied ? (
                     <>

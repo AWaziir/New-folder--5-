@@ -5,11 +5,11 @@ import AdPlaceholder from '../components/AdPlaceholder';
 import SEO from '../components/SEO';
 
 const categoryConfig = {
-  finance: { color: '#a78bfa', glow: 'rgba(124,58,237,0.25)', gradient: 'linear-gradient(135deg, rgba(124,58,237,0.15), rgba(6,182,212,0.08))' },
+  finance: { color: '#3b74bb', glow: 'rgba(36,93,162,0.25)', gradient: 'linear-gradient(135deg, rgba(36,93,162,0.15), rgba(6,182,212,0.08))' },
   health:  { color: '#6ee7b7', glow: 'rgba(16,185,129,0.25)', gradient: 'linear-gradient(135deg, rgba(16,185,129,0.15), rgba(6,182,212,0.06))' },
   math:    { color: '#fbbf24', glow: 'rgba(245,158,11,0.25)', gradient: 'linear-gradient(135deg, rgba(245,158,11,0.15), rgba(239,68,68,0.06))' },
-  conversion: { color: '#67e8f9', glow: 'rgba(6,182,212,0.25)', gradient: 'linear-gradient(135deg, rgba(6,182,212,0.15), rgba(124,58,237,0.06))' },
-  other:   { color: '#a78bfa', glow: 'rgba(124,58,237,0.25)', gradient: 'linear-gradient(135deg, rgba(124,58,237,0.1), transparent)' },
+  conversion: { color: '#67e8f9', glow: 'rgba(6,182,212,0.25)', gradient: 'linear-gradient(135deg, rgba(6,182,212,0.15), rgba(36,93,162,0.06))' },
+  other:   { color: '#3b74bb', glow: 'rgba(36,93,162,0.25)', gradient: 'linear-gradient(135deg, rgba(36,93,162,0.1), transparent)' },
 };
 
 export default function CategoryPage() {

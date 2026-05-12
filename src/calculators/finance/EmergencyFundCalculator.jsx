@@ -61,7 +61,7 @@ export default function EmergencyFundCalculator() {
 
   const ResultPanel = (
     <div>
-        <div className="mb-6 p-6 bg-secondary/50 rounded-xl border border-border-color text-center flex flex-col items-center justify-center">
+        <div className="mb-6 p-6 bg-slate-100/50 rounded-xl border border-border-color text-center flex flex-col items-center justify-center">
             <p className="text-muted mb-2 font-medium uppercase tracking-wider text-sm">Target Emergency Fund</p>
             <p className="text-5xl font-black text-primary-light mb-2 drop-shadow-md">
                 ${targetAmount.toLocaleString()}
@@ -72,7 +72,7 @@ export default function EmergencyFundCalculator() {
             <div>
                 <div className="flex justify-between text-sm mb-1">
                     <span className="text-muted">Funding Progress</span>
-                    <span className="font-bold text-white">{progressPercent.toFixed(1)}%</span>
+                    <span className="font-bold text-slate-900">{progressPercent.toFixed(1)}%</span>
                 </div>
                 <div className="w-full bg-main rounded-full h-3 border border-border-color overflow-hidden">
                     <div 
@@ -86,12 +86,12 @@ export default function EmergencyFundCalculator() {
                 {deficit <= 0 ? (
                     <div className="flex flex-col text-center">
                         <span className="font-bold text-lg mb-1">🎉 Fully Funded!</span>
-                        <span className="text-sm text-white/80">You have officially reached your safety net target. You have a surplus of ${Math.abs(deficit).toLocaleString()}.</span>
+                        <span className="text-sm text-slate-900/80">You have officially reached your safety net target. You have a surplus of ${Math.abs(deficit).toLocaleString()}.</span>
                     </div>
                 ) : (
                     <div className="flex flex-col text-center">
                         <span className="font-bold text-lg mb-1">Shortfall: ${deficit.toLocaleString()}</span>
-                        <span className="text-sm text-white/80">You need to save this amount to reach your {monthsTarget}-month safety net.</span>
+                        <span className="text-sm text-slate-900/80">You need to save this amount to reach your {monthsTarget}-month safety net.</span>
                     </div>
                 )}
             </div>

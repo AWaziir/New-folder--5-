@@ -65,7 +65,7 @@ export default function CurrencyConverter() {
           />
           <span className="absolute right-4 top-1/2 -translate-y-1/2 font-bold text-muted">{fromCurrency}</span>
         </div>
-        <div className="flex items-center gap-3 p-3 bg-secondary rounded-lg border border-border-color">
+        <div className="flex items-center gap-3 p-3 bg-slate-100 rounded-lg border border-border-color">
           <img src={getFlagUrl(fromCurrency)} alt={fromCurrency} className="w-8 h-6 rounded shadow-sm" />
           <select 
             className="flex-grow bg-transparent font-bold text-lg outline-none cursor-pointer"
@@ -89,7 +89,7 @@ export default function CurrencyConverter() {
 
       <div>
         <label className="input-label">Target Currency</label>
-        <div className="flex items-center gap-3 p-3 bg-secondary rounded-lg border border-border-color">
+        <div className="flex items-center gap-3 p-3 bg-slate-100 rounded-lg border border-border-color">
           <img src={getFlagUrl(toCurrency)} alt={toCurrency} className="w-8 h-6 rounded shadow-sm" />
           <select 
             className="flex-grow bg-transparent font-bold text-lg outline-none cursor-pointer"
@@ -107,7 +107,7 @@ export default function CurrencyConverter() {
     <div className="space-y-6">
       <div className="p-6 bg-success/10 rounded-2xl border border-success/30 text-center">
         <p className="text-xs font-bold uppercase tracking-widest mb-2 text-success opacity-70">Converted Amount</p>
-        <div className="text-4xl font-black text-white flex items-center justify-center gap-2">
+        <div className="text-4xl font-black text-slate-900 flex items-center justify-center gap-2">
            {loading ? <Loader2 className="animate-spin text-success" /> : result.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
            <span className="text-xl text-success">{toCurrency}</span>
         </div>

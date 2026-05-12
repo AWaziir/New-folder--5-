@@ -18,13 +18,13 @@ export default function FuelCostCalculator() {
 
   const { fuelNeeded, totalCost } = calculateCost();
 
-  const InputPanel = (
+  const inputs = (
     <div className="space-y-6">
       <div className="input-group">
         <label className="input-label">Trip Distance (km)</label>
         <input 
             type="number" 
-            className="input-field text-xl" 
+            className="input-field text-xl font-black" 
             value={distance} 
             onChange={(e) => setDistance(Number(e.target.value))} 
         />
@@ -34,7 +34,7 @@ export default function FuelCostCalculator() {
         <label className="input-label">Fuel Efficiency (L/100km)</label>
         <input 
             type="number" 
-            className="input-field text-xl" 
+            className="input-field text-xl font-black" 
             value={efficiency} 
             onChange={(e) => setEfficiency(Number(e.target.value))} 
         />
@@ -45,7 +45,7 @@ export default function FuelCostCalculator() {
         <input 
             type="number" 
             step="0.01"
-            className="input-field text-xl" 
+            className="input-field text-xl font-black" 
             value={price} 
             onChange={(e) => setPrice(Number(e.target.value))} 
         />
@@ -53,45 +53,74 @@ export default function FuelCostCalculator() {
     </div>
   );
 
-  const ResultPanel = (
-    <div className="flex flex-col h-full justify-center">
-      <div className="mb-6 p-8 bg-primary/10 rounded-xl border-2 border-primary/30 text-center flex flex-col items-center justify-center relative shadow-inner">
-        <p className="text-primary-light mb-2 font-black uppercase tracking-widest text-sm drop-shadow">Estimated Trip Cost</p>
-        <p className="text-6xl font-black text-white drop-shadow-md">
+  const results = (
+    <div className="space-y-6 text-center">
+      <div className="p-10 bg-primary/5 rounded-2xl border border-primary/20 shadow-inner group transition-all">
+        <p className="text-xs font-bold uppercase tracking-[0.2em] opacity-50 mb-2">Estimated Trip Cost</p>
+        <p className="text-7xl font-black text-slate-900 group-hover:scale-105 transition-transform">
           ${totalCost.toFixed(2)}
         </p>
       </div>
       
-      <div className="p-4 bg-secondary/50 rounded-lg border-l-4 border-success text-center">
-        <p className="text-muted text-sm font-bold uppercase mb-1">Fuel Required</p>
-        <p className="text-xl font-black text-white">
-          {fuelNeeded.toFixed(2)} <span className="text-sm font-normal opacity-70">Liters</span>
+      <div className="p-5 bg-slate-50 rounded-2xl border border-slate-200 text-center">
+        <p className="text-[10px] font-bold uppercase tracking-[0.2em] mb-1 opacity-60">Fuel Required</p>
+        <p className="text-3xl font-black text-slate-900">
+          {fuelNeeded.toFixed(2)} <span className="text-sm font-normal opacity-40">Liters</span>
         </p>
       </div>
     </div>
   );
 
-  const faqs = [
+  const instructions = (
+    <div className="space-y-4">
+      <p>
+        Planning a road trip? Our Fuel Cost Calculator helps you estimate exactly how much you'll spend on petrol or diesel based on your vehicle's fuel efficiency.
+      </p>
+      <ul className="list-disc pl-5 space-y-2 text-sm">
+        <li><strong>Distance:</strong> Total kilometers you plan to drive.</li>
+        <li><strong>Efficiency:</strong> Your car's fuel economy in Liters per 100km.</li>
+        <li><strong>Price:</strong> Current cost of fuel at the pump.</li>
+      </ul>
+    </div>
+  );
+
+  const formula = "Cost = (Distance / 100) × Efficiency × Price";
+
+  const examples = [
     {
-      q: "How is trip cost calculated?",
-      a: "The formula is (Distance / 100) * Efficiency * Price. For example, a 200km trip in a car that uses 10L/100km at $2/L would cost (200/100) * 10 * 2 = $40."
+      title: "Weekend Getaway",
+      description: "Driving 300km in a car that uses 8L/100km with fuel at $1.90/L will cost you approximately $45.60."
     },
     {
-      q: "How do I find my car's fuel efficiency?",
-      a: "Most modern cars display this on the dashboard. Alternatively, you can calculate it by filling your tank, resetting your trip meter, driving, and then dividing the liters used by the kilometers traveled (multiplied by 100)."
+      title: "Daily Commute",
+      description: "If your round trip is 40km daily, you can calculate your weekly commute costs to better manage your budget."
+    }
+  ];
+
+  const faqs = [
+    {
+      q: "How accurate is this estimate?",
+      a: "The estimate is mathematically perfect but depends on your vehicle efficiency. Real-world fuel usage can vary with traffic, load, and driving style."
+    },
+    {
+      q: "Where do I find my L/100km rating?",
+      a: "Check your car's manual or dashboard 'Averge Consumption' metric. Modern cars often track this in real-time."
     }
   ];
 
   return (
     <CalculatorLayout
       title="Fuel Cost Calculator"
-      description="Estimate the total cost of fuel for your next road trip based on distance and vehicle efficiency."
+      seoTitle="Fuel Cost Calculator - Road Trip Petrol Expense Tool"
+      description="Estimate the total cost of fuel for your next road trip based on distance and vehicle efficiency. Fast, free petrol cost estimator."
       path="/other/fuel-cost"
       icon={Car}
-      inputs={InputPanel}
-      results={ResultPanel}
+      inputs={inputs}
+      results={results}
+      instructions={instructions}
+      formula={formula}
+      examples={examples}
       faqs={faqs}
-      formula="Cost = (Distance / 100) × Fuel Consumption × Price per Liter"
     />
   );
 }
