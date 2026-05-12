@@ -88,7 +88,7 @@ export default function CalculatorLayout({
               <div className="bg-white rounded-[2rem] shadow-premium border border-white/40 overflow-hidden backdrop-blur-sm bg-opacity-80">
                 <div className="grid grid-cols-1 md:grid-cols-2 divide-y md:divide-y-0 md:divide-x divide-slate-100">
                   {/* Inputs Column */}
-                  <div className="p-8 md:p-10 bg-slate-50/50 border-r border-slate-100">
+                  <div className="p-8 md:p-10 bg-slate-50 border-r border-slate-100">
                     <div className="flex items-center gap-2 mb-8">
                       <div className="w-8 h-8 rounded-xl bg-primary/10 flex items-center justify-center text-primary">
                         <Sparkles size={16} />
