@@ -163,15 +163,42 @@ export default function BmiCalculator() {
   );
 
   const instructions = (
-    <div className="space-y-4">
-        <p>
-            The Body Mass Index (BMI) is a universal standard used to determine whether a person is at a healthy weight for their height. It provides a simple numeric score that categorizes people into different health ranges.
+    <div className="space-y-6">
+      <div>
+        <h3 className="text-lg font-bold text-slate-900 mb-2">What is Body Mass Index (BMI)?</h3>
+        <p className="text-slate-500 leading-relaxed">
+          The Body Mass Index (BMI) is a globally recognized metric used to estimate whether a person has a healthy amount of body fat based on their height and weight. While it doesn't measure body fat directly, it correlates strongly with more direct measures of body fatness and is a critical screening tool for identifying potential weight-related health risks.
         </p>
-        <ul className="list-disc pl-5 space-y-2 text-sm">
-            <li><strong>Underweight:</strong> May indicate malnutrition or underlying health issues.</li>
-            <li><strong>Normal:</strong> The target range for optimal cardiovascular health.</li>
-            <li><strong>Overweight/Obese:</strong> Indicates an increased risk for type 2 diabetes and heart disease.</li>
+      </div>
+
+      <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100">
+        <h4 className="font-bold text-slate-900 mb-4">How to Interpret Your Results:</h4>
+        <ul className="space-y-3 text-slate-600">
+          <li className="flex gap-2">
+            <span className="font-bold text-blue-600 shrink-0">Underweight (&lt; 18.5):</span> 
+            <span>May suggest you are not eating enough or have an underlying medical condition. It's often associated with a higher risk of osteoporosis and a weakened immune system.</span>
+          </li>
+          <li className="flex gap-2">
+            <span className="font-bold text-green-600 shrink-0">Healthy Weight (18.5 – 24.9):</span> 
+            <span>The target range for most adults. Staying in this range significantly reduces the risk of heart disease, type 2 diabetes, and certain cancers.</span>
+          </li>
+          <li className="flex gap-2">
+            <span className="font-bold text-yellow-600 shrink-0">Overweight (25 – 29.9):</span> 
+            <span>Indicates you are carrying excess weight relative to your height. It's a signal to evaluate your diet and physical activity to prevent moving into the obesity category.</span>
+          </li>
+          <li className="flex gap-2">
+            <span className="font-bold text-red-600 shrink-0">Obesity (≥ 30):</span> 
+            <span>Associated with a significantly increased risk of chronic diseases. Healthcare providers often use this as a primary indicator for metabolic health interventions.</span>
+          </li>
         </ul>
+      </div>
+
+      <div>
+        <h3 className="text-lg font-bold text-slate-900 mb-2">A Vital Health Baseline</h3>
+        <p className="text-slate-500 leading-relaxed">
+          Think of your BMI as a baseline. It's a starting point for a conversation with your doctor about your overall wellness. By tracking your BMI over time, you can visualize the impact of lifestyle changes and stay motivated on your journey to a healthier you.
+        </p>
+      </div>
     </div>
   );
 
@@ -179,44 +206,57 @@ export default function BmiCalculator() {
 
   const examples = [
     {
-      title: "Average Adult",
-      description: "A 175cm person weighing 70kg has a BMI of 22.9, which is squarely within the 'Normal weight' category."
+      title: "Average Healthy Adult",
+      description: "An adult who is 175cm tall and weighs 70kg has a BMI of 22.9. This falls comfortably within the 'Healthy weight' range, indicating a lower risk of weight-related chronic conditions."
     },
     {
-      title: "Weight Management Goal",
-      description: "If a person is 175cm and weighs 90kg (BMI 29.4), reducing weight to 76kg would bring them into the healthy 'Normal' range."
+      title: "Weight Loss Goal Setting",
+      description: "If an individual is 170cm and weighs 90kg, their BMI is 31.1 (Obesity). By using this tool, they can calculate that reaching 72kg would bring their BMI to 24.9, successfully moving into the 'Healthy weight' category."
     }
   ];
 
   const faqs = [
-      {
-          q: "Is BMI accurate for everyone?",
-          a: "It is an excellent general population tool but can be inaccurate for athletes with high muscle mass, as muscle is denser than fat."
-      },
-      {
-          q: "What is the BMI range for seniors?",
-          a: "Some healthcare providers suggest that a slightly higher BMI (25-27) may be beneficial for older adults to protect against bone density loss."
-      }
+    {
+      q: "Is BMI accurate for athletes?",
+      a: "BMI can sometimes overestimate body fat in athletes or people with a muscular build because muscle is much denser than fat. A muscular person may have a 'high' BMI but very low body fat. For these individuals, waist-to-hip ratio or skinfold measurements are better metrics."
+    },
+    {
+      q: "Why does the calculation use height squared?",
+      a: "The height is squared because weight is generally proportional to the square of height in humans. This 'Power Law' relationship was first identified by Adolphe Quetelet in the 19th century and remains the foundation of the BMI formula today."
+    },
+    {
+      q: "Is BMI the same for men and women?",
+      a: "The BMI formula is the same for men and women. However, women naturally tend to have more body fat than men at the same BMI. Healthcare providers take gender and age into account when interpreting your BMI score in a clinical setting."
+    },
+    {
+      q: "How often should I check my BMI?",
+      a: "Weight can fluctuate daily due to hydration and other factors. We recommend checking your BMI once a month or once a week at the same time of day (preferably in the morning) to track meaningful trends in your health."
+    },
+    {
+      q: "Is BMI used for children?",
+      a: "While the formula is the same, BMI for children and teens (ages 2-19) is interpreted differently. It must be compared to growth charts for the child's specific age and biological sex to determine a BMI-for-age percentile."
+    }
   ];
 
   const whyUse = [
-    { title: "Health Screening", text: "A quick and easy way to screen for weight categories that may lead to health problems." },
-    { title: "Universal Standard", text: "Used by doctors and healthcare professionals worldwide to assess weight-related risks." },
-    { title: "Baseline Metric", text: "Provides a reliable baseline for tracking weight management progress over time." },
-    { title: "Risk Assessment", text: "Identify potential risks for conditions like type 2 diabetes and hypertension." }
+    { title: "Risk Identification", text: "Quickly identify if you are in a weight category that increases your risk for hypertension, stroke, or type 2 diabetes." },
+    { title: "Progress Tracking", text: "Perfect for monitoring the results of a new diet or fitness regimen with a standardized, objective numeric score." },
+    { title: "Medical Standard", text: "Use the same tool that doctors and clinical researchers use to categorize health data and make treatment recommendations." },
+    { title: "Universal Clarity", text: "Easily understand your weight status without needing expensive body composition equipment or professional help." }
   ];
 
   const keyFeatures = [
-    { title: "Dual Unit Systems", text: "Seamlessly switch between Metric (cm/kg) and Imperial (ft/in/lbs) units." },
-    { title: "WHO Standards", text: "Categorization based on official World Health Organization (WHO) BMI classifications." },
-    { title: "Visual Comparison", text: "Instant visual feedback showing where you sit on the spectrum of health categories." }
+    { title: "Instant Conversion", text: "Seamlessly switch between Metric and Imperial units with zero re-typing required, making it easy for users worldwide." },
+    { title: "Dynamic Analysis", text: "Your BMI and health category update live as you move the sliders or type in your measurements." },
+    { title: "WHO Aligned", text: "Our categorization logic follows the official World Health Organization (WHO) body mass index classifications strictly." }
   ];
 
   const proTips = [
-    "Muscle is denser than fat, so athletes might have a high BMI without being overweight.",
-    "Waist circumference is a great secondary measure to use alongside BMI.",
-    "For children and teens, BMI is interpreted differently using age-and-gender-specific percentiles.",
-    "Hydration levels and time of day can slightly affect weight; weigh yourself at the same time for consistency."
+    "Muscle mass can skew results; if you're a bodybuilder, focus on body fat percentage instead.",
+    "Waist circumference is a powerful secondary measure; aim for less than half your height in inches around your waist.",
+    "Stay hydrated! Water retention can temporarily increase weight and affect your daily BMI reading.",
+    "Use your BMI as a trend-line over months, not a day-to-day anxiety source.",
+    "Always consult a healthcare professional before starting a drastic weight loss or exercise program based on your BMI."
   ];
 
   const relatedTools = [

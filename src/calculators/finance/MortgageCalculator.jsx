@@ -148,16 +148,30 @@ export default function MortgageCalculator() {
   );
 
   const instructions = (
-    <div className="space-y-4">
-      <p>
-        Planning for a home is one of the biggest financial decisions you'll ever make. Our Mortgage Calculator helps you understand exactly how much your monthly principal and interest payments will be based on the home's price, your down payment, the interest rate, and the loan term.
-      </p>
-      <ol className="list-decimal pl-5 space-y-2">
-        <li><strong>Enter the Home Price:</strong> This is the total purchase price of the property.</li>
-        <li><strong>Enter your Down Payment:</strong> The amount of cash you're paying upfront. A 20% down payment is recommended to avoid PMI.</li>
-        <li><strong>Select Loan Term:</strong> Choose how many years you'll be paying off the loan (standard is 30 years).</li>
-        <li><strong>Enter Interest Rate:</strong> The annual percentage rate provided by your lender.</li>
-      </ol>
+    <div className="space-y-6">
+      <div>
+        <h3 className="text-lg font-bold text-slate-900 mb-2">How to Use the Mortgage Calculator</h3>
+        <p className="text-slate-500 leading-relaxed">
+          Planning for a home is one of the biggest financial decisions you'll ever make. Our professional Mortgage Calculator helps you strip away the complexity of home financing. By inputting your purchase details, you can understand exactly how much your monthly principal and interest payments will be, allowing you to budget with confidence and explore different financial scenarios.
+        </p>
+      </div>
+      
+      <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100">
+        <h4 className="font-bold text-slate-900 mb-4">Step-by-Step Guide:</h4>
+        <ol className="list-decimal pl-5 space-y-3 text-slate-600">
+          <li><strong>Enter the Home Price:</strong> This is the total purchase price of the property you are looking to buy.</li>
+          <li><strong>Enter your Down Payment:</strong> The amount of cash you're paying upfront. A higher down payment reduces your loan amount and interest costs. A 20% down payment is often recommended to avoid Private Mortgage Insurance (PMI).</li>
+          <li><strong>Select Loan Term:</strong> Choose the duration of your loan. While 30 years is the most common, shorter terms like 15 years can save you significant amounts in interest over time.</li>
+          <li><strong>Enter Interest Rate:</strong> The annual percentage rate (APR) provided by your lender. Even a small change in this rate can drastically affect your total loan cost.</li>
+        </ol>
+      </div>
+
+      <div>
+        <h3 className="text-lg font-bold text-slate-900 mb-2">Understanding Your Results</h3>
+        <p className="text-slate-500 leading-relaxed">
+          Once you enter your data, the calculator provides a comprehensive breakdown. The <strong>Monthly Payment</strong> is your core recurring cost. The <strong>Total Interest</strong> shows the cost of borrowing over the full term, and the <strong>Total Loan Cost</strong> gives you the big picture: the principal plus every cent of interest you'll pay.
+        </p>
+      </div>
     </div>
   );
 
@@ -165,49 +179,57 @@ export default function MortgageCalculator() {
 
   const examples = [
     {
-      title: "First-Time Home Buyer",
-      description: "A buyer purchasing a $400,000 home with a 10% down payment ($40,000) at a 6.5% interest rate for 30 years would have a monthly principal and interest payment of approximately $2,275."
+      title: "First-Time Home Buyer Scenario",
+      description: "A buyer purchasing a $400,000 home with a 10% down payment ($40,000) at a 6.5% interest rate for 30 years would have a monthly principal and interest payment of approximately $2,275. This helps the buyer decide if they can afford the monthly carry before talking to a bank."
     },
     {
-      title: "Refinancing to 15 Years",
-      description: "Alternatively, taking a $250,000 loan balance at a 5.5% interest rate for a 15-year term would result in monthly payments of $2,042, allowing the homeowner to build equity much faster."
+      title: "The Power of a 15-Year Term",
+      description: "Taking a $250,000 loan balance at a 5.5% interest rate for a 15-year term results in monthly payments of $2,042. While the payment is higher than a 30-year term, the homeowner builds equity much faster and saves over $100,000 in interest."
     }
   ];
 
   const faqs = [
     {
       q: "Does this include property taxes and insurance?",
-      a: "No. This calculator focuses on the Principal and Interest (P&I). Depending on your location and lender, your actual monthly bill will likely include property taxes, homeowners insurance, and potentially Private Mortgage Insurance (PMI) or HOA fees."
+      a: "No. This calculator focuses on the 'P&I'—Principal and Interest. In many cases, your actual monthly mortgage bill will be higher because it will also include property taxes, homeowners insurance, and potentially Private Mortgage Insurance (PMI) or HOA fees. We recommend adding 1-2% of the home's value for annual taxes and insurance to get a more accurate monthly total."
     },
     {
       q: "How can I lower my monthly mortgage payment?",
-      a: "The most effective ways to lower your monthly payment are: making a larger down payment, securing a lower interest rate, or extending the loan term (e.g., from 15 to 30 years)."
+      a: "There are three primary levers to lower your monthly payment: 1) Make a larger down payment to reduce the loan principal. 2) Secure a lower interest rate through better credit or points. 3) Extend the loan term (e.g., from 15 to 30 years), though this increases the total interest you pay over time."
     },
     {
-      q: "What is PMI?",
-      a: "Private Mortgage Insurance (PMI) is usually required if your down payment is less than 20%. It protects the lender, not you, and adds an extra monthly cost to your mortgage until you reach 20% equity."
+      q: "What is PMI and when do I pay it?",
+      a: "Private Mortgage Insurance (PMI) is an extra monthly fee required by lenders if your down payment is less than 20% of the home's value. It protects the lender in case of default. Once your home equity reaches 20%, you can typically request to have PMI removed."
+    },
+    {
+      q: "Should I choose a Fixed or Variable Rate?",
+      a: "A Fixed-Rate mortgage offers stability as your interest rate never changes. A Variable or Adjustable-Rate Mortgage (ARM) may offer a lower starting rate but can increase significantly over time based on market conditions. This calculator helps you model the 'worst-case' by inputting higher potential rates."
+    },
+    {
+      q: "How do extra payments affect my mortgage?",
+      a: "Making even one extra payment per year toward your principal can shave years off your loan term and save you thousands in interest. Use our Mortgage Payoff Calculator to see exactly how much you can save by paying extra."
     }
   ];
 
   const whyUse = [
-    { title: "Financial Planning", text: "Crucial for determining if a property fits within your long-term monthly budget." },
-    { title: "Comparison Shopping", text: "Compare different loan offers from lenders by seeing the impact of rate changes." },
-    { title: "Amortization Insight", text: "Understand how much of your payment goes toward principal vs interest over time." },
-    { title: "Down Payment Strategy", text: "See how increasing your upfront cash reduces your monthly burden and total interest." }
+    { title: "Precision Planning", text: "Accurately forecast your monthly housing costs to ensure your new home remains a blessing, not a financial burden." },
+    { title: "Smart Comparison", text: "Effortlessly compare different loan scenarios and lender offers side-by-side to find the most cost-effective path to homeownership." },
+    { title: "Equity Awareness", text: "Visualize how your payments are split between paying off your debt and paying the bank, helping you plan for future refinancing." },
+    { title: "Interest Optimization", text: "Understand the massive impact of interest rates and terms on your total wealth over the next 15 to 30 years." }
   ];
 
   const keyFeatures = [
-    { title: "Dynamic Calculations", text: "Results update instantly as you adjust price, rate, or term sliders." },
-    { title: "Total Cost Breakdown", text: "See the true cost of the loan including every dollar of interest paid over 30 years." },
-    { title: "Currency Formatting", text: "Professional output with commas and localized currency symbols for clarity." }
+    { title: "Real-Time Updates", text: "Experience instant calculations as you adjust your inputs, allowing for rapid-fire scenario testing." },
+    { title: "Full Cost Visibility", text: "Go beyond the monthly payment to see the 'True Cost' of your home over the lifetime of the loan." },
+    { title: "Mobile Optimized", text: "Access professional financial tools on the go—perfect for checking affordability while at an open house." }
   ];
 
   const proTips = [
-    "Aim for a 20% down payment to avoid paying Private Mortgage Insurance (PMI).",
-    "Even a 0.5% lower interest rate can save you tens of thousands of dollars over the life of the loan.",
-    "Consider a 15-year term if you want to pay off your home faster and save significantly on total interest.",
-    "Always check your local property tax rates, as they are not included in this P&I calculation.",
-    "Get pre-approved by a lender to know your actual interest rate before starting your home search."
+    "Aim for a 20% down payment to eliminate PMI costs and instantly lower your monthly bill.",
+    "Improve your credit score before applying; even a 0.5% rate reduction saves a fortune over 30 years.",
+    "Consider a 15-year term if your budget allows—you'll own your home sooner and pay far less interest.",
+    "Always budget for 'Hidden Costs' like maintenance, repairs, and utilities which aren't in a mortgage payment.",
+    "Model your payment at a 1-2% higher interest rate to see if you can still afford the home if rates rise before you lock."
   ];
 
   const relatedTools = [

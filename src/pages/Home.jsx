@@ -602,8 +602,8 @@ export default function Home() {
                   <h2 style={{ fontSize: '1.75rem', fontWeight: 800, letterSpacing: '-0.02em', marginBottom: '0.75rem' }}>
                     Why Use CalcPro.com.au?
                   </h2>
-                  <p style={{ color: 'var(--text-muted)', maxWidth: '480px', margin: '0 auto', lineHeight: 1.7 }}>
-                    Most online calculators are clunky, outdated, or harvest your data. We're changing that.
+                  <p style={{ color: 'var(--text-muted)', maxWidth: '640px', margin: '0 auto', lineHeight: 1.7 }}>
+                    Most online calculators are clunky, outdated, or harvest your data for marketing. We're changing that by providing a premium, privacy-first experience. Our tools are built with mathematically verified formulas, ensuring absolute precision for everything from simple math to complex financial forecasting. Whether you're calculating mortgage repayments, tracking your fitness goals, or managing business taxes, CalcPro.com.au delivers instant, reliable results with no clutter and total privacy.
                   </p>
                 </div>
 
